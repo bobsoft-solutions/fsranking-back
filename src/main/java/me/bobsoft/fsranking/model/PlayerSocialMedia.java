@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SocialMedia {
+public class PlayerSocialMedia {
 
     private int playerId;
     private String facebookURL;
