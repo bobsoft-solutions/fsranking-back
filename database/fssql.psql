@@ -1,0 +1,434 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.14
+-- Dumped by pg_dump version 9.5.14
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: competition; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.competition (
+    id_competition bigint NOT NULL,
+    name character varying(20),
+    location integer NOT NULL,
+    year date,
+    importance smallint NOT NULL
+);
+
+
+ALTER TABLE public.competition OWNER TO postgres;
+
+--
+-- Name: competition_id_competition_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.competition_id_competition_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.competition_id_competition_seq OWNER TO postgres;
+
+--
+-- Name: competition_id_competition_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.competition_id_competition_seq OWNED BY public.competition.id_competition;
+
+
+--
+-- Name: location; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.location (
+    id_location integer NOT NULL,
+    name character varying(15)
+);
+
+
+ALTER TABLE public.location OWNER TO postgres;
+
+--
+-- Name: location_id_location_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.location_id_location_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.location_id_location_seq OWNER TO postgres;
+
+--
+-- Name: location_id_location_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.location_id_location_seq OWNED BY public.location.id_location;
+
+
+--
+-- Name: player; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.player (
+    id_player integer NOT NULL,
+    name character varying(12),
+    last_name character varying(15),
+    nick character varying(10),
+    nationality character(3),
+    photo character varying(10),
+    social_media integer,
+    age smallint,
+    point integer
+);
+
+
+ALTER TABLE public.player OWNER TO postgres;
+
+--
+-- Name: COLUMN player.nationality; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.player.nationality IS 'iso 3166-1 Alpha 3';
+
+
+--
+-- Name: COLUMN player.photo; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.player.photo IS 'photo file_name';
+
+
+--
+-- Name: players_id_player_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.players_id_player_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.players_id_player_seq OWNER TO postgres;
+
+--
+-- Name: players_id_player_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.players_id_player_seq OWNED BY public.player.id_player;
+
+
+--
+-- Name: score; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.score (
+    id_playe integer NOT NULL,
+    id_competition integer NOT NULL,
+    score integer,
+    place smallint
+);
+
+
+ALTER TABLE public.score OWNER TO postgres;
+
+--
+-- Name: social_media; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.social_media (
+    id_social integer NOT NULL,
+    facebook character varying(2083),
+    instagram character varying(2083),
+    snapchat character varying(2083),
+    twitter character varying(2083),
+    youtube character varying(2083)
+);
+
+
+ALTER TABLE public.social_media OWNER TO postgres;
+
+--
+-- Name: social_media_id_social_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.social_media_id_social_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.social_media_id_social_seq OWNER TO postgres;
+
+--
+-- Name: social_media_id_social_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.social_media_id_social_seq OWNED BY public.social_media.id_social;
+
+
+--
+-- Name: user; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."user" (
+    id_user integer NOT NULL,
+    name character varying(12),
+    last_name character varying(15),
+    mail character varying(30) NOT NULL,
+    privilage character varying(10) NOT NULL,
+    password character(128) NOT NULL
+);
+
+
+ALTER TABLE public."user" OWNER TO postgres;
+
+--
+-- Name: user_id_user_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.user_id_user_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_id_user_seq OWNER TO postgres;
+
+--
+-- Name: user_id_user_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.user_id_user_seq OWNED BY public."user".id_user;
+
+
+--
+-- Name: id_competition; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.competition ALTER COLUMN id_competition SET DEFAULT nextval('public.competition_id_competition_seq'::regclass);
+
+
+--
+-- Name: id_location; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.location ALTER COLUMN id_location SET DEFAULT nextval('public.location_id_location_seq'::regclass);
+
+
+--
+-- Name: id_player; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.player ALTER COLUMN id_player SET DEFAULT nextval('public.players_id_player_seq'::regclass);
+
+
+--
+-- Name: id_social; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.social_media ALTER COLUMN id_social SET DEFAULT nextval('public.social_media_id_social_seq'::regclass);
+
+
+--
+-- Name: id_user; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."user" ALTER COLUMN id_user SET DEFAULT nextval('public.user_id_user_seq'::regclass);
+
+
+--
+-- Data for Name: competition; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.competition (id_competition, name, location, year, importance) FROM stdin;
+1	Test	1	2016-08-25	2
+\.
+
+
+--
+-- Name: competition_id_competition_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.competition_id_competition_seq', 1, true);
+
+
+--
+-- Data for Name: location; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.location (id_location, name) FROM stdin;
+\.
+
+
+--
+-- Name: location_id_location_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.location_id_location_seq', 1, false);
+
+
+--
+-- Data for Name: player; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.player (id_player, name, last_name, nick, nationality, photo, social_media, age, point) FROM stdin;
+\.
+
+
+--
+-- Name: players_id_player_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.players_id_player_seq', 1, false);
+
+
+--
+-- Data for Name: score; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.score (id_playe, id_competition, score, place) FROM stdin;
+\.
+
+
+--
+-- Data for Name: social_media; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.social_media (id_social, facebook, instagram, snapchat, twitter, youtube) FROM stdin;
+\.
+
+
+--
+-- Name: social_media_id_social_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.social_media_id_social_seq', 1, false);
+
+
+--
+-- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."user" (id_user, name, last_name, mail, privilage, password) FROM stdin;
+\.
+
+
+--
+-- Name: user_id_user_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.user_id_user_seq', 1, false);
+
+
+--
+-- Name: competition_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.competition
+    ADD CONSTRAINT competition_pkey PRIMARY KEY (id_competition);
+
+
+--
+-- Name: location_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.location
+    ADD CONSTRAINT location_pkey PRIMARY KEY (id_location);
+
+
+--
+-- Name: players_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.player
+    ADD CONSTRAINT players_pkey PRIMARY KEY (id_player);
+
+
+--
+-- Name: score_id_competition_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.score
+    ADD CONSTRAINT score_id_competition_key UNIQUE (id_competition);
+
+
+--
+-- Name: score_id_playe_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.score
+    ADD CONSTRAINT score_id_playe_key UNIQUE (id_playe);
+
+
+--
+-- Name: social_media_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.social_media
+    ADD CONSTRAINT social_media_pkey PRIMARY KEY (id_social);
+
+
+--
+-- Name: user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."user"
+    ADD CONSTRAINT user_pkey PRIMARY KEY (id_user);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
