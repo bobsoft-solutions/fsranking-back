@@ -24,7 +24,7 @@ public class MockController {
     }
 
     @CrossOrigin
-    @RequestMapping("/players")
+    @RequestMapping(value = "/players", produces = "text/json")
     public String players() throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -35,7 +35,7 @@ public class MockController {
     }
 
     @CrossOrigin
-    @RequestMapping("/competitions")
+    @RequestMapping(value = "/competitions", produces = "text/json")
     public String competitions() throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
