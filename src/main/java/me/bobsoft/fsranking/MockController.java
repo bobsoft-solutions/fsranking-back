@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 
-@CrossOrigin
+
 @RestController
 @RequestMapping("/mock")
 public class MockController {
@@ -23,6 +23,7 @@ public class MockController {
         SetMocker.mockCompetitions();
     }
 
+    @CrossOrigin
     @RequestMapping("/players")
     public String players() throws JsonProcessingException {
 
@@ -33,6 +34,7 @@ public class MockController {
         return JSONPlayers;
     }
 
+    @CrossOrigin
     @RequestMapping("/competitions")
     public String competitions() throws JsonProcessingException {
 
