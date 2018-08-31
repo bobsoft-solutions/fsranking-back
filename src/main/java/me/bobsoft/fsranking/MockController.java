@@ -4,13 +4,15 @@ package me.bobsoft.fsranking;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.bobsoft.fsranking.mock.SetMocker;
-import me.bobsoft.fsranking.model.CompetitionsSet;
-import me.bobsoft.fsranking.model.PlayersSet;
+import me.bobsoft.fsranking.mock.CompetitionsSet;
+import me.bobsoft.fsranking.mock.PlayersSet;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/mock")
 public class MockController {

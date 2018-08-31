@@ -2,7 +2,6 @@ package me.bobsoft.fsranking.model;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.ZonedDateTime;
 
 @Getter

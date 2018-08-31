@@ -1,6 +1,7 @@
-package me.bobsoft.fsranking.model;
+package me.bobsoft.fsranking.mock;
 
 import lombok.Getter;
+import me.bobsoft.fsranking.model.Competition;
 
 import java.util.HashSet;
 import java.util.Set;
