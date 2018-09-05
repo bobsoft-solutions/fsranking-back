@@ -1,21 +1,19 @@
 package me.bobsoft.fsranking.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "location")
+@Table(name = "location", schema = "public")
 public class Location {
 
     @Id
-    @Column(name = "id_location")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "name")

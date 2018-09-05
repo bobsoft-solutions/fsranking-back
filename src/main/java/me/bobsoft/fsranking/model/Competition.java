@@ -1,26 +1,23 @@
 package me.bobsoft.fsranking.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "competition")
+@Table(name = "competition", schema = "public")
 public class Competition {
 
     @Id
-    @Column(name = "id_competition")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "location")
     private Location location;
 
