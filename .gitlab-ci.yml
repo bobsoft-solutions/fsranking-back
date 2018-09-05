@@ -1,4 +1,19 @@
+stages: 
+- build 
+- deploy
+build_master:
+  image: maven
+  stage: build
+  artifacts:
+    paths:
+    - target/*.jar
+  script:
+  - mvn package sonar:sonar -Dsonar.host.url=https://sonar.yourdomain.tld/ 
+  only:
+  - master
+
 deploy:
+    stage: deploy
     script :    git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/fsranking.git
 
                 git push -f heroku master
