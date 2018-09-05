@@ -1,7 +1,7 @@
 stages: 
 - build 
 - deploy
-build_master:
+buildMaster:
   image: maven
   stage: build
   artifacts:
@@ -12,7 +12,7 @@ build_master:
   only:
   - master
 
-deploy:
+deployMaster:
     stage: deploy
     script :    git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/fsranking.git
 
