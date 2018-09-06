@@ -9,7 +9,7 @@ buildMaster:
         paths:
         - target/*.jar
     script:
-    - mvn package sonar:sonar -Dsonar.host.url=https://sonar.fsranking.tld// 
+    - mvn package sonar:sonar -Dsonar.host.url=https://fsranking-sonar.herokuapp.com// 
     only:
     - master
 
