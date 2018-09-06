@@ -2,17 +2,6 @@ stages:
 - build
 - deploy
 
-buildMaster:
-    image: maven
-    stage: build
-    artifacts:
-        paths:
-        - target/*.jar
-    script:
-    - mvn package sonar:sonar -Dsonar.host.url=https://fsranking-sonar.herokuapp.com// 
-    only:
-    - master
-
 deployMaster:
     stage: deploy
     script :    
