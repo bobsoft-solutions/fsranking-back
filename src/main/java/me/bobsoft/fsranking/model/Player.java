@@ -30,10 +30,10 @@ public class Player {
     private String photo;
 
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
     @Column(name = "points")
-    private int points;
+    private Integer points;
 
     // to satisfy Mocker
     @Builder
