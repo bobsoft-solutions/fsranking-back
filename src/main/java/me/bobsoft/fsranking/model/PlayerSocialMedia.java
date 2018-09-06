@@ -1,16 +1,36 @@
 package me.bobsoft.fsranking.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 
-@Getter
-@Setter
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Data
+@Entity
+@Table(name = "social_media", schema = "public")
 public class PlayerSocialMedia {
 
-    private int playerId;
+    @Id
+    @Column(name = "id_player")
+    private Integer playerId;
+
+    @Column(name = "facebook")
     private String facebookURL;
+
+    @Column(name = "instagram")
     private String instagramURL;
-    private String twitterURL;
+
+    @Column(name = "youtube")
     private String youtubeURL;
 
+    @Builder
+    public PlayerSocialMedia(Integer playerId, String facebookURL, String instagramURL, String youtubeURL) {
+        this.playerId = playerId;
+        this.facebookURL = facebookURL;
+        this.instagramURL = instagramURL;
+        this.youtubeURL = youtubeURL;
+    }
 }

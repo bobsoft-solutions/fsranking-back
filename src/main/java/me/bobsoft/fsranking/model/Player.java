@@ -1,32 +1,49 @@
 package me.bobsoft.fsranking.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 
-@Getter
-@Setter
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name = "player", schema = "public")
 public class Player {
 
-    private int id;
+    @Id
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "nick")
     private String nick;
+
+    @Column(name = "nationality")
     private String nationality;
+
+    @Column(name = "photo")
     private String photo;
-    private PlayerSocialMedia playerSocialMedia;
-    private int age;
-    private int points;
 
-    // TODO: Player builder, id and nickname required (is it really needed?)
+    @Column(name = "age")
+    private Integer age;
 
-    public Player(int id, String firstName, String lastName, String nick, String nationality, String photo, PlayerSocialMedia playerSocialMedia, int age, int points) {
+    @Column(name = "points")
+    private Integer points;
+
+    // to satisfy Mocker
+    @Builder
+    public Player(Integer id, String firstName, String lastName, String nick, String nationality, String photo, int age, int points) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nick = nick;
         this.nationality = nationality;
         this.photo = photo;
-        this.playerSocialMedia = playerSocialMedia;
         this.age = age;
         this.points = points;
     }
