@@ -1,6 +1,6 @@
 stages:
--build
--deploy
+- build
+- deploy
 
 buildMaster:
     image: maven
