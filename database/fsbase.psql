@@ -107,12 +107,12 @@ ALTER SEQUENCE public.location_id_location_seq OWNED BY public.location.id;
 
 CREATE TABLE public.player (
     id integer NOT NULL,
-    "firstNme" character varying(12),
-    "lastName" character varying(15),
+    first_name character varying(12),
+    last_name character varying(15),
     nick character varying(10),
     nationality character(3),
     photo character varying(10),
-    "birthDate" smallint,
+    birth_date smallint,
     point integer
 );
 
@@ -159,8 +159,8 @@ ALTER SEQUENCE public.players_id_player_seq OWNED BY public.player.id;
 --
 
 CREATE TABLE public.score (
-    "idPlayer" integer NOT NULL,
-    "idCompetition" integer NOT NULL,
+    id_player integer NOT NULL,
+    id_competition integer NOT NULL,
     score integer,
     place smallint
 );
@@ -173,7 +173,7 @@ ALTER TABLE public.score OWNER TO postgres;
 --
 
 CREATE TABLE public.social_media (
-    "idPlayer" integer NOT NULL,
+    id_player integer NOT NULL,
     facebook character varying(2083),
     instagram character varying(2083),
     youtube character varying(2083)
@@ -200,7 +200,7 @@ ALTER TABLE public.social_media_id_social_seq OWNER TO postgres;
 -- Name: social_media_id_social_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.social_media_id_social_seq OWNED BY public.social_media."idPlayer";
+ALTER SEQUENCE public.social_media_id_social_seq OWNED BY public.social_media.id_player;
 
 
 --
@@ -209,8 +209,8 @@ ALTER SEQUENCE public.social_media_id_social_seq OWNED BY public.social_media."i
 
 CREATE TABLE public."user" (
     id integer NOT NULL,
-    "firstName" character varying(12),
-    "lastName" character varying(15),
+    first_name character varying(12),
+    last_name character varying(15),
     mail character varying(30) NOT NULL,
     privilage character varying(10) NOT NULL,
     password character(128) NOT NULL
@@ -303,7 +303,7 @@ SELECT pg_catalog.setval('public.location_id_location_seq', 1, false);
 -- Data for Name: player; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.player (id, "firstNme", "lastName", nick, nationality, photo, "birthDate", point) FROM stdin;
+COPY public.player (id, first_name, last_name, nick, nationality, photo, birth_date, point) FROM stdin;
 \.
 
 
@@ -318,7 +318,7 @@ SELECT pg_catalog.setval('public.players_id_player_seq', 1, false);
 -- Data for Name: score; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.score ("idPlayer", "idCompetition", score, place) FROM stdin;
+COPY public.score (id_player, id_competition, score, place) FROM stdin;
 \.
 
 
@@ -326,7 +326,7 @@ COPY public.score ("idPlayer", "idCompetition", score, place) FROM stdin;
 -- Data for Name: social_media; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.social_media ("idPlayer", facebook, instagram, youtube) FROM stdin;
+COPY public.social_media (id_player, facebook, instagram, youtube) FROM stdin;
 \.
 
 
@@ -341,7 +341,7 @@ SELECT pg_catalog.setval('public.social_media_id_social_seq', 1, false);
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."user" (id, "firstName", "lastName", mail, privilage, password) FROM stdin;
+COPY public."user" (id, first_name, last_name, mail, privilage, password) FROM stdin;
 \.
 
 
@@ -381,7 +381,7 @@ ALTER TABLE ONLY public.player
 --
 
 ALTER TABLE ONLY public.score
-    ADD CONSTRAINT score_id_competition_key UNIQUE ("idCompetition");
+    ADD CONSTRAINT score_id_competition_key UNIQUE (id_competition);
 
 
 --
@@ -389,7 +389,7 @@ ALTER TABLE ONLY public.score
 --
 
 ALTER TABLE ONLY public.score
-    ADD CONSTRAINT score_id_playe_key UNIQUE ("idPlayer");
+    ADD CONSTRAINT score_id_playe_key UNIQUE (id_player);
 
 
 --
@@ -397,7 +397,7 @@ ALTER TABLE ONLY public.score
 --
 
 ALTER TABLE ONLY public.social_media
-    ADD CONSTRAINT social_media_pkey PRIMARY KEY ("idPlayer");
+    ADD CONSTRAINT social_media_pkey PRIMARY KEY (id_player);
 
 
 --
