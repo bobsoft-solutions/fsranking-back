@@ -1,4 +1,9 @@
-deploy:
-    script :    git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/fsranking.git
+stages:
+- build
+- deploy
 
-                git push -f heroku master
+deployMaster:
+    stage: deploy
+    script :    
+    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/fsranking.git
+    - git push -f heroku master

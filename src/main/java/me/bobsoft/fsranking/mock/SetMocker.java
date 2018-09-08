@@ -25,8 +25,11 @@ public class SetMocker {
             int age = 10 + i;
             int points = 100 + i;
 
-            Player player = new Player(id, firstName, lastName, nick, nationality, photo, playerSocialMedia,  age, points);
+            //Player player = new Player(id, firstName, lastName, nick, nationality, photo, playerSocialMedia,  age, points);
 
+            Player player = Player.builder()
+                    .id(id).firstName(firstName).lastName(lastName).nick(nick).nationality(nationality)
+                    .photo(photo).age(age).points(points).points(points).build();
             PlayersSet.addPlayer(player);
         }
     }
