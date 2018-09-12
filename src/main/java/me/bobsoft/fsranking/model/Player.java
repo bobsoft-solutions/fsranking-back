@@ -29,7 +29,7 @@ public class Player {
     @Column(name = "photo")
     private String photo;
 
-    @Column(name = "age")
+    @Column(name = "birth_date")
     private Integer age;
 
     @Column(name = "points")
