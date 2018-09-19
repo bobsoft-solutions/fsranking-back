@@ -8,14 +8,24 @@ CREATE SEQUENCE competition_id_competition_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9
 CREATE TABLE "public"."competition" (
     "id" bigint DEFAULT nextval('competition_id_competition_seq') NOT NULL,
     "name" character varying(20),
-    "location" integer NOT NULL,
+    "id_location" integer NOT NULL,
     "year" date,
     "importance" smallint NOT NULL,
-    CONSTRAINT "competition_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "competition_pkey" PRIMARY KEY ("id"),
+    CONSTRAINT "competition_location_fkey" FOREIGN KEY (id_location) REFERENCES location(id) NOT DEFERRABLE
 ) WITH (oids = false);
 
-INSERT INTO "competition" ("id", "name", "location", "year", "importance") VALUES
-(1,	'Test',	1,	'2016-08-25',	2);
+INSERT INTO "competition" ("id", "name", "id_location", "year", "importance") VALUES
+(1,	'Poland Championship',	1,	'2015-01-01',	10),
+(2,	'Poland Championship',	2,	'2016-01-01',	10),
+(3,	'Poland Championship',	3,	'2017-01-01',	10),
+(4,	'Poland Championship',	4,	'2018-01-01',	10),
+(6,	'Poland Futball round',	6,	'2016-01-23',	3),
+(7,	'Skip',	7,	'2015-05-03',	1),
+(8,	'Skip',	8,	'2016-08-05',	1),
+(9,	'FS master',	9,	'2018-03-11',	8),
+(10,	'Skip',	3,	'2015-08-11',	2),
+(5,	'Katowice Round',	3,	'2017-08-11',	5);
 
 DROP TABLE IF EXISTS "location";
 DROP SEQUENCE IF EXISTS location_id_location_seq;
@@ -27,6 +37,17 @@ CREATE TABLE "public"."location" (
     CONSTRAINT "location_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
+INSERT INTO "location" ("id", "name") VALUES
+(1,	'Kraków'),
+(2,	'Warszawa'),
+(3,	'Lublin'),
+(4,	'Opole'),
+(5,	'Katowice'),
+(6,	'Praga'),
+(7,	'Nowy Sącz'),
+(8,	'Zakopane'),
+(9,	'Wałbrzych'),
+(10,	'Mielno');
 
 DROP TABLE IF EXISTS "player";
 DROP SEQUENCE IF EXISTS players_id_player_seq;
@@ -38,7 +59,7 @@ CREATE TABLE "public"."player" (
     "last_name" character varying(15),
     "nick" character varying(10),
     "nationality" character(3),
-    "photo" character varying(10),
+    "photo" character varying(30),
     "birth_date" smallint,
     "point" integer,
     CONSTRAINT "players_pkey" PRIMARY KEY ("id")
@@ -48,6 +69,16 @@ COMMENT ON COLUMN "public"."player"."nationality" IS 'iso 3166-1 Alpha 3';
 
 COMMENT ON COLUMN "public"."player"."photo" IS 'photo file_name';
 
+INSERT INTO "player" ("id", "first_name", "last_name", "nick", "nationality", "photo", "birth_date", "point") VALUES
+(1,	'Adam',	'Nowak',	'AN',	'POL',	'an.png',	1998,	130),
+(2,	'Krzysztof',	'Kosecki',	'Tay',	'POL',	'tay.png',	1996,	3213),
+(3,	'Damian',	'Kowalski',	'Dan',	'POL',	'dan.png',	1989,	213),
+(4,	'Patryk',	'Wojciechowski',	'Wojo',	'POL',	'wojo.png',	1994,	32),
+(5,	'Waldek',	'Jochymek',	'john',	'POL',	'john.png',	1993,	343),
+(6,	'Alexander',	'Lewandowsky',	'Lefy',	'USA',	'lefy.png',	1990,	42),
+(7,	'Dominik',	'Kosowski',	'kosa',	'POL',	'kosa.png',	1999,	25),
+(8,	'Sławomir',	'Mączka',	'maku',	'POL',	'maku.png',	1988,	322),
+(9,	'Andy',	'Pamler',	'palma',	'ROU',	'palma.png',	1995,	123);
 
 DROP TABLE IF EXISTS "score";
 CREATE TABLE "public"."score" (
@@ -55,10 +86,25 @@ CREATE TABLE "public"."score" (
     "id_competition" integer NOT NULL,
     "score" integer,
     "place" smallint,
-    CONSTRAINT "score_id_competition_key" UNIQUE ("id_competition"),
-    CONSTRAINT "score_id_playe_key" UNIQUE ("id_player")
+    CONSTRAINT "score_id_player_id_competition" PRIMARY KEY ("id_player", "id_competition"),
+    CONSTRAINT "score_id_competition_fkey" FOREIGN KEY (id_competition) REFERENCES competition(id) NOT DEFERRABLE,
+    CONSTRAINT "score_id_player_fkey" FOREIGN KEY (id_player) REFERENCES player(id) NOT DEFERRABLE
 ) WITH (oids = false);
 
+INSERT INTO "score" ("id_player", "id_competition", "score", "place") VALUES
+(1,	1,	100,	1),
+(2,	2,	99,	1),
+(2,	1,	90,	2),
+(3,	1,	80,	3),
+(4,	1,	70,	4),
+(5,	1,	60,	5),
+(6,	1,	50,	6),
+(7,	1,	40,	7),
+(8,	1,	30,	8),
+(9,	1,	20,	9),
+(1,	2,	90,	2),
+(1,	3,	50,	5),
+(2,	3,	99,	1);
 
 DROP TABLE IF EXISTS "social_media";
 CREATE TABLE "public"."social_media" (
@@ -66,9 +112,20 @@ CREATE TABLE "public"."social_media" (
     "facebook" character varying(2083),
     "instagram" character varying(2083),
     "youtube" character varying(2083),
-    CONSTRAINT "social_media_pkey" PRIMARY KEY ("id_player")
+    CONSTRAINT "social_media_pkey" PRIMARY KEY ("id_player"),
+    CONSTRAINT "social_media_id_player_fkey" FOREIGN KEY (id_player) REFERENCES player(id) NOT DEFERRABLE
 ) WITH (oids = false);
 
+INSERT INTO "social_media" ("id_player", "facebook", "instagram", "youtube") VALUES
+(1,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/'),
+(2,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/'),
+(3,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/'),
+(4,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/'),
+(5,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/'),
+(6,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/'),
+(7,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/'),
+(8,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/'),
+(9,	'https://www.facebook.com/',	'https://www.instagram.com/',	'https://www.youtube.com/');
 
 DROP TABLE IF EXISTS "user";
 DROP SEQUENCE IF EXISTS user_id_user_seq;
@@ -84,94 +141,7 @@ CREATE TABLE "public"."user" (
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
+INSERT INTO "user" ("id", "first_name", "last_name", "mail", "privilage", "password") VALUES
+(1,	'admin',	'admin',	'admin@fsranking.com',	'all',	'7ef6156c32f427d713144f67e2ef14d2                                                                                                ');
 
--- 2018-09-12 22:40:25.952476+02
--- Adminer 4.6.3 PostgreSQL dump
-
-
-DROP TABLE IF EXISTS "competition";
-DROP SEQUENCE IF EXISTS competition_id_competition_seq;
-CREATE SEQUENCE competition_id_competition_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
-
-CREATE TABLE "public"."competition" (
-    "id" bigint DEFAULT nextval('competition_id_competition_seq') NOT NULL,
-    "name" character varying(20),
-    "location" integer NOT NULL,
-    "year" date,
-    "importance" smallint NOT NULL,
-    CONSTRAINT "competition_pkey" PRIMARY KEY ("id")
-) WITH (oids = false);
-
-INSERT INTO "competition" ("id", "name", "location", "year", "importance") VALUES
-(1,	'Test',	1,	'2016-08-25',	2);
-
-DROP TABLE IF EXISTS "location";
-DROP SEQUENCE IF EXISTS location_id_location_seq;
-CREATE SEQUENCE location_id_location_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
-
-CREATE TABLE "public"."location" (
-    "id" integer DEFAULT nextval('location_id_location_seq') NOT NULL,
-    "name" character varying(15),
-    CONSTRAINT "location_pkey" PRIMARY KEY ("id")
-) WITH (oids = false);
-
-
-DROP TABLE IF EXISTS "player";
-DROP SEQUENCE IF EXISTS players_id_player_seq;
-CREATE SEQUENCE players_id_player_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
-
-CREATE TABLE "public"."player" (
-    "id" integer DEFAULT nextval('players_id_player_seq') NOT NULL,
-    "first_name" character varying(12),
-    "last_name" character varying(15),
-    "nick" character varying(10),
-    "nationality" character(3),
-    "photo" character varying(10),
-    "birth_date" smallint,
-    "point" integer,
-    CONSTRAINT "players_pkey" PRIMARY KEY ("id")
-) WITH (oids = false);
-
-COMMENT ON COLUMN "public"."player"."nationality" IS 'iso 3166-1 Alpha 3';
-
-COMMENT ON COLUMN "public"."player"."photo" IS 'photo file_name';
-
-
-DROP TABLE IF EXISTS "score";
-CREATE TABLE "public"."score" (
-    "id_player" integer NOT NULL,
-    "id_competition" integer NOT NULL,
-    "score" integer,
-    "place" smallint,
-    CONSTRAINT "score_id_competition_key" UNIQUE ("id_competition"),
-    CONSTRAINT "score_id_playe_key" UNIQUE ("id_player")
-) WITH (oids = false);
-
-
-DROP TABLE IF EXISTS "social_media";
-CREATE TABLE "public"."social_media" (
-    "id_player" integer NOT NULL,
-    "facebook" character varying(2083),
-    "instagram" character varying(2083),
-    "youtube" character varying(2083),
-    CONSTRAINT "social_media_pkey" PRIMARY KEY ("id_player")
-) WITH (oids = false);
-
-
-DROP TABLE IF EXISTS "user";
-DROP SEQUENCE IF EXISTS user_id_user_seq;
-CREATE SEQUENCE user_id_user_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
-
-CREATE TABLE "public"."user" (
-    "id" integer DEFAULT nextval('user_id_user_seq') NOT NULL,
-    "first_name" character varying(12),
-    "last_name" character varying(15),
-    "mail" character varying(30) NOT NULL,
-    "privilage" character varying(10) NOT NULL,
-    "password" character(128) NOT NULL,
-    CONSTRAINT "user_pkey" PRIMARY KEY ("id")
-) WITH (oids = false);
-
-
--- 2018-09-12 22:40:25.952476+02
-
+-- 2018-09-19 23:24:58.041676+02
