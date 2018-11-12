@@ -32,12 +32,12 @@ public class Player {
     @Column(name = "birth_date")
     private Integer age;
 
-    @Column(name = "point")
-    private Integer point;
+    @Column(name = "points")
+    private Integer points;
 
     // to satisfy Mocker
     @Builder
-    public Player(Integer id, String firstName, String lastName, String nick, String nationality, String photo, int age, int point) {
+    public Player(Integer id, String firstName, String lastName, String nick, String nationality, String photo, int age, int points) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,6 +45,6 @@ public class Player {
         this.nationality = nationality;
         this.photo = photo;
         this.age = age;
-        this.point = point;
+        this.points = points;
     }
 }
