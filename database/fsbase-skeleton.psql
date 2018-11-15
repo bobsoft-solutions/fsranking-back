@@ -1,11 +1,22 @@
 -- Adminer 4.6.3 PostgreSQL dump
 
 
+
+DROP TABLE IF EXISTS "location";
+DROP SEQUENCE IF EXISTS location_id_location_seq;
+CREATE SEQUENCE location_id_location_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+
+CREATE TABLE "location" (
+    "id" integer DEFAULT nextval('location_id_location_seq') NOT NULL,
+    "name" character varying(15),
+    CONSTRAINT "location_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
 DROP TABLE IF EXISTS "competition";
 DROP SEQUENCE IF EXISTS competition_id_competition_seq;
 CREATE SEQUENCE competition_id_competition_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
-CREATE TABLE "public"."competition" (
+CREATE TABLE "competition" (
     "id" bigint DEFAULT nextval('competition_id_competition_seq') NOT NULL,
     "name" character varying(20),
     "id_location" integer NOT NULL,
@@ -16,43 +27,54 @@ CREATE TABLE "public"."competition" (
 ) WITH (oids = false);
 
 
-
-DROP TABLE IF EXISTS "location";
-DROP SEQUENCE IF EXISTS location_id_location_seq;
-CREATE SEQUENCE location_id_location_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
-
-CREATE TABLE "public"."location" (
-    "id" integer DEFAULT nextval('location_id_location_seq') NOT NULL,
-    "name" character varying(15),
-    CONSTRAINT "location_pkey" PRIMARY KEY ("id")
-) WITH (oids = false);
-
-
-
 DROP TABLE IF EXISTS "player";
 DROP SEQUENCE IF EXISTS players_id_player_seq;
 CREATE SEQUENCE players_id_player_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
-CREATE TABLE "public"."player" (
+CREATE TABLE "player" (
     "id" integer DEFAULT nextval('players_id_player_seq') NOT NULL,
     "first_name" character varying(12),
     "last_name" character varying(15),
     "nick" character varying(10),
     "nationality" character(3),
-    "photo" character varying(30),
     "birth_date" smallint,
-    "point" integer,
     CONSTRAINT "players_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
-COMMENT ON COLUMN "public"."player"."nationality" IS 'iso 3166-1 Alpha 3';
-
-COMMENT ON COLUMN "public"."player"."photo" IS 'photo file_name';
+COMMENT ON COLUMN "player"."nationality" IS 'iso 3166-1 Alpha 3';
 
 
+
+DROP TABLE IF EXISTS "battle_point";
+
+CREATE TABLE "battle_point" (
+    "id_player" integer NOT NULL references player,
+    "points" integer,
+    "date" date
+) WITH (oids = false);
+
+
+
+DROP TABLE IF EXISTS "challenge_point";
+
+CREATE TABLE "challenge_point" (
+    "id_player" integer NOT NULL references player,
+    "points" integer,
+    "date" date
+) WITH (oids = false);
+
+
+
+DROP TABLE IF EXISTS "routine_point";
+
+CREATE TABLE "routine_point" (
+    "id_player" integer NOT NULL references player,
+    "points" integer,
+    "date" date
+) WITH (oids = false);
 
 DROP TABLE IF EXISTS "score";
-CREATE TABLE "public"."score" (
+CREATE TABLE "score" (
     "id_player" integer NOT NULL,
     "id_competition" integer NOT NULL,
     "score" integer,
@@ -64,7 +86,7 @@ CREATE TABLE "public"."score" (
 
 
 DROP TABLE IF EXISTS "social_media";
-CREATE TABLE "public"."social_media" (
+CREATE TABLE "social_media" (
     "id_player" integer NOT NULL,
     "facebook" character varying(2083),
     "instagram" character varying(2083),
@@ -79,7 +101,7 @@ DROP TABLE IF EXISTS "user";
 DROP SEQUENCE IF EXISTS user_id_user_seq;
 CREATE SEQUENCE user_id_user_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
-CREATE TABLE "public"."user" (
+CREATE TABLE "user" (
     "id" integer DEFAULT nextval('user_id_user_seq') NOT NULL,
     "first_name" character varying(12),
     "last_name" character varying(15),
