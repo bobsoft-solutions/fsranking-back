@@ -20,14 +20,12 @@ public class SetMocker {
             String lastName = "lastName" + i;
             String nick = "nick" + i;
             String nationality = "PL";
-            String photo = "photoURL" + i;
             PlayerSocialMedia playerSocialMedia = null;
             int age = 10 + i;
-            int points = 100 + i;
 
             Player player = Player.builder()
                     .id(id).firstName(firstName).lastName(lastName).nick(nick).nationality(nationality)
-                    .photo(photo).age(age).points(points).build();
+                    .age(age).build();
             PlayersSet.addPlayer(player);
         }
     }

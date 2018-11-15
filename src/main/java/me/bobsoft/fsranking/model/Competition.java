@@ -7,7 +7,7 @@ import java.time.ZonedDateTime;
 
 @Data
 @Entity
-@Table(name = "competition", schema = "public")
+@Table(name = "competition")
 public class Competition {
 
     @Id
@@ -18,7 +18,7 @@ public class Competition {
     private String name;
 
     @ManyToOne()
-    @JoinColumn(name = "location")
+    @JoinColumn(name = "id_location")
     private Location location;
 
     @Column(name = "year")
