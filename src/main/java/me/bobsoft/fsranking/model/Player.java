@@ -32,7 +32,7 @@ public class Player {
     @Column(name = "birth_date")
     private Integer age;
 
-    @Column(name = "points")
+    @Column(name = "point")
     private Integer points;
 
     // to satisfy Mocker
