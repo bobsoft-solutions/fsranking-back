@@ -8,7 +8,7 @@ CREATE SEQUENCE location_id_location_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372
 
 CREATE TABLE "location" (
     "id" integer DEFAULT nextval('location_id_location_seq') NOT NULL,
-    "name" character varying(15),
+    "name" character varying(25),
     CONSTRAINT "location_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
