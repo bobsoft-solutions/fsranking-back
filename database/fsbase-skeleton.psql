@@ -18,7 +18,7 @@ CREATE SEQUENCE competition_id_competition_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9
 
 CREATE TABLE "competition" (
     "id" bigint DEFAULT nextval('competition_id_competition_seq') NOT NULL,
-    "name" character varying(20),
+    "name" character varying(30),
     "id_location" integer NOT NULL,
     "year" date,
     "importance" smallint NOT NULL,
