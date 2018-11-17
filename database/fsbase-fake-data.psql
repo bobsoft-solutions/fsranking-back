@@ -13,8 +13,7 @@ INSERT INTO "competition" ("id", "name", "id_location", "year", "importance") VA
 
 
 INSERT INTO "location" ("id", "name") VALUES
-(1,	'Kraków'),
-(2,	'Warszawa'),
+(1,	'Kraków'),(2,	'Warszawa'),
 (3,	'Lublin'),
 (4,	'Opole'),
 (5,	'Katowice'),
