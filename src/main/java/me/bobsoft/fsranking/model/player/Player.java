@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Data
 @Entity
-@Table(name = "player", schema = "public")
+@Table(name = "player")
 public class Player {
 
     @Id
