@@ -94,7 +94,6 @@ insert into competition(name,id_location,year,importance) values
 ('Radom M1 2016', (select id from location where name='Radom'), to_date(2016::text, 'YYYY'),1),
 ('Skawina 2016', (select id from location where name='Skawina'), to_date(2016::text, 'YYYY'),3),
 ('Zabrze M1 2016', (select id from location where name='Zabrze'), to_date(2016::text, 'YYYY'),1),
-('Zabrze M1 2016', (select id from location where name='Zabrze'), to_date(2016::text, 'YYYY'),1),
 ('Żerków 2016', (select id from location where name='Żerków'), to_date(2016::text, 'YYYY'),5),
 ('Błaszki 2017', (select id from location where name='Błaszki'), to_date(2017::text, 'YYYY'),2),
 ('Chojnice 2017', (select id from location where name='Chojnice'), to_date(2017::text, 'YYYY'),1),
