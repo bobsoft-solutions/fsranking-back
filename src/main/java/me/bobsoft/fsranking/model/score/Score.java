@@ -1,6 +1,9 @@
-package me.bobsoft.fsranking.model;
+package me.bobsoft.fsranking.model.score;
 
 import lombok.Data;
+import me.bobsoft.fsranking.model.Category;
+import me.bobsoft.fsranking.model.Competition;
+import me.bobsoft.fsranking.model.player.Player;
 
 import javax.persistence.*;
 
@@ -21,7 +24,7 @@ public class Score {
     private Competition competition;
 
     @Column(name = "score")
-    private Integer lastName;
+    private Integer score;
 
     @Column(name = "place")
     private Integer place;

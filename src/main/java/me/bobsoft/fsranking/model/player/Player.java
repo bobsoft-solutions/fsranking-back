@@ -1,10 +1,12 @@
-package me.bobsoft.fsranking.model;
+package me.bobsoft.fsranking.model.player;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
+import me.bobsoft.fsranking.model.player.PlayerSocialMedia;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Map;
 
 @Data
 @Entity
@@ -33,6 +35,10 @@ public class Player {
     @OneToOne
     @JoinColumn(name = "id")
     private PlayerSocialMedia playerSocialMedia;
+
+    //optional for /players/{id} endpoint
+    @Transient
+    private Map<String, Integer> summaryScores;
 
     @Builder
     public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age) {

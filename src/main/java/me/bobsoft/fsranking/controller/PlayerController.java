@@ -1,6 +1,6 @@
 package me.bobsoft.fsranking.controller;
 
-import me.bobsoft.fsranking.model.Player;
+import me.bobsoft.fsranking.model.player.Player;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
