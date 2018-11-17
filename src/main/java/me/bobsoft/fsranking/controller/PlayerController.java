@@ -10,19 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 public class PlayerController {
 
     @Autowired
     private PlayerService playerService;
 
-    @CrossOrigin
     @GetMapping("/players")
-    public Iterable<Player> findAllPlayers() {
-        return playerService.findAll();
-    }
+    public Iterable<Player> findAllPlayers() { return playerService.findAll(); }
 
-    @CrossOrigin
     @GetMapping("/players/{id}")
     public Optional<Player> findPlayerById(@PathVariable Integer id) {
         return playerService.findById(id);

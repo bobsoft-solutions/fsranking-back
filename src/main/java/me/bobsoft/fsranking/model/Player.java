@@ -1,12 +1,10 @@
 package me.bobsoft.fsranking.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -32,7 +30,11 @@ public class Player {
     @Column(name = "birth_date")
     private Integer age;
 
-    // to satisfy Mocker
+    @OneToOne
+    @JoinColumn(name = "id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private PlayerSocialMedia playerSocialMedia;
+    
     @Builder
     public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age) {
         this.id = id;
