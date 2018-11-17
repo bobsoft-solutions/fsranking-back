@@ -1,4 +1,4 @@
-package me.bobsoft.fsranking.model;
+package me.bobsoft.fsranking.model.player;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "social_media", schema = "public")
+@Table(name = "social_media")
 public class PlayerSocialMedia {
 
     @Id

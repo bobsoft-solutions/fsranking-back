@@ -1,12 +1,10 @@
-package me.bobsoft.fsranking.model;
+package me.bobsoft.fsranking.model.player;
 
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Map;
 
 @Data
 @Entity
@@ -32,14 +30,21 @@ public class Player {
     @Column(name = "birth_date")
     private Integer age;
 
-    // to satisfy Mocker
+    @OneToOne
+    @JoinColumn(name = "id")
+    private PlayerSocialMedia playerSocialMedia;
+
+    @Transient
+    private Map<String, Integer> summaryScores;
+
     @Builder
-    public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age) {
+    public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age, Map<String, Integer> summaryScores) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nick = nick;
         this.nationality = nationality;
         this.age = age;
+        this.summaryScores = summaryScores;
     }
 }

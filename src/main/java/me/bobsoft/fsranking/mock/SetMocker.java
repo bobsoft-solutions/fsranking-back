@@ -1,6 +1,8 @@
 package me.bobsoft.fsranking.mock;
 
 import me.bobsoft.fsranking.model.*;
+import me.bobsoft.fsranking.model.player.Player;
+import me.bobsoft.fsranking.model.player.PlayerSocialMedia;
 
 import java.time.ZonedDateTime;
 

@@ -1,7 +1,7 @@
 package me.bobsoft.fsranking.mock;
 
 import lombok.Getter;
-import me.bobsoft.fsranking.model.Player;
+import me.bobsoft.fsranking.model.player.Player;
 
 import java.util.HashSet;
 import java.util.Set;
