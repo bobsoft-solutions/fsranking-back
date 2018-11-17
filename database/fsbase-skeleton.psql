@@ -36,7 +36,7 @@ CREATE TABLE "player" (
     "first_name" character varying(12),
     "last_name" character varying(15),
     "nick" character varying(10),
-    "nationality" character(2),
+    "nationality" character(3),
     "birth_date" smallint,
     CONSTRAINT "players_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
