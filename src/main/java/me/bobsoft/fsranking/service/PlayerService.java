@@ -34,7 +34,23 @@ public class PlayerService {
                         .stream()
                         .map(s -> s.getScore())
                         .reduce((s1, s2) -> s1 + s2)
-                        .get()
+                        .orElse(0)
+        );
+
+        player.getSummaryScores().put("challenge",
+                scoreRepository.findByPlayerIdAndCategoryName(id, "challenge")
+                        .stream()
+                        .map(s -> s.getScore())
+                        .reduce((s1, s2) -> s1 + s2)
+                        .orElse(0)
+        );
+
+        player.getSummaryScores().put("routine",
+                scoreRepository.findByPlayerIdAndCategoryName(id, "routine")
+                        .stream()
+                        .map(s -> s.getScore())
+                        .reduce((s1, s2) -> s1 + s2)
+                        .orElse(0)
         );
 
         return Optional.of(player);

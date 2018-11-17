@@ -2,10 +2,8 @@ package me.bobsoft.fsranking.model.player;
 
 import lombok.Builder;
 import lombok.Data;
-import me.bobsoft.fsranking.model.player.PlayerSocialMedia;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Map;
 
 @Data
@@ -36,17 +34,17 @@ public class Player {
     @JoinColumn(name = "id")
     private PlayerSocialMedia playerSocialMedia;
 
-    //optional for /players/{id} endpoint
     @Transient
     private Map<String, Integer> summaryScores;
 
     @Builder
-    public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age) {
+    public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age, Map<String, Integer> summaryScores) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nick = nick;
         this.nationality = nationality;
         this.age = age;
+        this.summaryScores = summaryScores;
     }
 }
