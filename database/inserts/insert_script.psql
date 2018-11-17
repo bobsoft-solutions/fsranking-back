@@ -102,3 +102,5 @@ insert into competition(name,id_location,year,importance) values
 ('Freestival 2017', (select id from location where name='Grodzisk Mazowiecki'), to_date(2017::text, 'YYYY'),5),
 ('Olkusz 2017', (select id from location where name='Olkusz'), to_date(2017::text, 'YYYY'),6),
 ('Skawina 2017', (select id from location where name='Skawina'), to_date(2017::text, 'YYYY'),3);
+
+update player set birth_date=2018-birth_date;
