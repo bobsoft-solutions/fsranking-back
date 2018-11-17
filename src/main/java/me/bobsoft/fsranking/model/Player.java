@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "player")
+@Table(name = "player", schema = "public")
 public class Player {
 
     @Id
@@ -32,9 +32,8 @@ public class Player {
 
     @OneToOne
     @JoinColumn(name = "id")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     private PlayerSocialMedia playerSocialMedia;
-    
+
     @Builder
     public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age) {
         this.id = id;
