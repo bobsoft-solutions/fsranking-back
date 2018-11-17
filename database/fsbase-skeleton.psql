@@ -12,6 +12,30 @@ CREATE TABLE "location" (
     CONSTRAINT "location_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
+
+DROP TABLE IF EXISTS "group";
+DROP SEQUENCE IF EXISTS group_id_group_seq;
+CREATE SEQUENCE group_id_group_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+
+CREATE TABLE "group" (
+    "id" integer DEFAULT nextval('group_id_group_seq') NOT NULL,
+    "name" character varying(25),
+    CONSTRAINT "group_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+
+DROP TABLE IF EXISTS "category";
+DROP SEQUENCE IF EXISTS category_id_category_seq;
+CREATE SEQUENCE category_id_category_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+
+CREATE TABLE "category" (
+    "id" integer DEFAULT nextval('category_id_category_seq') NOT NULL,
+    "name" character varying(25),
+    CONSTRAINT "category_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
 DROP TABLE IF EXISTS "competition";
 DROP SEQUENCE IF EXISTS competition_id_competition_seq;
 CREATE SEQUENCE competition_id_competition_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
@@ -22,6 +46,7 @@ CREATE TABLE "competition" (
     "id_location" integer NOT NULL,
     "year" date,
     "importance" smallint NOT NULL,
+    "id_group" integer references "group" NOT NULL,
     CONSTRAINT "competition_pkey" PRIMARY KEY ("id"),
     CONSTRAINT "competition_location_fkey" FOREIGN KEY (id_location) REFERENCES location(id) NOT DEFERRABLE
 ) WITH (oids = false);
@@ -50,7 +75,8 @@ DROP TABLE IF EXISTS "battle_point";
 CREATE TABLE "battle_point" (
     "id_player" integer NOT NULL references player,
     "points" integer,
-    "date" date
+    "date" date,
+    "place" smallint
 ) WITH (oids = false);
 
 
@@ -60,7 +86,8 @@ DROP TABLE IF EXISTS "challenge_point";
 CREATE TABLE "challenge_point" (
     "id_player" integer NOT NULL references player,
     "points" integer,
-    "date" date
+    "date" date,
+    "place" smallint
 ) WITH (oids = false);
 
 
@@ -70,8 +97,11 @@ DROP TABLE IF EXISTS "routine_point";
 CREATE TABLE "routine_point" (
     "id_player" integer NOT NULL references player,
     "points" integer,
-    "date" date
+    "date" date,
+    "place" smallint
 ) WITH (oids = false);
+
+
 
 DROP TABLE IF EXISTS "score";
 CREATE TABLE "score" (
@@ -79,7 +109,8 @@ CREATE TABLE "score" (
     "id_competition" integer NOT NULL,
     "score" integer,
     "place" smallint,
-    CONSTRAINT "score_id_player_id_competition" PRIMARY KEY ("id_player", "id_competition"),
+    "id_category"  integer NOT NULL references category,
+    CONSTRAINT "score_id_player_id_competition_id_category" PRIMARY KEY ("id_player", "id_competition", "id_category"),
     CONSTRAINT "score_id_competition_fkey" FOREIGN KEY (id_competition) REFERENCES competition(id) NOT DEFERRABLE,
     CONSTRAINT "score_id_player_fkey" FOREIGN KEY (id_player) REFERENCES player(id) NOT DEFERRABLE
 ) WITH (oids = false);
