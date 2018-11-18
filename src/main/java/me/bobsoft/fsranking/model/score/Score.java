@@ -26,9 +26,6 @@ public class Score {
     @Column(name = "score")
     private Integer score;
 
-    @Column(name = "place")
-    private Integer place;
-
     @ManyToOne
     @JoinColumn(name = "id_category")
     @Id
