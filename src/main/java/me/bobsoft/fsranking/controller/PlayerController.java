@@ -27,7 +27,7 @@ public class PlayerController {
     }
 
     @GetMapping("/players/{id}/statistics")
-    public PlayerStatistics findPlayerStatistics(@PathVariable Integer id) {
-        return playerService.findStatistics(id);
+    public PlayerStatistics findPlayerStatisticsById(@PathVariable Integer id) {
+        return playerService.findStatisticsById(id);
     }
 }

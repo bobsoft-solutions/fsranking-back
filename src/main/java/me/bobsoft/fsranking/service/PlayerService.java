@@ -1,7 +1,7 @@
 package me.bobsoft.fsranking.service;
 
 import me.bobsoft.fsranking.model.player.Player;
-import me.bobsoft.fsranking.model.player.PlayerPodiumCount;
+import me.bobsoft.fsranking.model.player.PlayerCategoryStatistics;
 import me.bobsoft.fsranking.model.player.PlayerStatistics;
 import me.bobsoft.fsranking.model.score.Score;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static java.lang.Math.toIntExact;
 
@@ -33,56 +31,60 @@ public class PlayerService {
     }
 
     public Optional<Player> findById(Integer id) {
-        Optional<Player> optionalPlayerl = playerRepository.findById(id);
-        if(!optionalPlayerl.isPresent()) return optionalPlayerl;
+        Optional<Player> optionalPlayer = playerRepository.findById(id);
+        optionalPlayer.ifPresent(p -> p.setSummaryScores(countPodiumById(id)));
 
-        Player player = optionalPlayerl.get();
-        player.setSummaryScores(new LinkedHashMap<String, Integer>());
-
-        player.getSummaryScores().put("battle",
-                scoreRepository.findByPlayerIdAndCategoryName(id, "battle")
-                        .stream()
-                        .map(s -> s.getScore())
-                        .reduce((s1, s2) -> s1 + s2)
-                        .orElse(0)
-        );
-
-        player.getSummaryScores().put("challenge",
-                scoreRepository.findByPlayerIdAndCategoryName(id, "challenge")
-                        .stream()
-                        .map(s -> s.getScore())
-                        .reduce((s1, s2) -> s1 + s2)
-                        .orElse(0)
-        );
-
-        player.getSummaryScores().put("routine",
-                scoreRepository.findByPlayerIdAndCategoryName(id, "routine")
-                        .stream()
-                        .map(s -> s.getScore())
-                        .reduce((s1, s2) -> s1 + s2)
-                        .orElse(0)
-        );
-
-        return Optional.of(player);
+        return optionalPlayer;
     }
 
-    public PlayerStatistics findStatistics(Integer id) {
+    private Map<String, Integer> countPodiumById(Integer playerId) {
+        Map<String, Integer> map = new LinkedHashMap<>();
+
+        map.put("battle",
+                scoreRepository.findByPlayerIdAndCategoryName(playerId, "battle")
+                        .stream()
+                        .map(s -> s.getScore())
+                        .reduce((s1, s2) -> s1 + s2)
+                        .orElse(0)
+        );
+
+        map.put("challenge",
+                scoreRepository.findByPlayerIdAndCategoryName(playerId, "challenge")
+                        .stream()
+                        .map(s -> s.getScore())
+                        .reduce((s1, s2) -> s1 + s2)
+                        .orElse(0)
+        );
+
+        map.put("routine",
+                scoreRepository.findByPlayerIdAndCategoryName(playerId, "routine")
+                        .stream()
+                        .map(s -> s.getScore())
+                        .reduce((s1, s2) -> s1 + s2)
+                        .orElse(0)
+        );
+
+        return map;
+    }
+
+    public PlayerStatistics findStatisticsById(Integer id) {
         PlayerStatistics playerStatistics = new PlayerStatistics();
+
         playerStatistics.setBattle(
-                countPlayerPodiums(id, "battle")
+                resolveStatisticsByIdAndCategory(id, "battle")
         );
         playerStatistics.setChallenge(
-                countPlayerPodiums(id, "challenge")
+                resolveStatisticsByIdAndCategory(id, "challenge")
         );
         playerStatistics.setRoutine(
-                countPlayerPodiums(id, "routine")
+                resolveStatisticsByIdAndCategory(id, "routine")
         );
 
         return playerStatistics;
     }
 
-    public PlayerPodiumCount countPlayerPodiums(Integer playerId, String category) {
-        PlayerPodiumCount playerPodiumCount = new PlayerPodiumCount();
+    private PlayerCategoryStatistics resolveStatisticsByIdAndCategory(Integer playerId, String category) {
+        PlayerCategoryStatistics playerPodiumCount = new PlayerCategoryStatistics();
         List<Score> scores = scoreRepository.findByPlayerIdAndCategoryName(playerId, category);
 
         playerPodiumCount.setCountOf1st(

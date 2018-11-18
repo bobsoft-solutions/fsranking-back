@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface ScoreRepository extends CrudRepository<Score, ScoreIdClass> {
     public List<Score> findByPlayerIdAndCategoryName(Integer id, String name);
-
-    public List<Score> findByPlayerId(Integer id);
 }

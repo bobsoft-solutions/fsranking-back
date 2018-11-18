@@ -3,10 +3,7 @@ package me.bobsoft.fsranking.model.player;
 import lombok.Data;
 import me.bobsoft.fsranking.model.Category;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -26,6 +23,8 @@ public class CumulatedPoint {
     @Column(name = "place")
     private Integer place;
 
-//    @Column(name = "id_category")
-//    private Category category;
+    @Transient
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Category category;
 }

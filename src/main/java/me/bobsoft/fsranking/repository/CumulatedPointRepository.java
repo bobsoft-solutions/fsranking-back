@@ -6,6 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface CumulatedPointRepository extends CrudRepository<CumulatedPoint, Integer> {
-//    public List<CumulatedPoint> findByCategoryName(String category);
     public List<CumulatedPoint> findAll();
 }
