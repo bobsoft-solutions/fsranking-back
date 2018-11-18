@@ -88,21 +88,21 @@ public class PlayerService {
         playerPodiumCount.setCountOf1st(
                 toIntExact(
                     scores.stream()
-                        .filter(s -> s.getPlace() == 1)
+                        .filter(s -> s.getIdDefaultPoint().getId() == 1)
                         .count()
                 )
         );
         playerPodiumCount.setCountOf2nd(
                 toIntExact(
                     scores.stream()
-                        .filter(s -> s.getPlace() == 2)
+                        .filter(s -> s.getIdDefaultPoint().getId() == 2)
                         .count()
                 )
         );
         playerPodiumCount.setCountOf3rd(
                 toIntExact(
                     scores.stream()
-                        .filter(s -> s.getPlace() == 3)
+                        .filter(s -> s.getIdDefaultPoint().getId() == 3)
                         .count()
                 )
         );
