@@ -1,6 +1,7 @@
 package me.bobsoft.fsranking.controller;
 
 import me.bobsoft.fsranking.model.player.Player;
+import me.bobsoft.fsranking.model.player.PlayerStatistics;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,5 +24,10 @@ public class PlayerController {
     @GetMapping("/players/{id}")
     public Optional<Player> findPlayerById(@PathVariable Integer id) {
         return playerService.findById(id);
+    }
+
+    @GetMapping("/players/{id}/statistics")
+    public PlayerStatistics findPlayerStatistics(@PathVariable Integer id) {
+        return playerService.findStatistics(id);
     }
 }
