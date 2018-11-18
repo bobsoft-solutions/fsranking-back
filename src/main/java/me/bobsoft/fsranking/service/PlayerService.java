@@ -4,7 +4,7 @@ import me.bobsoft.fsranking.model.player.Player;
 import me.bobsoft.fsranking.model.player.PlayerPodiumCount;
 import me.bobsoft.fsranking.model.player.PlayerStatistics;
 import me.bobsoft.fsranking.model.score.Score;
-import me.bobsoft.fsranking.repository.ChallengePointRepository;
+import me.bobsoft.fsranking.repository.CumulatedPointRepository;
 import me.bobsoft.fsranking.repository.PlayerRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class PlayerService {
     private ScoreRepository scoreRepository;
 
     @Autowired
-    private ChallengePointRepository challengePointRepository;
+    private CumulatedPointRepository cumulatedPointRepository;
 
     public Iterable<Player> findAll() {
         return playerRepository.findAll();
@@ -107,21 +107,8 @@ public class PlayerService {
                 )
         );
 
-        playerPodiumCount.setPoints(challengePointRepository.findAll());
+        playerPodiumCount.setPoints(cumulatedPointRepository.findAll());
 
         return playerPodiumCount;
-    }
-
-    public static <T> Collection<T> iterableToCollection(Iterable<T> iterable)
-    {
-        // check if iterable is instance of a List
-        if (iterable instanceof List) {
-            return (List<T>) iterable;
-        }
-
-        // convert iterable to spliterator, get stream from spliterator
-        // and collect values into a Iterable (say list)
-        return StreamSupport.stream(iterable.spliterator(), false)
-                .collect(Collectors.toList());
     }
 }
