@@ -36,6 +36,16 @@ CREATE TABLE "category" (
 ) WITH (oids = false);
 
 
+DROP TABLE IF EXISTS "default_point";
+DROP SEQUENCE IF EXISTS default_point_id_default_point_seq;
+CREATE SEQUENCE default_point_id_default_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+
+CREATE TABLE "default_point" (
+    "id" integer DEFAULT nextval('default_point_id_default_point_seq') NOT NULL,
+    "value" smallint,
+    CONSTRAINT "default_point_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
 DROP TABLE IF EXISTS "competition";
 DROP SEQUENCE IF EXISTS competition_id_competition_seq;
 CREATE SEQUENCE competition_id_competition_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
@@ -70,35 +80,14 @@ COMMENT ON COLUMN "player"."nationality" IS 'iso 3166-1 Alpha 3';
 
 
 
-DROP TABLE IF EXISTS "battle_point";
+DROP TABLE IF EXISTS "cumulated_point";
 
-CREATE TABLE "battle_point" (
+CREATE TABLE "cumulated_point" (
     "id_player" integer NOT NULL references player,
     "points" integer,
     "date" date,
-    "place" smallint
-) WITH (oids = false);
-
-
-
-DROP TABLE IF EXISTS "challenge_point";
-
-CREATE TABLE "challenge_point" (
-    "id_player" integer NOT NULL references player,
-    "points" integer,
-    "date" date,
-    "place" smallint
-) WITH (oids = false);
-
-
-
-DROP TABLE IF EXISTS "routine_point";
-
-CREATE TABLE "routine_point" (
-    "id_player" integer NOT NULL references player,
-    "points" integer,
-    "date" date,
-    "place" smallint
+    "place" smallint,
+    "id_category" integer NOT NULL references category
 ) WITH (oids = false);
 
 
@@ -108,7 +97,7 @@ CREATE TABLE "score" (
     "id_player" integer NOT NULL,
     "id_competition" integer NOT NULL,
     "score" integer,
-    "place" smallint,
+    "id_default_point" smallint references default_point,
     "id_category"  integer NOT NULL references category,
     CONSTRAINT "score_id_player_id_competition_id_category" PRIMARY KEY ("id_player", "id_competition", "id_category"),
     CONSTRAINT "score_id_competition_fkey" FOREIGN KEY (id_competition) REFERENCES competition(id) NOT DEFERRABLE,
