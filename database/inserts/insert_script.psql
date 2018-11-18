@@ -1044,3 +1044,10 @@ insert into score values
 
 insert into score values
 ((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Olkusz 2017'), 25, 8, (select id from category where name = 'battle'));
+
+UPDATE score SET score = (score * 6) WHERE id_competition IN (SELECT id from competition where importance = 6);
+UPDATE score SET score = (score * 5) WHERE id_competition IN (SELECT id from competition where importance = 5);
+UPDATE score SET score = (score * 4) WHERE id_competition IN (SELECT id from competition where importance = 4);
+UPDATE score SET score = (score * 3) WHERE id_competition IN (SELECT id from competition where importance = 3);
+UPDATE score SET score = (score * 2) WHERE id_competition IN (SELECT id from competition where importance = 2);
+UPDATE score SET score = (score * 1) WHERE id_competition IN (SELECT id from competition where importance = 1);
