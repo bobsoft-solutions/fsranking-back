@@ -38,13 +38,13 @@ public class Player {
     private Map<String, Integer> summaryScores;
 
     @Builder
-    public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age, Map<String, Integer> summaryScores) {
+    public Player(Integer id, String firstName, String lastName, String nick, String nationality, int age, PlayerSocialMedia playerSocialMedia) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nick = nick;
         this.nationality = nationality;
         this.age = age;
-        this.summaryScores = summaryScores;
+        this.playerSocialMedia = playerSocialMedia;
     }
 }

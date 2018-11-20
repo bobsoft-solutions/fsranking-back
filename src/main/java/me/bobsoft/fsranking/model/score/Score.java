@@ -29,7 +29,7 @@ public class Score {
 
     @Column(name = "score")
     private Integer score;
-
+    
     @ManyToOne
     @JoinColumn(name = "id_category")
     @Id
