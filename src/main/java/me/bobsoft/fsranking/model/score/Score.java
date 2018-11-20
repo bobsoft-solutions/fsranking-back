@@ -23,6 +23,10 @@ public class Score {
     @Id
     private Competition competition;
 
+    @ManyToOne
+    @JoinColumn(name = "id_default_point")
+    private DefaultPoint defaultPoint;
+
     @Column(name = "score")
     private Integer score;
 
