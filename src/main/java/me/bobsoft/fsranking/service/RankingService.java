@@ -9,7 +9,10 @@ import me.bobsoft.fsranking.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RankingService {
@@ -18,24 +21,29 @@ public class RankingService {
     private ScoreRepository scoreRepository;
 
     @Autowired
-    private CompetitionRepository competitionRepository;
-
-    @Autowired
     private PlayerRepository playerRepository;
 
-    public Iterable<Integer> findPlayerAndSummaryScore(String category) {
+    public Iterable<Ranking> findPlayerAndSummaryScore(String category) {
 
-        Iterable<Score> scoresOfWantedCategory = scoreRepository.findByCategoryName(category);
-
-        // find all unique players in table score
         Iterable<Integer> playersOfWantedCategory = scoreRepository.findPlayersIdAppearingInBattleCategory();
 
-/*        Iterable<Player> players = playerRepository.findAll();
+        ArrayList<Ranking> rankings = new ArrayList<>();
 
-        players.forEach();
-        // set them*/
+        for (Integer playerId : playersOfWantedCategory) {
 
-        return playersOfWantedCategory;
+            if (playerRepository.findById(playerId).isPresent()) {
+                Player player = playerRepository.findById(playerId).get();
+                List<Score> scores = scoreRepository.findScoresByPlayerId(playerId);
+                Integer points = 0;
+                for (Score score : scores) {
+                    points += score.getScore();
+                }
 
+                Ranking ranking = new Ranking(player, points);
+                rankings.add(ranking);
+            }
+        }
+
+        return rankings;
     }
 }
