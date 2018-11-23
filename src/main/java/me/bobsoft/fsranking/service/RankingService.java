@@ -3,16 +3,14 @@ package me.bobsoft.fsranking.service;
 import me.bobsoft.fsranking.model.Ranking.Ranking;
 import me.bobsoft.fsranking.model.player.Player;
 import me.bobsoft.fsranking.model.score.Score;
-import me.bobsoft.fsranking.repository.CompetitionRepository;
 import me.bobsoft.fsranking.repository.PlayerRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RankingService {
@@ -25,11 +23,12 @@ public class RankingService {
 
     public Iterable<Ranking> findPlayerAndSummaryScore(String category) {
 
-        Iterable<Integer> playersOfWantedCategory = scoreRepository.findPlayersIdAppearingInBattleCategory();
+        //Iterable<Integer> playersIdOfWantedCategory = scoreRepository.findPlayersIdAppearingInBattleCategory();
 
+        Iterable<Integer> playersIdOfWantedCategory = findPlayersIdFromScoresOfExactCategory(category);
         ArrayList<Ranking> rankings = new ArrayList<>();
 
-        for (Integer playerId : playersOfWantedCategory) {
+        for (Integer playerId : playersIdOfWantedCategory) {
 
             if (playerRepository.findById(playerId).isPresent()) {
                 Player player = playerRepository.findById(playerId).get();
@@ -45,5 +44,15 @@ public class RankingService {
         }
 
         return rankings;
+    }
+
+    private List<Integer> findPlayersIdFromScoresOfExactCategory(String category) {
+        List<Integer> playersId = new LinkedList<>();
+        for (Score score : scoreRepository.findScoresByCategoryName(category)) {
+            if (!playersId.contains(score.getPlayer().getId())) {
+                playersId.add(score.getPlayer().getId());
+            }
+        }
+        return playersId;
     }
 }

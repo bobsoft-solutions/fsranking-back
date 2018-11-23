@@ -35,4 +35,3 @@ public class Score {
     @Id
     private Category category;
 }
-

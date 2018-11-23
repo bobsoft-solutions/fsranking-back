@@ -2,16 +2,14 @@ package me.bobsoft.fsranking.repository;
 
 import me.bobsoft.fsranking.model.score.Score;
 import me.bobsoft.fsranking.model.score.ScoreIdClass;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ScoreRepository extends CrudRepository<Score, ScoreIdClass> {
+public interface ScoreRepository extends JpaRepository<Score, ScoreIdClass> {
     List<Score> findByPlayerIdAndCategoryName(Integer id, String name);
 
-    @Query(value="select distinct id_player from score join competition c on c.id=id_category where id_category=1", nativeQuery = true)
-    List<Integer> findPlayersIdAppearingInBattleCategory();
+    List<Score> findScoresByCategoryName(String category);
 
     List<Score> findScoresByPlayerId(Integer id);
 }
