@@ -2,6 +2,7 @@ package me.bobsoft.fsranking.service;
 
 import me.bobsoft.fsranking.model.player.Player;
 import me.bobsoft.fsranking.model.player.PlayerCategoryStatistics;
+import me.bobsoft.fsranking.model.player.PlayerHistory;
 import me.bobsoft.fsranking.model.player.PlayerStatistics;
 import me.bobsoft.fsranking.model.score.Score;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.lang.Math.toIntExact;
 
@@ -112,5 +114,13 @@ public class PlayerService {
         playerPodiumCount.setPoints(cumulatedPointRepository.findAll());
 
         return playerPodiumCount;
+    }
+
+    public List<PlayerHistory> findHistoryById(Integer id) {
+        return scoreRepository.findScoresByPlayerId(id)
+                .stream()
+                .map(s -> new PlayerHistory(s))
+                .sorted((h1,h2) -> h1.getDate().compareTo(h1.getDate()))
+                .collect(Collectors.toList());
     }
 }
