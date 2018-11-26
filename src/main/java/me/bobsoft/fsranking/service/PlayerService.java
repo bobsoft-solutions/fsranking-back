@@ -11,6 +11,7 @@ import me.bobsoft.fsranking.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -120,7 +121,7 @@ public class PlayerService {
         return scoreRepository.findScoresByPlayerId(id)
                 .stream()
                 .map(s -> new PlayerHistory(s))
-                .sorted((h1,h2) -> h1.getDate().compareTo(h1.getDate()))
+                .sorted(Comparator.comparing(PlayerHistory::getDate))
                 .collect(Collectors.toList());
     }
 }
