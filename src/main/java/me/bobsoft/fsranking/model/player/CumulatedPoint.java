@@ -4,7 +4,7 @@ import lombok.Data;
 import me.bobsoft.fsranking.model.Category;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @Data
 @Entity
@@ -18,12 +18,11 @@ public class CumulatedPoint {
     private Integer points;
 
     @Column(name = "date")
-    private Date date;
+    private ZonedDateTime date;
 
     @Column(name = "place")
     private Integer place;
 
-    @Transient
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
