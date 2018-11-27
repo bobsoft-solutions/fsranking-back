@@ -54,7 +54,7 @@ public class PlayerService {
         Map<String, Integer> map = new LinkedHashMap<>();
 
         map.put("battle",
-                scoreRepository.findByPlayerIdAndCategoryName(playerId, "battle")
+                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "battle")
                         .stream()
                         .map(s -> s.getScore())
                         .reduce((s1, s2) -> s1 + s2)
@@ -62,7 +62,7 @@ public class PlayerService {
         );
 
         map.put("challenge",
-                scoreRepository.findByPlayerIdAndCategoryName(playerId, "challenge")
+                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "challenge")
                         .stream()
                         .map(s -> s.getScore())
                         .reduce((s1, s2) -> s1 + s2)
@@ -70,7 +70,7 @@ public class PlayerService {
         );
 
         map.put("routine",
-                scoreRepository.findByPlayerIdAndCategoryName(playerId, "routine")
+                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "routine")
                         .stream()
                         .map(s -> s.getScore())
                         .reduce((s1, s2) -> s1 + s2)
@@ -99,7 +99,7 @@ public class PlayerService {
 
     private PlayerCategoryStatistics resolveStatisticsByIdAndCategory(Integer playerId, String category) {
         PlayerCategoryStatistics playerPodiumCount = new PlayerCategoryStatistics();
-        List<Score> scores = scoreRepository.findByPlayerIdAndCategoryName(playerId, category);
+        List<Score> scores = scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, category);
 
         playerPodiumCount.setCountOf1st(
                 toIntExact(
