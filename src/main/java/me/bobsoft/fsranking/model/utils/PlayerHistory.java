@@ -1,8 +1,8 @@
-package me.bobsoft.fsranking.model.player;
+package me.bobsoft.fsranking.model.utils;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import me.bobsoft.fsranking.model.score.Score;
+import me.bobsoft.fsranking.model.entities.Score;
 
 import java.time.ZonedDateTime;
 

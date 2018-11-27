@@ -4,26 +4,18 @@ import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.Score;
 import me.bobsoft.fsranking.model.utils.PlayerCategoryStatistics;
+import me.bobsoft.fsranking.model.utils.PlayerHistory;
 import me.bobsoft.fsranking.model.utils.PlayerStatistics;
-import me.bobsoft.fsranking.model.player.Player;
-import me.bobsoft.fsranking.model.player.PlayerCategoryStatistics;
-import me.bobsoft.fsranking.model.player.PlayerHistory;
-import me.bobsoft.fsranking.model.player.PlayerStatistics;
-import me.bobsoft.fsranking.model.score.Score;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
 import me.bobsoft.fsranking.repository.PlayerRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.lang.Math.toIntExact;
 
@@ -111,23 +103,23 @@ public class PlayerService {
 
         playerPodiumCount.setCountOf1st(
                 toIntExact(
-                    scores.stream()
-                        .filter(s -> s.getDefaultPoint().getId() == 1)
-                        .count()
+                        scores.stream()
+                                .filter(s -> s.getDefaultPoint().getId() == 1)
+                                .count()
                 )
         );
         playerPodiumCount.setCountOf2nd(
                 toIntExact(
-                    scores.stream()
-                        .filter(s -> s.getDefaultPoint().getId() == 2)
-                        .count()
+                        scores.stream()
+                                .filter(s -> s.getDefaultPoint().getId() == 2)
+                                .count()
                 )
         );
         playerPodiumCount.setCountOf3rd(
                 toIntExact(
-                    scores.stream()
-                        .filter(s -> s.getDefaultPoint().getId() == 3)
-                        .count()
+                        scores.stream()
+                                .filter(s -> s.getDefaultPoint().getId() == 3)
+                                .count()
                 )
         );
 
@@ -140,7 +132,7 @@ public class PlayerService {
     public List<PlayerHistory> findHistoryById(Integer id) {
         return scoreRepository.findScoresByPlayerId(id)
                 .stream()
-                .map(s -> new PlayerHistory(s))
+                .map(PlayerHistory::new)
                 .sorted(Comparator.comparing(PlayerHistory::getDate))
                 .collect(Collectors.toList());
     }

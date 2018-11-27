@@ -2,10 +2,8 @@ package me.bobsoft.fsranking.controller;
 
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.utils.PlayerHistory;
 import me.bobsoft.fsranking.model.utils.PlayerStatistics;
-import me.bobsoft.fsranking.model.player.Player;
-import me.bobsoft.fsranking.model.player.PlayerHistory;
-import me.bobsoft.fsranking.model.player.PlayerStatistics;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin
 @RestController
