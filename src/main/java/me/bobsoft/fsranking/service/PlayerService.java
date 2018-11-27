@@ -4,6 +4,7 @@ import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.Score;
 import me.bobsoft.fsranking.model.utils.PlayerCategoryStatistics;
+import me.bobsoft.fsranking.model.utils.PlayerHistory;
 import me.bobsoft.fsranking.model.utils.PlayerStatistics;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
 import me.bobsoft.fsranking.repository.PlayerRepository;
@@ -13,10 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.lang.Math.toIntExact;
 
@@ -104,28 +103,37 @@ public class PlayerService {
 
         playerPodiumCount.setCountOf1st(
                 toIntExact(
-                    scores.stream()
-                        .filter(s -> s.getDefaultPoint().getId() == 1)
-                        .count()
+                        scores.stream()
+                                .filter(s -> s.getDefaultPoint().getId() == 1)
+                                .count()
                 )
         );
         playerPodiumCount.setCountOf2nd(
                 toIntExact(
-                    scores.stream()
-                        .filter(s -> s.getDefaultPoint().getId() == 2)
-                        .count()
+                        scores.stream()
+                                .filter(s -> s.getDefaultPoint().getId() == 2)
+                                .count()
                 )
         );
         playerPodiumCount.setCountOf3rd(
                 toIntExact(
-                    scores.stream()
-                        .filter(s -> s.getDefaultPoint().getId() == 3)
-                        .count()
+                        scores.stream()
+                                .filter(s -> s.getDefaultPoint().getId() == 3)
+                                .count()
                 )
         );
 
         playerPodiumCount.setPoints(cumulatedPointRepository.findAll());
 
         return playerPodiumCount;
+    }
+
+    // ----------------- /players/{id}/history -------------------------------
+    public List<PlayerHistory> findHistoryById(Integer id) {
+        return scoreRepository.findScoresByPlayerId(id)
+                .stream()
+                .map(PlayerHistory::new)
+                .sorted(Comparator.comparing(PlayerHistory::getDate))
+                .collect(Collectors.toList());
     }
 }

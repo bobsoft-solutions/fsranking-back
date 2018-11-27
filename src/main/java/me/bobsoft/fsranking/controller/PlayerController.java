@@ -2,6 +2,7 @@ package me.bobsoft.fsranking.controller;
 
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.utils.PlayerHistory;
 import me.bobsoft.fsranking.model.utils.PlayerStatistics;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -30,5 +31,10 @@ public class PlayerController {
     @GetMapping("/players/{id}/statistics")
     public PlayerStatistics findPlayerStatisticsById(@PathVariable Integer id) {
         return playerService.findStatisticsById(id);
+    }
+
+    @GetMapping("/players/{id}/history")
+    public List<PlayerHistory> findPlayerHistoryById(@PathVariable Integer id) {
+        return playerService.findHistoryById(id);
     }
 }
