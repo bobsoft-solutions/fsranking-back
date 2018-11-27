@@ -1,9 +1,9 @@
-package me.bobsoft.fsranking.model.score;
+package me.bobsoft.fsranking.model.utils;
 
 import lombok.Data;
-import me.bobsoft.fsranking.model.Category;
-import me.bobsoft.fsranking.model.Competition;
-import me.bobsoft.fsranking.model.player.Player;
+import me.bobsoft.fsranking.model.entities.Category;
+import me.bobsoft.fsranking.model.entities.Competition;
+import me.bobsoft.fsranking.model.entities.Player;
 
 import java.io.Serializable;
 

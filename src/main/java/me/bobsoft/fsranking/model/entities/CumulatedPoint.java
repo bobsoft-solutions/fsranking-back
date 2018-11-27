@@ -1,7 +1,6 @@
-package me.bobsoft.fsranking.model.player;
+package me.bobsoft.fsranking.model.entities;
 
 import lombok.Data;
-import me.bobsoft.fsranking.model.Category;
 
 import javax.persistence.*;
 import java.util.Date;

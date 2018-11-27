@@ -1,13 +1,13 @@
-package me.bobsoft.fsranking.model.Ranking;
+package me.bobsoft.fsranking.model.dto;
 
 import lombok.Data;
-import me.bobsoft.fsranking.model.player.Player;
+import me.bobsoft.fsranking.model.entities.Player;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Data
-public class Ranking {
+public class RankingDTO {
 
     private Integer idPlayer;
     private String firstName;
@@ -17,7 +17,7 @@ public class Ranking {
     private String nationality;
     private int points;
 
-    public Ranking(Player player, Integer points) {
+    public RankingDTO(Player player, Integer points) {
         this.idPlayer = player.getId();
         this.firstName = player.getFirstName();
         this.lastName = player.getLastName();

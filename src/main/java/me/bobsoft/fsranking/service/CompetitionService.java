@@ -1,6 +1,6 @@
 package me.bobsoft.fsranking.service;
 
-import me.bobsoft.fsranking.model.Competition;
+import me.bobsoft.fsranking.model.entities.Competition;
 import me.bobsoft.fsranking.repository.CompetitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

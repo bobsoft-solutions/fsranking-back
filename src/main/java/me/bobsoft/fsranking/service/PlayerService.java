@@ -1,5 +1,10 @@
 package me.bobsoft.fsranking.service;
 
+import me.bobsoft.fsranking.model.dto.PlayerDTO;
+import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.entities.Score;
+import me.bobsoft.fsranking.model.utils.PlayerCategoryStatistics;
+import me.bobsoft.fsranking.model.utils.PlayerStatistics;
 import me.bobsoft.fsranking.model.player.Player;
 import me.bobsoft.fsranking.model.player.PlayerCategoryStatistics;
 import me.bobsoft.fsranking.model.player.PlayerHistory;
@@ -13,6 +18,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static java.lang.Math.toIntExact;
 
@@ -28,15 +39,23 @@ public class PlayerService {
     @Autowired
     private CumulatedPointRepository cumulatedPointRepository;
 
+    // ----------------- /players ------------------------------------------------
     public Iterable<Player> findAll() {
-        return playerRepository.findAll();
+        Iterable<Player> players = playerRepository.findAll();
+        for (Player player : players) {
+            LocalDate now = LocalDate.now();
+            String currentYear = now.format(DateTimeFormatter.ofPattern("yyyy"));
+
+            player.setAge(player.getAge() == null ?
+                    null : Integer.parseInt(currentYear) - player.getAge());
+        }
+        return players;
     }
 
-    public Optional<Player> findById(Integer id) {
+    // ----------------- /players/{id} -------------------------------------------
+    public PlayerDTO findById(Integer id) {
         Optional<Player> optionalPlayer = playerRepository.findById(id);
-        optionalPlayer.ifPresent(p -> p.setSummaryScores(countPodiumById(id)));
-
-        return optionalPlayer;
+        return optionalPlayer.map(player -> new PlayerDTO(player, countPodiumById(id))).orElse(null);
     }
 
     private Map<String, Integer> countPodiumById(Integer playerId) {
@@ -69,6 +88,7 @@ public class PlayerService {
         return map;
     }
 
+    // ----------------- /players/{id}/statistics -------------------------------
     public PlayerStatistics findStatisticsById(Integer id) {
         PlayerStatistics playerStatistics = new PlayerStatistics();
 
@@ -116,6 +136,7 @@ public class PlayerService {
         return playerPodiumCount;
     }
 
+    // ----------------- /players/{id}/history -------------------------------
     public List<PlayerHistory> findHistoryById(Integer id) {
         return scoreRepository.findScoresByPlayerId(id)
                 .stream()

@@ -1,7 +1,7 @@
 package me.bobsoft.fsranking.repository;
 
-import me.bobsoft.fsranking.model.score.Score;
-import me.bobsoft.fsranking.model.score.ScoreIdClass;
+import me.bobsoft.fsranking.model.entities.Score;
+import me.bobsoft.fsranking.model.utils.ScoreIdClass;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

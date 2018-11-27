@@ -1,4 +1,4 @@
-package me.bobsoft.fsranking.model.player;
+package me.bobsoft.fsranking.model.utils;
 
 import lombok.Data;
 
