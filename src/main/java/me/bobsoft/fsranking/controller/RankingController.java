@@ -1,6 +1,6 @@
 package me.bobsoft.fsranking.controller;
 
-import me.bobsoft.fsranking.model.Ranking.Ranking;
+import me.bobsoft.fsranking.model.dto.RankingDTO;
 import me.bobsoft.fsranking.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ public class RankingController {
     private RankingService rankingService;
 
     @GetMapping("/rankings/{category}")
-    public Iterable<Ranking> getPlayersOfCategory(@PathVariable String category) {
+    public Iterable<RankingDTO> getPlayersOfCategory(@PathVariable String category) {
         return rankingService.findPlayerAndSummaryScore(category);
     }
 }

@@ -1,7 +1,8 @@
 package me.bobsoft.fsranking.controller;
 
-import me.bobsoft.fsranking.model.player.Player;
-import me.bobsoft.fsranking.model.player.PlayerStatistics;
+import me.bobsoft.fsranking.model.dto.PlayerDTO;
+import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.utils.PlayerStatistics;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +23,7 @@ public class PlayerController {
     public Iterable<Player> findAllPlayers() { return playerService.findAll(); }
 
     @GetMapping("/players/{id}")
-    public Optional<Player> findPlayerById(@PathVariable Integer id) {
+    public PlayerDTO findPlayerById(@PathVariable Integer id) {
         return playerService.findById(id);
     }
 

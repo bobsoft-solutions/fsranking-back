@@ -1,6 +1,6 @@
 package me.bobsoft.fsranking.repository;
 
-import me.bobsoft.fsranking.model.player.Player;
+import me.bobsoft.fsranking.model.entities.Player;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
