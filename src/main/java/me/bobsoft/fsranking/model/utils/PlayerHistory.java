@@ -10,14 +10,16 @@ import java.time.ZonedDateTime;
 public class PlayerHistory {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private ZonedDateTime date;
-    private String competitionName;
     private Integer place;
+    private Integer score;
     private String category;
+    private Competition competition;
 
     public PlayerHistory(Score score) {
         this.date = score.getCompetition().getYear();
-        this.competitionName = score.getCompetition().getName();
         this.place = score.getDefaultPoint().getId();
         this.category = score.getCategory().getName();
+        this.score = score.getScore();
+        this.competition = new Competition(score.getCompetition());
     }
 }
