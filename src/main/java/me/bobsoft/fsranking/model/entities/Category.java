@@ -1,4 +1,4 @@
-package me.bobsoft.fsranking.model.score;
+package me.bobsoft.fsranking.model.entities;
 
 import lombok.Data;
 
@@ -9,12 +9,13 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "default_point")
-public class DefaultPoint {
+@Table(name = "category")
+public class Category {
+
     @Id
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "value")
-    private Integer value;
+    @Column(name = "name")
+    private String name;
 }

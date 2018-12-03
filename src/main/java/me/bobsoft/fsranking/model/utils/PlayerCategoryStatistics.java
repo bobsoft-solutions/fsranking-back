@@ -1,6 +1,7 @@
-package me.bobsoft.fsranking.model.player;
+package me.bobsoft.fsranking.model.utils;
 
 import lombok.Data;
+import me.bobsoft.fsranking.model.entities.CumulatedPoint;
 
 @Data
 public class PlayerCategoryStatistics {

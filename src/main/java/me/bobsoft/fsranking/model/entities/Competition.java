@@ -1,6 +1,6 @@
-package me.bobsoft.fsranking.model;
+package me.bobsoft.fsranking.model.entities;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -26,13 +26,4 @@ public class Competition {
 
     @Column(name = "importance")
     private int importance;
-
-    @Builder
-    public Competition(Integer id, String name, Location location, ZonedDateTime year, int importance) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.year = year;
-        this.importance = importance;
-    }
 }

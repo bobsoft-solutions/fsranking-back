@@ -1,8 +1,8 @@
 package me.bobsoft.fsranking.service;
 
-import me.bobsoft.fsranking.model.Ranking.Ranking;
-import me.bobsoft.fsranking.model.player.Player;
-import me.bobsoft.fsranking.model.score.Score;
+import me.bobsoft.fsranking.model.dto.RankingDTO;
+import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.entities.Score;
 import me.bobsoft.fsranking.repository.PlayerRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +21,10 @@ public class RankingService {
     @Autowired
     private PlayerRepository playerRepository;
 
-    public Iterable<Ranking> findPlayerAndSummaryScore(String category) {
-
-        //Iterable<Integer> playersIdOfWantedCategory = scoreRepository.findPlayersIdAppearingInBattleCategory();
+    public Iterable<RankingDTO> findPlayerAndSummaryScore(String category) {
 
         Iterable<Integer> playersIdOfWantedCategory = findPlayersIdFromScoresOfExactCategory(category);
-        ArrayList<Ranking> rankings = new ArrayList<>();
+        ArrayList<RankingDTO> rankingDTOS = new ArrayList<>();
 
         for (Integer playerId : playersIdOfWantedCategory) {
 
@@ -38,12 +36,12 @@ public class RankingService {
                     points += score.getScore();
                 }
 
-                Ranking ranking = new Ranking(player, points);
-                rankings.add(ranking);
+                RankingDTO rankingDTO = new RankingDTO(player, points);
+                rankingDTOS.add(rankingDTO);
             }
         }
 
-        return rankings;
+        return rankingDTOS;
     }
 
     private List<Integer> findPlayersIdFromScoresOfExactCategory(String category) {
