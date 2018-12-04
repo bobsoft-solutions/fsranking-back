@@ -22,7 +22,7 @@ public class CumulatedPoint {
     @Column(name = "place")
     private Integer place;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "id_category")
     private Category category;
 }
