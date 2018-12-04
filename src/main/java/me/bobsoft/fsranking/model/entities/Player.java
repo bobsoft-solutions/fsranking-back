@@ -25,8 +25,8 @@ public class Player {
     @Column(name = "nationality")
     private String nationality;
 
-    @Column(name = "birth_date")
-    private Integer age;
+    @Column(name = "birth_year")
+    private Integer birthYear;
 
     @OneToOne
     @JoinColumn(name = "id")

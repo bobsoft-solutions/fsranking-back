@@ -23,7 +23,7 @@ public class Competition {
     private Location location;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "year")
+    @Column(name = "date")
     private ZonedDateTime year;
 
     @Column(name = "importance")
