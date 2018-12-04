@@ -3,6 +3,7 @@ package me.bobsoft.fsranking.model.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import me.bobsoft.fsranking.model.entities.Competition;
+import me.bobsoft.fsranking.model.utils.ScoreDTO;
 
 import java.time.ZonedDateTime;
 import java.util.List;

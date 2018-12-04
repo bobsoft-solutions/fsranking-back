@@ -1,7 +1,7 @@
 package me.bobsoft.fsranking.service;
 
 import me.bobsoft.fsranking.model.dto.CompetitionDTO;
-import me.bobsoft.fsranking.model.dto.ScoreDTO;
+import me.bobsoft.fsranking.model.utils.ScoreDTO;
 import me.bobsoft.fsranking.model.entities.Competition;
 import me.bobsoft.fsranking.repository.CompetitionRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
@@ -21,29 +21,35 @@ public class CompetitionService {
     @Autowired
     private ScoreRepository scoreRepository;
 
-    public List<Competition> findAll() {
-        return competitionRepository.findAll();
+    public List<CompetitionDTO> findAll() {
+        return competitionRepository.findAll()
+                .stream()
+                .map(CompetitionDTO::new)
+                .map(this::setScoresByCategory)
+                .collect(Collectors.toList());
     }
 
     public Optional<CompetitionDTO> findById(Integer id) {
-        Competition competition = competitionRepository.findById(id).orElse(null);
-        if(competition == null) return null;
+        if(!competitionRepository.findById(id).isPresent()) return Optional.ofNullable(null);
 
-        CompetitionDTO competitionDTO = new CompetitionDTO(competition);
+        Competition competition = competitionRepository.findById(id).get();
 
-        competitionDTO.setBattle(scoreRepository.findScoresByCompetitionIdAndCategoryName(competition.getId(), "battle")
+        return Optional.ofNullable(setScoresByCategory(new CompetitionDTO(competition)));
+    }
+
+    private CompetitionDTO setScoresByCategory(CompetitionDTO competitionDTO) {
+        competitionDTO.setBattle(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "battle")
                 .stream()
                 .map(ScoreDTO::new)
                 .collect(Collectors.toList()));
-        competitionDTO.setChallenge(scoreRepository.findScoresByCompetitionIdAndCategoryName(competition.getId(), "challenge")
+        competitionDTO.setChallenge(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "challenge")
                 .stream()
                 .map(ScoreDTO::new)
                 .collect(Collectors.toList()));
-        competitionDTO.setRoutine(scoreRepository.findScoresByCompetitionIdAndCategoryName(competition.getId(), "routine")
+        competitionDTO.setRoutine(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "routine")
                 .stream()
                 .map(ScoreDTO::new)
                 .collect(Collectors.toList()));
-
-        return Optional.ofNullable(competitionDTO);
+        return competitionDTO;
     }
 }

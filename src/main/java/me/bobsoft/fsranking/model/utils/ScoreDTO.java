@@ -1,4 +1,4 @@
-package me.bobsoft.fsranking.model.dto;
+package me.bobsoft.fsranking.model.utils;
 
 import lombok.Data;
 import me.bobsoft.fsranking.model.entities.Score;
