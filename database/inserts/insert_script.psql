@@ -1,38 +1,38 @@
 \copy player from 'player.csv' delimiter ',' csv header; -- dobrze jest to wywołać bezpośrednio z GUI pgAdmina
 update player set nationality='POL';
 
-insert into location values
-(1,'Błaszki'),
-(2,'Bydgoszcz'),
-(3,'Bytom'),
-(4,'Bytów'),
-(5,'Chojnice'),
-(6,'Cieszyn'),
-(7,'Czarnków'),
-(8,'Częstochowa'),
-(9,'Grodzisk Mazowiecki'),
-(10,'Gubin'),
-(11,'Jaktorów'),
-(12,'Jarocin'),
-(13,'Kielce'),
-(14,'Łódź'),
-(15,'Lubasz'),
-(16,'Lublin'),
-(17,'Marki'),
-(18,'Międzyzdroje'),
-(19,'Myszków'),
-(20,'Olkusz'),
-(21,'Pabianice'),
-(22,'Płock'),
-(23,'Przygodzice'),
-(24,'Pyrzyce'),
-(25,'Radom'),
-(26,'Skawina'),
-(27,'Warszawa'),
-(28,'Wrocław'),
-(29,'Zabrze'),
-(30,'Zawiercie'),
-(31,'Żerków');
+insert into location(name) values
+('Błaszki'),
+('Bydgoszcz'),
+('Bytom'),
+('Bytów'),
+('Chojnice'),
+('Cieszyn'),
+('Czarnków'),
+('Częstochowa'),
+('Grodzisk Mazowiecki'),
+('Gubin'),
+('Jaktorów'),
+('Jarocin'),
+('Kielce'),
+('Łódź'),
+('Lubasz'),
+('Lublin'),
+('Marki'),
+('Międzyzdroje'),
+('Myszków'),
+('Olkusz'),
+('Pabianice'),
+('Płock'),
+('Przygodzice'),
+('Pyrzyce'),
+('Radom'),
+('Skawina'),
+('Warszawa'),
+('Wrocław'),
+('Zabrze'),
+('Zawiercie'),
+('Żerków');
 
 
 insert into "group" values
@@ -60,7 +60,15 @@ insert into default_point values
 (5, 25),
 (6, 25),
 (7, 25),
-(8, 25);
+(8, 25),
+(9, 0),
+(10, 0),
+(11, 0),
+(12, 0),
+(13, 0),
+(14, 0),
+(15, 0),
+(16, 0);
 
 
 

@@ -1,6 +1,3 @@
--- Adminer 4.6.3 PostgreSQL dump
-
-
 
 DROP TABLE IF EXISTS "location";
 DROP SEQUENCE IF EXISTS location_id_location_seq;
@@ -15,7 +12,7 @@ CREATE TABLE "location" (
 
 DROP TABLE IF EXISTS "group";
 DROP SEQUENCE IF EXISTS group_id_group_seq;
-CREATE SEQUENCE group_id_group_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+CREATE SEQUENCE group_id_group_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 11 CACHE 1;
 
 CREATE TABLE "group" (
     "id" integer DEFAULT nextval('group_id_group_seq') NOT NULL,
@@ -27,7 +24,7 @@ CREATE TABLE "group" (
 
 DROP TABLE IF EXISTS "category";
 DROP SEQUENCE IF EXISTS category_id_category_seq;
-CREATE SEQUENCE category_id_category_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+CREATE SEQUENCE category_id_category_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 4 CACHE 1;
 
 CREATE TABLE "category" (
     "id" integer DEFAULT nextval('category_id_category_seq') NOT NULL,
@@ -38,7 +35,7 @@ CREATE TABLE "category" (
 
 DROP TABLE IF EXISTS "default_point";
 DROP SEQUENCE IF EXISTS default_point_id_default_point_seq;
-CREATE SEQUENCE default_point_id_default_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+CREATE SEQUENCE default_point_id_default_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 17 CACHE 1;
 
 CREATE TABLE "default_point" (
     "id" integer DEFAULT nextval('default_point_id_default_point_seq') NOT NULL,
@@ -63,11 +60,11 @@ CREATE TABLE "competition" (
 
 
 DROP TABLE IF EXISTS "player";
-DROP SEQUENCE IF EXISTS players_id_player_seq;
-CREATE SEQUENCE players_id_player_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+DROP SEQUENCE IF EXISTS player_id_player_seq;
+CREATE SEQUENCE player_id_player_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 46 CACHE 1;
 
 CREATE TABLE "player" (
-    "id" integer DEFAULT nextval('players_id_player_seq') NOT NULL,
+    "id" integer DEFAULT nextval('player_id_player_seq') NOT NULL,
     "first_name" character varying(12),
     "last_name" character varying(15),
     "nick" character varying(10),
@@ -130,6 +127,3 @@ CREATE TABLE "user" (
     "password" character(128) NOT NULL,
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
-
-
--- 2018-09-19 23:24:58.041676+02
