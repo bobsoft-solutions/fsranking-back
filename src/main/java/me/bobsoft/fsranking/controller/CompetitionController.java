@@ -1,5 +1,6 @@
 package me.bobsoft.fsranking.controller;
 
+import me.bobsoft.fsranking.model.dto.CompetitionDTO;
 import me.bobsoft.fsranking.model.entities.Competition;
 import me.bobsoft.fsranking.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class CompetitionController {
     }
 
     @GetMapping("/competitions/{id}")
-    public Optional<Competition> findPlayerById(@PathVariable Integer id) {
+    public Optional<CompetitionDTO> findPlayerById(@PathVariable Integer id) {
         return competitionService.findById(id);
     }
 }

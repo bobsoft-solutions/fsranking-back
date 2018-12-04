@@ -27,5 +27,5 @@ public class Competition {
     private ZonedDateTime year;
 
     @Column(name = "importance")
-    private int importance;
+    private Integer importance;
 }
