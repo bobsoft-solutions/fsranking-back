@@ -38,8 +38,8 @@ public class PlayerService {
             LocalDate now = LocalDate.now();
             String currentYear = now.format(DateTimeFormatter.ofPattern("yyyy"));
 
-            player.setAge(player.getAge() == null ?
-                    null : Integer.parseInt(currentYear) - player.getAge());
+            player.setBirthYear(player.getBirthYear() == null ?
+                    null : Integer.parseInt(currentYear) - player.getBirthYear());
         }
         return players;
     }

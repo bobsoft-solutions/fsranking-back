@@ -26,13 +26,13 @@ public class PlayerDTO {
         this.lastName = player.getLastName();
         this.nick = player.getNick();
         this.nationality = player.getNationality();
-        this.age = player.getAge();
+        this.age = player.getBirthYear();
 
         LocalDate now = LocalDate.now();
         String currentYear = now.format(DateTimeFormatter.ofPattern("yyyy"));
 
-        this.age = player.getAge() == null ?
-                null : Integer.parseInt(currentYear) - player.getAge();
+        this.age = player.getBirthYear() == null ?
+                null : Integer.parseInt(currentYear) - player.getBirthYear();
 
         this.socialMedia = player.getSocialMedia();
         this.summaryScores = summaryScores;

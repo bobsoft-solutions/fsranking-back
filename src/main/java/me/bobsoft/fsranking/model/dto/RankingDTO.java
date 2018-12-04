@@ -26,8 +26,8 @@ public class RankingDTO {
         LocalDate now = LocalDate.now();
         String currentYear = now.format(DateTimeFormatter.ofPattern("yyyy"));
 
-        this.age = player.getAge() == null ?
-                null : Integer.parseInt(currentYear) - player.getAge();
+        this.age = player.getBirthYear() == null ?
+                null : Integer.parseInt(currentYear) - player.getBirthYear();
 
         this.nationality = player.getNationality();
         this.points = points;
