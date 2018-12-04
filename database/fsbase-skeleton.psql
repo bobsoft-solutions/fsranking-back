@@ -54,7 +54,7 @@ CREATE TABLE "competition" (
     "id" bigint DEFAULT nextval('competition_id_competition_seq') NOT NULL,
     "name" character varying(30),
     "id_location" integer NOT NULL,
-    "year" date,
+    "date" date,
     "importance" smallint NOT NULL,
     "id_group" integer references "group" NOT NULL,
     CONSTRAINT "competition_pkey" PRIMARY KEY ("id"),
@@ -72,7 +72,7 @@ CREATE TABLE "player" (
     "last_name" character varying(15),
     "nick" character varying(10),
     "nationality" character(3),
-    "birth_date" smallint,
+    "birth_year" smallint,
     CONSTRAINT "players_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
