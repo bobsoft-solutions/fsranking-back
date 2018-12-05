@@ -1,4 +1,4 @@
-package me.bobsoft.fsranking.model;
+package me.bobsoft.fsranking.model.entities;
 
 import lombok.Data;
 
@@ -9,8 +9,8 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "location")
-public class Location {
+@Table(name = "category")
+public class Category {
 
     @Id
     @Column(name = "id")

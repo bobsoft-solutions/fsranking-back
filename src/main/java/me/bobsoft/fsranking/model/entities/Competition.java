@@ -1,6 +1,7 @@
-package me.bobsoft.fsranking.model;
+package me.bobsoft.fsranking.model.entities;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -21,18 +22,10 @@ public class Competition {
     @JoinColumn(name = "id_location")
     private Location location;
 
-    @Column(name = "year")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "date")
     private ZonedDateTime year;
 
     @Column(name = "importance")
-    private int importance;
-
-    @Builder
-    public Competition(Integer id, String name, Location location, ZonedDateTime year, int importance) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.year = year;
-        this.importance = importance;
-    }
+    private Integer importance;
 }
