@@ -70,7 +70,7 @@ CREATE TABLE "player" (
     "nick" character varying(10),
     "nationality" character(3),
     "birth_year" smallint,
-    CONSTRAINT "players_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "player_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
 COMMENT ON COLUMN "player"."nationality" IS 'iso 3166-1 Alpha 3';
@@ -78,14 +78,17 @@ COMMENT ON COLUMN "player"."nationality" IS 'iso 3166-1 Alpha 3';
 
 
 DROP TABLE IF EXISTS "cumulated_point";
+DROP SEQUENCE IF EXISTS cumulated_point_id_cumulated_point_seq;
+CREATE SEQUENCE cumulated_point_id_cumulated_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "cumulated_point" (
+    "id" integer DEFAULT nextval('cumulated_point_id_cumulated_point_seq') NOT NULL,
     "id_player" integer NOT NULL references player,
     "points" integer,
     "date" date NOT NULL,
     "place" smallint,
     "id_category" integer NOT NULL references category,
-    CONSTRAINT "cumulated_point_pkey" PRIMARY KEY ("id_player", "date", "id_category")
+    CONSTRAINT "cumulated_point_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
 
