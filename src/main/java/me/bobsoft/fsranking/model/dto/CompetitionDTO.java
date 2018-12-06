@@ -5,7 +5,7 @@ import lombok.Data;
 import me.bobsoft.fsranking.model.entities.Competition;
 import me.bobsoft.fsranking.model.utils.ScoreDTO;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -14,7 +14,7 @@ public class CompetitionDTO {
     private String name;
     private String location;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private ZonedDateTime year;
+    private Date year;
     private Integer importance;
 
     // Set in service

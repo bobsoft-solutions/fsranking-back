@@ -1,8 +1,8 @@
 package me.bobsoft.fsranking.service;
 
 import me.bobsoft.fsranking.model.dto.CompetitionDTO;
-import me.bobsoft.fsranking.model.utils.ScoreDTO;
 import me.bobsoft.fsranking.model.entities.Competition;
+import me.bobsoft.fsranking.model.utils.ScoreDTO;
 import me.bobsoft.fsranking.repository.CompetitionRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,12 @@ public class CompetitionService {
     @Autowired
     private ScoreRepository scoreRepository;
 
+    /* ---------------------------- POST ------------------------------------------------------- */
+    public void addCompetition(Competition competition) {
+        competitionRepository.save(competition);
+    }
+
+    /* ---------------------------- GET -------------------------------------------------------- */
     public List<CompetitionDTO> findAll() {
         return competitionRepository.findAll()
                 .stream()
