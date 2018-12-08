@@ -21,8 +21,8 @@ public class Competition {
     @JoinColumn(name = "id_location")
     private Location location;
 
-    @Column(name = "year")
-    private ZonedDateTime year;
+    @Column(name = "date")
+    private ZonedDateTime date;
 
     @Column(name = "importance")
     private int importance;

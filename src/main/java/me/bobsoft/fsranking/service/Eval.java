@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -39,7 +38,7 @@ public class Eval {
 
         //Get all dates
         List<ZonedDateTime> dates = competitionRepository.findAll().stream()
-                                        .map(Competition::getYear)
+                                        .map(Competition::getDate)
                                         .distinct()
                                         .sorted()
                                         .collect(Collectors.toList());
@@ -54,12 +53,13 @@ public class Eval {
 
             for(ZonedDateTime date : dates) {
                 CumulatedPoint cumulatedPoint = new CumulatedPoint();
-                Score score = scores.stream()
-                            .filter(s -> s.getCompetition().getYear().equals(date))
-                            .findFirst()
-                            .orElse(null);
+                int playerScoresSum = scores.stream()
+                            .filter(s -> s.getCompetition().getDate().equals(date))
+                            .mapToInt(Score::getScore)
+                            .sum();
 
-                sum += (score != null) ? score.getScore() : 0;
+
+                sum += playerScoresSum;
                 Category c = new Category();
                 c.setId(1);
                 c.setName("battle");
