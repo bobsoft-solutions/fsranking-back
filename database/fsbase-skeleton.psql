@@ -88,17 +88,16 @@ CREATE TABLE "cumulated_point" (
 ) WITH (oids = false);
 
 
-
+DROP SEQUENCE IF EXISTS score_id_score_seq;
+CREATE SEQUENCE score_id_score_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 DROP TABLE IF EXISTS "score";
 CREATE TABLE "score" (
+    "id" integer PRIMARY KEY DEFAULT nextval('score_id_score_seq') NOT NULL,
     "id_player" integer NOT NULL,
     "id_competition" integer NOT NULL,
     "score" integer,
     "id_default_point" smallint references default_point,
-    "id_category"  integer NOT NULL references category,
-    CONSTRAINT "score_id_player_id_competition_id_category" PRIMARY KEY ("id_player", "id_competition", "id_category"),
-    CONSTRAINT "score_id_competition_fkey" FOREIGN KEY (id_competition) REFERENCES competition(id) NOT DEFERRABLE,
-    CONSTRAINT "score_id_player_fkey" FOREIGN KEY (id_player) REFERENCES player(id) NOT DEFERRABLE
+    "id_category"  integer NOT NULL references category
 ) WITH (oids = false);
 
 

@@ -144,7 +144,7 @@ insert into competition(name,id_location,date,importance,id_group) values
 
 update player set birth_year=2018-birth_year;
 
-insert into score values
+insert into score(id_player,id_competition,score,id_default_point,id_category) values
 ((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Zawiercie 2007'), 125, 1, (select id from category where name = 'battle')),
 ((select id from player where first_name = 'Bartosz' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2008'), 125, 1, (select id from category where name = 'battle')),
 ((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Pyrzyce 2008'), 125, 1, (select id from category where name = 'battle')),
