@@ -1,4 +1,4 @@
-insert into cumulated_point values
+insert into cumulated_point(id_player,points,date,place,id_category) values
 (33, 0, '2007-01-01', 5, 1),
 (33, 450, '2008-01-01', 4, 1),
 (33, 600, '2009-01-01', 5, 1),
