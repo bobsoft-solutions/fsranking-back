@@ -1,7 +1,7 @@
 package me.bobsoft.fsranking.controller;
 
 import me.bobsoft.fsranking.model.dto.CompetitionDTO;
-import me.bobsoft.fsranking.model.entities.Competition;
+import me.bobsoft.fsranking.model.utils.CompetitionWithScoringPlayers;
 import me.bobsoft.fsranking.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,16 +29,9 @@ public class CompetitionController {
     }
 
     @PostMapping("/competitions")
-    public ResponseEntity addCompetition(@RequestBody Competition competition) {
+    public ResponseEntity addCompetition(@RequestBody CompetitionWithScoringPlayers competitionWithScoringPlayers) {
 
-        System.out.println(competition.getId());
-        System.out.println(competition.getName());
-        System.out.println(competition.getLocation());
-        System.out.println(competition.getYear());
-        System.out.println(competition.getImportance());
-        System.out.println(competition.getGroup());
-
-        competitionService.addCompetition(competition);
+        competitionService.addCompetition(competitionWithScoringPlayers);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
