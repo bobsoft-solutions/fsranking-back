@@ -8,19 +8,14 @@ import me.bobsoft.fsranking.model.entities.Score;
 import me.bobsoft.fsranking.model.utils.CompetitionWithScoringPlayers;
 import me.bobsoft.fsranking.model.utils.ScoreDTO;
 import me.bobsoft.fsranking.repository.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class CompetitionService {
-
-    Logger log = LoggerFactory.getLogger(CompetitionService.class);
 
     @Autowired
     private CompetitionRepository competitionRepository;
@@ -44,13 +39,43 @@ public class CompetitionService {
     public void addCompetition(CompetitionWithScoringPlayers competitionWithScoringPlayers) {
         Competition competition = competitionRepository.save(competitionWithScoringPlayers.getCompetition());
 
-        System.out.println(competition);
         updateScoreTable(competition, competitionWithScoringPlayers);
+
+        updatePlaceColumnInCumulatedPoint(
+                competitionWithScoringPlayers.getCategoryId(),
+                competition.getDate(),
+                competitionWithScoringPlayers.getScoringPlayersId());
+    }
+
+    private void updateScoreTable(Competition competition,
+                                  CompetitionWithScoringPlayers competitionWithScoringPlayers) {
+
+        List<Integer> playersId = competitionWithScoringPlayers.getScoringPlayersId();
+        for (int i = 0; i < playersId.size(); i++) {
+            Score score = new Score();
+
+            score.setPlayer(playerRepository.findById(playersId.get(i)).get());
+
+            score.setCompetition(competitionRepository.findById(competition.getId()).get());
+
+            DefaultPoint defaultPoint = defaultPointRepository.findById(i + 1).get();
+            score.setDefaultPoint(defaultPoint);
+
+            score.setCategory(categoryRepository.findById(competitionWithScoringPlayers.getCategoryId()).get());
+
+            Integer competitionImportance = competitionRepository.findById(competition.getId()).get().getImportance();
+            Integer weightOfPlace = defaultPointRepository.findById(defaultPoint.getId()).get().getValue();
+            score.setScore(competitionImportance * weightOfPlace);
+
+            scoreRepository.save(score);
+            updateCumulatedPoint(competition, competitionWithScoringPlayers, playersId.get(i), i + 1);
+        }
     }
 
     private void updateCumulatedPoint(Competition competition,
                                       CompetitionWithScoringPlayers competitionWithScoringPlayers,
-                                      Integer playerId) {
+                                      Integer playerId,
+                                      Integer placeOnPodium) {
 
         CumulatedPoint cumulatedPoint = new CumulatedPoint();
 
@@ -64,37 +89,52 @@ public class CompetitionService {
         cumulatedPoint.setIdPlayer(playerId);
 
         /* id_points */
-        // TODO
+        Integer pointsBefore = 0;
+        if (categoryRepository.findById(competitionWithScoringPlayers.getCategoryId()).isPresent()) {
+            if (cumulatedPointRepository
+                    .findFirstByIdPlayerAndCategoryOrderByPointsDesc(
+                            playerId,
+                            categoryRepository.findById(competitionWithScoringPlayers.getCategoryId()).get())
+                    .isPresent()) {
+                pointsBefore = cumulatedPointRepository
+                        .findFirstByIdPlayerAndCategoryOrderByPointsDesc(
+                                playerId,
+                                categoryRepository.findById(competitionWithScoringPlayers.getCategoryId()).get())
+                        .get().getPoints();
+            }
+        }
+        Integer pointsToAdd = defaultPointRepository.findById(placeOnPodium).get().getValue() * competition.getImportance();
+        cumulatedPoint.setPoints(pointsBefore + pointsToAdd);
 
-        /* place */
-        // TODO
+        /* place - here is null because it is set up by updatePlaceColumnInCumulatedPoint() */
+        cumulatedPoint.setPlace(null);
 
+        cumulatedPointRepository.save(cumulatedPoint);
     }
 
-    private void updateScoreTable(Competition competition,
-                                  CompetitionWithScoringPlayers competitionWithScoringPlayers) {
+    private void updatePlaceColumnInCumulatedPoint(Integer categoryId, Date date, List<Integer> scoringPlayersId) {
+        List<Integer> playersId = cumulatedPointRepository.getPlayersIdOfCategory(categoryId);
 
-        List<Integer> playersId = competitionWithScoringPlayers.getScoringPlayersId();
-        for (int i = 0; i < playersId.size(); i++) {
-            Score score = new Score();
-            log.info("1");
+        List<CumulatedPoint> latestCumulatedPoints = new LinkedList<>();
+        for (Integer playerId : playersId) {
+            latestCumulatedPoints.add(cumulatedPointRepository.findFirstByCategoryIdAndIdPlayerOrderByDateDesc(categoryId, playerId));
+        }
 
-            score.setPlayer(playerRepository.findById(playersId.get(i)).get());
-            log.info("2");
-            score.setCompetition(competitionRepository.findById(competition.getId()).get());
+        Collections.sort(latestCumulatedPoints);
+        Collections.reverse(latestCumulatedPoints);
 
-            log.info("3");
-            DefaultPoint defaultPoint = defaultPointRepository.findById(i+1).get();
-            score.setDefaultPoint(defaultPoint);
-            log.info("4");
-            score.setCategory(categoryRepository.findById(competitionWithScoringPlayers.getCategoryId()).get());
-            log.info("5");
-            Integer competitionImportance = competitionRepository.findById(competition.getId()).get().getImportance();
-            Integer weightOfPlace = defaultPointRepository.findById(defaultPoint.getId()).get().getValue();
-            score.setScore(competitionImportance * weightOfPlace);
+        for (int i = 0; i < latestCumulatedPoints.size(); i++) {
 
-            scoreRepository.save(score);
-
+            if (scoringPlayersId.contains(latestCumulatedPoints.get(i).getIdPlayer())) {
+                CumulatedPoint nowScoring = latestCumulatedPoints.get(i);
+                nowScoring.setPlace(i + 1);
+                cumulatedPointRepository.save(nowScoring);
+            } else {
+                CumulatedPoint notNowScoring = new CumulatedPoint(latestCumulatedPoints.get(i));
+                notNowScoring.setPlace(i + 1);
+                notNowScoring.setDate(date);
+                cumulatedPointRepository.save(notNowScoring);
+            }
         }
     }
 
