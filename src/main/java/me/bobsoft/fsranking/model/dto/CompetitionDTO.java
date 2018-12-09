@@ -26,7 +26,7 @@ public class CompetitionDTO {
         this.id = competition.getId();
         this.name = competition.getName();
         this.location = competition.getLocation().getName();
-        this.year = competition.getYear();
+        this.year = competition.getDate();
         this.importance = competition.getImportance();
     }
 }

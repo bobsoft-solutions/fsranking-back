@@ -9,7 +9,12 @@ import java.util.Date;
 @Entity
 @Table(name = "cumulated_point")
 public class CumulatedPoint {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
     @Column(name = "id_player")
     private Integer idPlayer;
 

@@ -16,7 +16,7 @@ public class PlayerHistory {
     private Competition competition;
 
     public PlayerHistory(Score score) {
-        this.date = score.getCompetition().getYear();
+        this.date = score.getCompetition().getDate();
         this.place = score.getDefaultPoint().getId();
         this.category = score.getCategory().getName();
         this.score = score.getScore();

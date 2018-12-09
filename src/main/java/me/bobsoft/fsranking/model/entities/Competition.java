@@ -25,7 +25,7 @@ public class Competition {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "date")
-    private Date year;
+    private Date date;
 
     @Column(name = "importance")
     private Integer importance;
