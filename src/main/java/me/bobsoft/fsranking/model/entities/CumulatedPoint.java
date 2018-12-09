@@ -1,5 +1,6 @@
 package me.bobsoft.fsranking.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,13 +22,13 @@ public class CumulatedPoint {
     @Column(name = "points")
     private Integer points;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private Date date;
 
     @Column(name = "place")
     private Integer place;
 
-    @Transient
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;

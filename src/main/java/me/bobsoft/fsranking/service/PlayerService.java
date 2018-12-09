@@ -1,19 +1,20 @@
 package me.bobsoft.fsranking.service;
 
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
+import me.bobsoft.fsranking.model.entities.CumulatedPoint;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.Score;
-import me.bobsoft.fsranking.model.utils.PlayerCategoryStatistics;
-import me.bobsoft.fsranking.model.utils.PlayerHistory;
-import me.bobsoft.fsranking.model.utils.PlayerStatistics;
+import me.bobsoft.fsranking.model.entities.SocialMedia;
+import me.bobsoft.fsranking.model.utils.PlayerCategoryStatisticsDTO;
+import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
+import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
 import me.bobsoft.fsranking.repository.PlayerRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
+import me.bobsoft.fsranking.repository.SocialMediaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -31,17 +32,26 @@ public class PlayerService {
     @Autowired
     private CumulatedPointRepository cumulatedPointRepository;
 
+    @Autowired
+    private SocialMediaRepository socialMediaRepository;
+
     // ----------------- /players ------------------------------------------------
     public Iterable<Player> findAll() {
-        Iterable<Player> players = playerRepository.findAll();
-        for (Player player : players) {
-            LocalDate now = LocalDate.now();
-            String currentYear = now.format(DateTimeFormatter.ofPattern("yyyy"));
+        return playerRepository.findAll();
+    }
 
-            player.setBirthYear(player.getBirthYear() == null ?
-                    null : Integer.parseInt(currentYear) - player.getBirthYear());
+    public PlayerDTO postPlayer(Player player) {
+        SocialMedia socialMedia = player.getSocialMedia();
+        player.setSocialMedia(null);
+        Player savedPlayer = playerRepository.saveAndFlush(player);
+
+        if(socialMedia != null) {
+            socialMedia.setPlayerId(savedPlayer.getId());
+            socialMediaRepository.saveAndFlush(socialMedia);
+            savedPlayer.setSocialMedia(socialMedia);
         }
-        return players;
+
+        return new PlayerDTO(savedPlayer, null);
     }
 
     // ----------------- /players/{id} -------------------------------------------
@@ -54,86 +64,96 @@ public class PlayerService {
         Map<String, Integer> map = new LinkedHashMap<>();
 
         map.put("battle",
-                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "battle")
-                        .stream()
-                        .map(s -> s.getScore())
-                        .reduce((s1, s2) -> s1 + s2)
-                        .orElse(0)
+            scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "battle")
+                .stream()
+                .map(s -> s.getScore())
+                .reduce((s1, s2) -> s1 + s2)
+                .orElse(0)
         );
 
         map.put("challenge",
-                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "challenge")
-                        .stream()
-                        .map(s -> s.getScore())
-                        .reduce((s1, s2) -> s1 + s2)
-                        .orElse(0)
+            scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "challenge")
+                .stream()
+                .map(s -> s.getScore())
+                .reduce((s1, s2) -> s1 + s2)
+                .orElse(0)
         );
 
         map.put("routine",
-                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "routine")
-                        .stream()
-                        .map(s -> s.getScore())
-                        .reduce((s1, s2) -> s1 + s2)
-                        .orElse(0)
+            scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "routine")
+                .stream()
+                .map(s -> s.getScore())
+                .reduce((s1, s2) -> s1 + s2)
+                .orElse(0)
         );
 
         return map;
     }
 
-    // ----------------- /players/{id}/statistics -------------------------------
-    public PlayerStatistics findStatisticsById(Integer id) {
-        PlayerStatistics playerStatistics = new PlayerStatistics();
+    public void deletePlayer(Integer id) {
+        playerRepository.deleteById(id);
+    }
 
-        playerStatistics.setBattle(
+    // ----------------- /players/{id}/statistics -------------------------------
+    public PlayerStatisticsDTO findStatisticsById(Integer id) {
+        PlayerStatisticsDTO playerStatisticsDTO = new PlayerStatisticsDTO();
+
+        playerStatisticsDTO.setBattle(
                 resolveStatisticsByIdAndCategory(id, "battle")
         );
-        playerStatistics.setChallenge(
+        playerStatisticsDTO.setChallenge(
                 resolveStatisticsByIdAndCategory(id, "challenge")
         );
-        playerStatistics.setRoutine(
+        playerStatisticsDTO.setRoutine(
                 resolveStatisticsByIdAndCategory(id, "routine")
         );
 
-        return playerStatistics;
+        playerStatisticsDTO.setHistory(findHistoryById(id));
+
+        return playerStatisticsDTO;
     }
 
-    private PlayerCategoryStatistics resolveStatisticsByIdAndCategory(Integer playerId, String category) {
-        PlayerCategoryStatistics playerPodiumCount = new PlayerCategoryStatistics();
+    private PlayerCategoryStatisticsDTO resolveStatisticsByIdAndCategory(Integer playerId, String category) {
+        PlayerCategoryStatisticsDTO playerPodiumCount = new PlayerCategoryStatisticsDTO();
         List<Score> scores = scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, category);
 
-        playerPodiumCount.setCountOf1st(
-                toIntExact(
-                        scores.stream()
-                                .filter(s -> s.getDefaultPoint().getId() == 1)
-                                .count()
-                )
+        playerPodiumCount.setPlace1Count(
+            toIntExact(
+                scores.stream()
+                    .filter(s -> s.getDefaultPoint().getId() == 1)
+                    .count()
+            )
         );
-        playerPodiumCount.setCountOf2nd(
-                toIntExact(
-                        scores.stream()
-                                .filter(s -> s.getDefaultPoint().getId() == 2)
-                                .count()
-                )
+        playerPodiumCount.setPlace2Count(
+            toIntExact(
+                scores.stream()
+                    .filter(s -> s.getDefaultPoint().getId() == 2)
+                    .count()
+            )
         );
-        playerPodiumCount.setCountOf3rd(
-                toIntExact(
-                        scores.stream()
-                                .filter(s -> s.getDefaultPoint().getId() == 3)
-                                .count()
-                )
+        playerPodiumCount.setPlace3Count(
+            toIntExact(
+                scores.stream()
+                    .filter(s -> s.getDefaultPoint().getId() == 3)
+                    .count()
+            )
         );
 
-        playerPodiumCount.setPoints(cumulatedPointRepository.findAll());
+        playerPodiumCount.setCumulatedPoints(
+            cumulatedPointRepository.findCumulatedPointByIdPlayerAndCategoryName(playerId, category)
+                .stream()
+                .sorted(Comparator.comparing(CumulatedPoint::getDate))
+                .collect(Collectors.toList())
+        );
 
         return playerPodiumCount;
     }
 
-    // ----------------- /players/{id}/history -------------------------------
-    public List<PlayerHistory> findHistoryById(Integer id) {
+    private List<PlayerScoreDTO> findHistoryById(Integer id) {
         return scoreRepository.findScoresByPlayerId(id)
                 .stream()
-                .map(PlayerHistory::new)
-                .sorted(Comparator.comparing(PlayerHistory::getDate))
+                .map(PlayerScoreDTO::new)
+                .sorted(Comparator.comparing(PlayerScoreDTO::getDate))
                 .collect(Collectors.toList());
     }
 }

@@ -2,16 +2,10 @@ package me.bobsoft.fsranking.controller;
 
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.entities.Player;
-import me.bobsoft.fsranking.model.utils.PlayerHistory;
-import me.bobsoft.fsranking.model.utils.PlayerStatistics;
+import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
@@ -23,18 +17,23 @@ public class PlayerController {
     @GetMapping("/players")
     public Iterable<Player> findAllPlayers() { return playerService.findAll(); }
 
+    @PostMapping("/players")
+    public PlayerDTO postPlayer(@RequestBody Player player) {
+        return playerService.postPlayer(player);
+    }
+
     @GetMapping("/players/{id}")
     public PlayerDTO findPlayerById(@PathVariable Integer id) {
         return playerService.findById(id);
     }
 
-    @GetMapping("/players/{id}/statistics")
-    public PlayerStatistics findPlayerStatisticsById(@PathVariable Integer id) {
-        return playerService.findStatisticsById(id);
+    @DeleteMapping("/players/{id}")
+    public void deletePlayer(@PathVariable Integer id) {
+        playerService.deletePlayer(id);
     }
 
-    @GetMapping("/players/{id}/history")
-    public List<PlayerHistory> findPlayerHistoryById(@PathVariable Integer id) {
-        return playerService.findHistoryById(id);
+    @GetMapping("/players/{id}/statistics")
+    public PlayerStatisticsDTO findPlayerStatisticsById(@PathVariable Integer id) {
+        return playerService.findStatisticsById(id);
     }
 }

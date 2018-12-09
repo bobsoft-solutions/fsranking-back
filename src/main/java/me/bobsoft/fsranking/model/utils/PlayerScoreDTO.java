@@ -7,7 +7,7 @@ import me.bobsoft.fsranking.model.entities.Score;
 import java.util.Date;
 
 @Data
-public class PlayerHistory {
+public class PlayerScoreDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
     private Integer place;
@@ -15,7 +15,7 @@ public class PlayerHistory {
     private String category;
     private Competition competition;
 
-    public PlayerHistory(Score score) {
+    public PlayerScoreDTO(Score score) {
         this.date = score.getCompetition().getDate();
         this.place = score.getDefaultPoint().getId();
         this.category = score.getCategory().getName();
