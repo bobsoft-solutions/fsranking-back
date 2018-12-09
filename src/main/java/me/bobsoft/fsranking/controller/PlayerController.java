@@ -6,10 +6,7 @@ import me.bobsoft.fsranking.model.utils.PlayerHistory;
 import me.bobsoft.fsranking.model.utils.PlayerStatistics;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +20,19 @@ public class PlayerController {
     @GetMapping("/players")
     public Iterable<Player> findAllPlayers() { return playerService.findAll(); }
 
+    @PostMapping("/players")
+    public PlayerDTO postPlayer(@RequestBody Player player) {
+        return playerService.postPlayer(player);
+    }
+
     @GetMapping("/players/{id}")
     public PlayerDTO findPlayerById(@PathVariable Integer id) {
         return playerService.findById(id);
+    }
+
+    @DeleteMapping("/players/{id}")
+    public void deletePlayer(@PathVariable Integer id) {
+        playerService.deletePlayer(id);
     }
 
     @GetMapping("/players/{id}/statistics")

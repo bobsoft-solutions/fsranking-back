@@ -3,12 +3,14 @@ package me.bobsoft.fsranking.service;
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.Score;
+import me.bobsoft.fsranking.model.entities.SocialMedia;
 import me.bobsoft.fsranking.model.utils.PlayerCategoryStatistics;
 import me.bobsoft.fsranking.model.utils.PlayerHistory;
 import me.bobsoft.fsranking.model.utils.PlayerStatistics;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
 import me.bobsoft.fsranking.repository.PlayerRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
+import me.bobsoft.fsranking.repository.SocialMediaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,9 @@ public class PlayerService {
     @Autowired
     private CumulatedPointRepository cumulatedPointRepository;
 
+    @Autowired
+    private SocialMediaRepository socialMediaRepository;
+
     // ----------------- /players ------------------------------------------------
     public Iterable<Player> findAll() {
         Iterable<Player> players = playerRepository.findAll();
@@ -42,6 +47,20 @@ public class PlayerService {
                     null : Integer.parseInt(currentYear) - player.getBirthYear());
         }
         return players;
+    }
+
+    public PlayerDTO postPlayer(Player player) {
+        SocialMedia socialMedia = player.getSocialMedia();
+        player.setSocialMedia(null);
+        Player savedPlayer = playerRepository.saveAndFlush(player);
+
+        if(socialMedia != null) {
+            socialMedia.setPlayerId(savedPlayer.getId());
+            socialMediaRepository.saveAndFlush(socialMedia);
+            savedPlayer.setSocialMedia(socialMedia);
+        }
+
+        return new PlayerDTO(savedPlayer, null);
     }
 
     // ----------------- /players/{id} -------------------------------------------
@@ -78,6 +97,10 @@ public class PlayerService {
         );
 
         return map;
+    }
+
+    public void deletePlayer(Integer id) {
+        playerRepository.deleteById(id);
     }
 
     // ----------------- /players/{id}/statistics -------------------------------

@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Player {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -28,7 +29,7 @@ public class Player {
     @Column(name = "birth_year")
     private Integer birthYear;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     private SocialMedia socialMedia;
 }
