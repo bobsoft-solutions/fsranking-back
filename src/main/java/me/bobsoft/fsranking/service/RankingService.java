@@ -54,3 +54,7 @@ public class RankingService {
         return playersId;
     }
 }
+
+/* TODO: zrób tak żeby korzystać z:
+    select id_player, max(points) from cumulated_point where id_category=1 group by id_player order by max(points) desc;
+ */
