@@ -1,10 +1,9 @@
 package me.bobsoft.fsranking.service;
 
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
-import me.bobsoft.fsranking.model.entities.CumulatedPoint;
 import me.bobsoft.fsranking.model.entities.Player;
-import me.bobsoft.fsranking.model.entities.Score;
 import me.bobsoft.fsranking.model.entities.SocialMedia;
+import me.bobsoft.fsranking.model.utils.CumulatedPointDTO;
 import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
 import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
@@ -16,8 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static java.lang.Math.toIntExact;
 
 @Service
 public class PlayerService {
@@ -107,15 +104,16 @@ public class PlayerService {
                 resolveStatisticsByIdAndCategory(id, "routine")
         );
 
-        playerStatisticsDTO.setHistory(findHistoryById(id));
+        playerStatisticsDTO.setScoreHistory(findHistoryById(id));
 
         return playerStatisticsDTO;
     }
 
-    private List<CumulatedPoint> resolveStatisticsByIdAndCategory(Integer playerId, String category) {
+    private List<CumulatedPointDTO> resolveStatisticsByIdAndCategory(Integer playerId, String category) {
         return cumulatedPointRepository.findCumulatedPointByIdPlayerAndCategoryName(playerId, category)
                 .stream()
-                .sorted(Comparator.comparing(CumulatedPoint::getDate))
+                .map(CumulatedPointDTO::new)
+                .sorted(Comparator.comparing(CumulatedPointDTO::getDate))
                 .collect(Collectors.toList());
     }
 
