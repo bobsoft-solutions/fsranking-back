@@ -5,7 +5,6 @@ import me.bobsoft.fsranking.model.entities.CumulatedPoint;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.Score;
 import me.bobsoft.fsranking.model.entities.SocialMedia;
-import me.bobsoft.fsranking.model.utils.PlayerCategoryStatisticsDTO;
 import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
 import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
@@ -98,13 +97,13 @@ public class PlayerService {
     public PlayerStatisticsDTO findStatisticsById(Integer id) {
         PlayerStatisticsDTO playerStatisticsDTO = new PlayerStatisticsDTO();
 
-        playerStatisticsDTO.setBattle(
+        playerStatisticsDTO.setBattleCumulatedPoint(
                 resolveStatisticsByIdAndCategory(id, "battle")
         );
-        playerStatisticsDTO.setChallenge(
+        playerStatisticsDTO.setChallengeCumulatedPoint(
                 resolveStatisticsByIdAndCategory(id, "challenge")
         );
-        playerStatisticsDTO.setRoutine(
+        playerStatisticsDTO.setRoutineCumulatedPoint(
                 resolveStatisticsByIdAndCategory(id, "routine")
         );
 
@@ -113,40 +112,11 @@ public class PlayerService {
         return playerStatisticsDTO;
     }
 
-    private PlayerCategoryStatisticsDTO resolveStatisticsByIdAndCategory(Integer playerId, String category) {
-        PlayerCategoryStatisticsDTO playerPodiumCount = new PlayerCategoryStatisticsDTO();
-        List<Score> scores = scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, category);
-
-        playerPodiumCount.setPlace1Count(
-            toIntExact(
-                scores.stream()
-                    .filter(s -> s.getDefaultPoint().getId() == 1)
-                    .count()
-            )
-        );
-        playerPodiumCount.setPlace2Count(
-            toIntExact(
-                scores.stream()
-                    .filter(s -> s.getDefaultPoint().getId() == 2)
-                    .count()
-            )
-        );
-        playerPodiumCount.setPlace3Count(
-            toIntExact(
-                scores.stream()
-                    .filter(s -> s.getDefaultPoint().getId() == 3)
-                    .count()
-            )
-        );
-
-        playerPodiumCount.setCumulatedPoints(
-            cumulatedPointRepository.findCumulatedPointByIdPlayerAndCategoryName(playerId, category)
+    private List<CumulatedPoint> resolveStatisticsByIdAndCategory(Integer playerId, String category) {
+        return cumulatedPointRepository.findCumulatedPointByIdPlayerAndCategoryName(playerId, category)
                 .stream()
                 .sorted(Comparator.comparing(CumulatedPoint::getDate))
-                .collect(Collectors.toList())
-        );
-
-        return playerPodiumCount;
+                .collect(Collectors.toList());
     }
 
     private List<PlayerScoreDTO> findHistoryById(Integer id) {
