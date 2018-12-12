@@ -35,7 +35,7 @@ public class CompetitionService {
     @Autowired
     private CumulatedPointRepository cumulatedPointRepository;
 
-    /* ---------------------------- POST ------------------------------------------------------- */
+    /* ---------------------------- POST /competitions ------------------------------------------------------------- */
     public void addCompetition(CompetitionWithScoringPlayers competitionWithScoringPlayers) {
         Competition competition = competitionRepository.save(competitionWithScoringPlayers.getCompetition());
 
@@ -138,7 +138,7 @@ public class CompetitionService {
         }
     }
 
-    /* ---------------------------- GET -------------------------------------------------------- */
+    /* ---------------------------- GET /competitions -------------------------------------------------------------- */
     public List<CompetitionDTO> findAll() {
         return competitionRepository.findAll()
                 .stream()
@@ -147,6 +147,7 @@ public class CompetitionService {
                 .collect(Collectors.toList());
     }
 
+    /* ---------------------------- GET /competitions/{id} --------------------------------------------------------- */
     public Optional<CompetitionDTO> findById(Integer id) {
         if (!competitionRepository.findById(id).isPresent()) return Optional.ofNullable(null);
 
@@ -156,22 +157,25 @@ public class CompetitionService {
     }
 
     private CompetitionDTO setScoresByCategory(CompetitionDTO competitionDTO) {
-        competitionDTO.setBattle(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "battle")
-                .stream()
-                .map(ScoreDTO::new)
-                .collect(Collectors.toList()));
-        competitionDTO.setChallenge(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "challenge")
-                .stream()
-                .map(ScoreDTO::new)
-                .collect(Collectors.toList()));
-        competitionDTO.setRoutine(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "routine")
-                .stream()
-                .map(ScoreDTO::new)
-                .collect(Collectors.toList()));
+        competitionDTO
+                .setBattle(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "battle")
+                        .stream()
+                        .map(ScoreDTO::new)
+                        .collect(Collectors.toList()));
+        competitionDTO
+                .setChallenge(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "challenge")
+                        .stream()
+                        .map(ScoreDTO::new)
+                        .collect(Collectors.toList()));
+        competitionDTO
+                .setRoutine(scoreRepository.findScoresByCompetitionIdAndCategoryName(competitionDTO.getId(), "routine")
+                        .stream()
+                        .map(ScoreDTO::new)
+                        .collect(Collectors.toList()));
         return competitionDTO;
     }
 
-
+    /* ---------------------------- DELETE /competitions/{id} ------------------------------------------------------ */
     public void deleteCompetition(Integer competitionId) {
 
         if (competitionRepository.findById(competitionId).isPresent()) {
@@ -179,6 +183,7 @@ public class CompetitionService {
         }
     }
 
+    /* ---------------------------- PUT /competitions/{id} --------------------------------------------------------- */
     public void editCompetition(CompetitionWithScoringPlayers competitionWithScoringPlayers, Integer id) {
 
         // edit competition table
@@ -199,7 +204,10 @@ public class CompetitionService {
                     competitionWithScoringPlayers.getCategoryId());
             // TODO
 
+
             // edit cumulated_point table
+            // TODO
+
         }
     }
 }
