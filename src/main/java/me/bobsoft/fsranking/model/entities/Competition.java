@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 @Data
 @Entity
@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 public class Competition {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -24,8 +25,12 @@ public class Competition {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "date")
-    private ZonedDateTime year;
+    private Date date;
 
     @Column(name = "importance")
     private Integer importance;
+
+    @ManyToOne()
+    @JoinColumn(name = "id_group")
+    private Group group;
 }

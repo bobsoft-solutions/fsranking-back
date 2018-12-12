@@ -17,4 +17,6 @@ public interface ScoreRepository extends JpaRepository<Score, Integer> {
     List<Score> findScoresByPlayerId(Integer id);
 
     List<Score> findScoresByCompetitionIdAndCategoryName(Integer id, String name);
+
+    List<Score> findScoresByCompetitionIdAndCategoryId(Integer competitionId, Integer categoryId);
 }

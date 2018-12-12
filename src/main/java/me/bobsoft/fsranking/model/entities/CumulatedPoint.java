@@ -9,8 +9,10 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "cumulated_point")
-public class CumulatedPoint {
+public class CumulatedPoint implements Comparable<CumulatedPoint> {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -30,4 +32,20 @@ public class CumulatedPoint {
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
+
+    @Override
+    public int compareTo(CumulatedPoint o) {
+        return (this.getPoints() - o.getPoints());
+    }
+
+    public CumulatedPoint(CumulatedPoint cumulatedPoint) {
+        this.idPlayer = cumulatedPoint.getIdPlayer();
+        this.points = cumulatedPoint.getPoints();
+        this.date = cumulatedPoint.getDate();
+        this.place = cumulatedPoint.getPlace();
+        this.category = cumulatedPoint.getCategory();
+    }
+
+    public CumulatedPoint() {
+    }
 }
