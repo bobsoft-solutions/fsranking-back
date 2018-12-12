@@ -170,4 +170,12 @@ public class CompetitionService {
                 .collect(Collectors.toList()));
         return competitionDTO;
     }
+
+
+    public void deleteCompetition(Integer competitionId) {
+
+        if (competitionRepository.findById(competitionId).isPresent()) {
+            competitionRepository.delete(competitionRepository.findById(competitionId).get());
+        }
+    }
 }
