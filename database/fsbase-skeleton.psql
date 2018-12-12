@@ -1,6 +1,25 @@
-
+DROP TABLE IF EXISTS "score";
+DROP SEQUENCE IF EXISTS score_id_score_seq;
+DROP TABLE IF EXISTS "default_point";
+DROP SEQUENCE IF EXISTS default_point_id_default_point_seq;
+DROP TABLE IF EXISTS "competition";
+DROP SEQUENCE IF EXISTS competition_id_competition_seq;
 DROP TABLE IF EXISTS "location";
 DROP SEQUENCE IF EXISTS location_id_location_seq;
+DROP TABLE IF EXISTS "group";
+DROP SEQUENCE IF EXISTS group_id_group_seq;
+DROP TABLE IF EXISTS "user";
+DROP SEQUENCE IF EXISTS user_id_user_seq;
+DROP TABLE IF EXISTS "cumulated_point";
+DROP SEQUENCE IF EXISTS cumulated_point_id_cumulated_point_seq;
+DROP TABLE IF EXISTS "category";
+DROP SEQUENCE IF EXISTS category_id_category_seq;
+DROP TABLE IF EXISTS "player" CASCADE;
+DROP SEQUENCE IF EXISTS player_id_player_seq;
+DROP TABLE IF EXISTS "social_media";
+DROP TABLE IF EXISTS "nationality";
+
+
 CREATE SEQUENCE location_id_location_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "location" (
@@ -16,8 +35,7 @@ CREATE TABLE "nationality" (
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS "group";
-DROP SEQUENCE IF EXISTS group_id_group_seq;
+
 CREATE SEQUENCE group_id_group_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 11 CACHE 1;
 
 CREATE TABLE "group" (
@@ -28,8 +46,7 @@ CREATE TABLE "group" (
 
 
 
-DROP TABLE IF EXISTS "category";
-DROP SEQUENCE IF EXISTS category_id_category_seq;
+
 CREATE SEQUENCE category_id_category_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 4 CACHE 1;
 
 CREATE TABLE "category" (
@@ -39,8 +56,7 @@ CREATE TABLE "category" (
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS "default_point";
-DROP SEQUENCE IF EXISTS default_point_id_default_point_seq;
+
 CREATE SEQUENCE default_point_id_default_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 17 CACHE 1;
 
 CREATE TABLE "default_point" (
@@ -49,8 +65,7 @@ CREATE TABLE "default_point" (
     CONSTRAINT "default_point_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
-DROP TABLE IF EXISTS "competition";
-DROP SEQUENCE IF EXISTS competition_id_competition_seq;
+
 CREATE SEQUENCE competition_id_competition_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "competition" (
@@ -65,8 +80,7 @@ CREATE TABLE "competition" (
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS "player";
-DROP SEQUENCE IF EXISTS player_id_player_seq;
+
 CREATE SEQUENCE player_id_player_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "player" (
@@ -83,8 +97,7 @@ COMMENT ON COLUMN "player"."nationality" IS 'iso 3166-1 Alpha 3';
 
 
 
-DROP TABLE IF EXISTS "cumulated_point";
-DROP SEQUENCE IF EXISTS cumulated_point_id_cumulated_point_seq;
+
 CREATE SEQUENCE cumulated_point_id_cumulated_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "cumulated_point" (
@@ -98,9 +111,8 @@ CREATE TABLE "cumulated_point" (
 ) WITH (oids = false);
 
 
-DROP SEQUENCE IF EXISTS score_id_score_seq;
+
 CREATE SEQUENCE score_id_score_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
-DROP TABLE IF EXISTS "score";
 CREATE TABLE "score" (
     "id" integer PRIMARY KEY DEFAULT nextval('score_id_score_seq') NOT NULL,
     "id_player" integer NOT NULL,
@@ -111,7 +123,6 @@ CREATE TABLE "score" (
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS "social_media";
 CREATE TABLE "social_media" (
     "id_player" integer NOT NULL,
     "facebook" character varying(2083),
@@ -123,8 +134,7 @@ CREATE TABLE "social_media" (
 
 
 
-DROP TABLE IF EXISTS "user";
-DROP SEQUENCE IF EXISTS user_id_user_seq;
+
 CREATE SEQUENCE user_id_user_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "user" (
