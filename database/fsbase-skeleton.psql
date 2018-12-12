@@ -10,6 +10,12 @@ CREATE TABLE "location" (
 ) WITH (oids = false);
 
 
+CREATE TABLE "nationality" (
+    "id" char(3) NOT NULL PRIMARY KEY,
+    "name" character varying(70)
+) WITH (oids = false);
+
+
 DROP TABLE IF EXISTS "group";
 DROP SEQUENCE IF EXISTS group_id_group_seq;
 CREATE SEQUENCE group_id_group_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 11 CACHE 1;
@@ -68,7 +74,7 @@ CREATE TABLE "player" (
     "first_name" character varying(12),
     "last_name" character varying(15),
     "nick" character varying(10),
-    "nationality" character(3),
+    "nationality" character(3) references nationality(id),
     "birth_year" smallint,
     CONSTRAINT "player_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
