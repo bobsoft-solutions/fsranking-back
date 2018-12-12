@@ -41,4 +41,13 @@ public class CompetitionController {
         competitionService.deleteCompetition(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+
+    @PutMapping("/competitions/{id}")
+    public ResponseEntity editCompetition(@RequestBody CompetitionWithScoringPlayers competitionWithScoringPlayers,
+                                          @PathVariable Integer id) {
+
+        competitionService.editCompetition(competitionWithScoringPlayers, id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

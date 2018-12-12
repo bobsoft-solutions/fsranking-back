@@ -178,4 +178,28 @@ public class CompetitionService {
             competitionRepository.delete(competitionRepository.findById(competitionId).get());
         }
     }
+
+    public void editCompetition(CompetitionWithScoringPlayers competitionWithScoringPlayers, Integer id) {
+
+        // edit competition table
+        if (competitionRepository.findById(id).isPresent()) {
+            Competition competition = competitionRepository.findById(id).get();
+            competition.setDate(competitionWithScoringPlayers.getCompetition().getDate());
+            competition.setGroup(competitionWithScoringPlayers.getCompetition().getGroup());
+            competition.setImportance(competitionWithScoringPlayers.getCompetition().getImportance());
+            competition.setLocation(competitionWithScoringPlayers.getCompetition().getLocation());
+            competition.setName(competitionWithScoringPlayers.getCompetition().getName());
+
+            competitionRepository.save(competition);
+
+
+            // edit score table
+            List<Score> scores = scoreRepository.findScoresByCompetitionIdAndCategoryId(
+                    competition.getId(),
+                    competitionWithScoringPlayers.getCategoryId());
+            // TODO
+
+            // edit cumulated_point table
+        }
+    }
 }
