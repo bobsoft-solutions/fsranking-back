@@ -19,17 +19,22 @@ import java.util.stream.Collectors;
 @Service
 public class PlayerService {
 
-    @Autowired
     private PlayerRepository playerRepository;
-
-    @Autowired
     private ScoreRepository scoreRepository;
-
-    @Autowired
     private CumulatedPointRepository cumulatedPointRepository;
+    private SocialMediaRepository socialMediaRepository;
 
     @Autowired
-    private SocialMediaRepository socialMediaRepository;
+    public PlayerService(PlayerRepository playerRepository,
+                         ScoreRepository scoreRepository,
+                         CumulatedPointRepository cumulatedPointRepository,
+                         SocialMediaRepository socialMediaRepository) {
+
+        this.playerRepository = playerRepository;
+        this.scoreRepository = scoreRepository;
+        this.cumulatedPointRepository = cumulatedPointRepository;
+        this.socialMediaRepository = socialMediaRepository;
+    }
 
     // ----------------- /players ------------------------------------------------
     public Iterable<Player> findAll() {
