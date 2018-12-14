@@ -67,7 +67,7 @@ public class RankingService {
             int earlierPoints = cumulatedPoints.get(1).getPlace();
             int latestPoints = cumulatedPoints.get(0).getPlace();
 
-            if(latestPoints > earlierPoints)
+            if(latestPoints < earlierPoints)
                 trend = Trend.UP;
             else if(latestPoints == earlierPoints)
                 trend = Trend.SAME;
