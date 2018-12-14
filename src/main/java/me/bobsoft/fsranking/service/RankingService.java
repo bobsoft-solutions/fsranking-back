@@ -5,6 +5,7 @@ import me.bobsoft.fsranking.model.entities.CumulatedPoint;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.Score;
 import me.bobsoft.fsranking.model.utils.Trend;
+import me.bobsoft.fsranking.repository.CategoryRepository;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
 import me.bobsoft.fsranking.repository.PlayerRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
@@ -29,6 +30,9 @@ public class RankingService {
     @Autowired
     private CumulatedPointRepository cumulatedPointRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public Iterable<RankingDTO> findPlayerAndSummaryScore(String category) {
 
         Iterable<Integer> playersIdOfWantedCategory = findPlayersIdFromScoresOfExactCategory(category);
@@ -44,7 +48,8 @@ public class RankingService {
                     points += score.getScore();
                 }
 
-                RankingDTO rankingDTO = new RankingDTO(player, points, getPlayerTrend(playerId));
+                Integer categoryId = categoryRepository.findByName(category).getId();
+                RankingDTO rankingDTO = new RankingDTO(player, points, getPlayerTrend(playerId, categoryId));
                 rankingDTOS.add(rankingDTO);
             }
         }
@@ -52,10 +57,10 @@ public class RankingService {
         return rankingDTOS;
     }
 
-    private Trend getPlayerTrend(Integer playerId) {
+    private Trend getPlayerTrend(Integer playerId, Integer categoryId) {
         Trend trend;
         List<CumulatedPoint> cumulatedPoints =
-                cumulatedPointRepository.findAllByIdPlayer(playerId)
+                cumulatedPointRepository.findAllByIdPlayerAndCategoryId(playerId, categoryId)
                         .stream()
                         .sorted(Comparator.comparing(CumulatedPoint::getDate).reversed())
                         .collect(Collectors.toList());
@@ -67,7 +72,7 @@ public class RankingService {
             int earlierPoints = cumulatedPoints.get(1).getPlace();
             int latestPoints = cumulatedPoints.get(0).getPlace();
 
-            if(latestPoints > earlierPoints)
+            if(latestPoints < earlierPoints)
                 trend = Trend.UP;
             else if(latestPoints == earlierPoints)
                 trend = Trend.SAME;
