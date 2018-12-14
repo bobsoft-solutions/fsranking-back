@@ -13,6 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -167,7 +169,12 @@ public class PlayerServiceTest {
         cumulatedPointB.setDate(new Date());
 
         Competition competitionA = new Competition();
-        competitionA.setYear(ZonedDateTime.parse("2010-12-11T00:00:00-00:00"));
+
+        try {
+            competitionA.setDate(new SimpleDateFormat("yyyy-MM-dd").parse("2010-12-11"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         Category category = new Category();
         category.setName("battle");
