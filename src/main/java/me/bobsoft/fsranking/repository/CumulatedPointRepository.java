@@ -20,5 +20,5 @@ public interface CumulatedPointRepository extends JpaRepository<CumulatedPoint, 
 
     CumulatedPoint findFirstByCategoryIdAndIdPlayerOrderByDateDesc(Integer categoryId, Integer playerId);
 
-    List<CumulatedPoint> findAllByIdPlayer(Integer playerId);
+    List<CumulatedPoint> findAllByIdPlayerAndCategoryId(Integer playerId, Integer categoryId);
 }
