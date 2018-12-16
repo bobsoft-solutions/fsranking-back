@@ -1,11 +1,12 @@
 package me.bobsoft.fsranking.service;
 
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
+import me.bobsoft.fsranking.model.dto.PlayerDTOforPlayersEndpoint;
+import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.SocialMedia;
 import me.bobsoft.fsranking.model.utils.CumulatedPointDTO;
 import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
-import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.repository.CumulatedPointRepository;
 import me.bobsoft.fsranking.repository.PlayerRepository;
 import me.bobsoft.fsranking.repository.ScoreRepository;
@@ -39,6 +40,15 @@ public class PlayerService {
     // ----------------- /players ------------------------------------------------
     public Iterable<Player> findAll() {
         return playerRepository.findAll();
+    }
+
+
+    public List<PlayerDTOforPlayersEndpoint> findAllPlayers() {
+
+        return playerRepository.findAll()
+                .stream()
+                .map(PlayerDTOforPlayersEndpoint::new)
+                .collect(Collectors.toList());
     }
 
     public PlayerDTO postPlayer(Player player) {
