@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Data
-public class RankingDTO {
+public class RankingDTO implements Comparable<RankingDTO> {
 
     private Integer idPlayer;
     private String firstName;
@@ -18,8 +18,9 @@ public class RankingDTO {
     private String nationality;
     private int points;
     private Trend trend;
+    private Integer position;
 
-    public RankingDTO(Player player, Integer points, Trend trend) {
+    public RankingDTO(Player player, Integer points, Trend trend, Integer position) {
         this.idPlayer = player.getId();
         this.firstName = player.getFirstName();
         this.lastName = player.getLastName();
@@ -34,5 +35,11 @@ public class RankingDTO {
         this.nationality = player.getNationality();
         this.points = points;
         this.trend = trend;
+        this.position = position;
+    }
+
+    @Override
+    public int compareTo(RankingDTO r) {
+        return this.getPoints() - r.getPoints();
     }
 }
