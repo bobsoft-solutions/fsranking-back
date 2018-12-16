@@ -39,11 +39,9 @@ public class PlayerService {
         this.categoryRepository = categoryRepository;
     }
 
-    // ----------------- /players ------------------------------------------------
     public Iterable<Player> findAll() {
         return playerRepository.findAll();
     }
-
 
     public List<PlayerDTOforPlayersEndpoint> findAllPlayers() {
 
@@ -67,7 +65,6 @@ public class PlayerService {
         return new PlayerDTO(savedPlayer, null, null);
     }
 
-    // ----------------- /players/{id} -------------------------------------------
     public PlayerDTO findById(Integer id) {
         Optional<Player> optionalPlayer = playerRepository.findById(id);
         return optionalPlayer.map(player -> new PlayerDTO(player, countPodiumById(id), countPositionById(id))).orElse(null);
