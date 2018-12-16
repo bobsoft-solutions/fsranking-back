@@ -3,14 +3,13 @@ package me.bobsoft.fsranking.service;
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.dto.PlayerDTOforPlayersEndpoint;
 import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
+import me.bobsoft.fsranking.model.entities.Category;
+import me.bobsoft.fsranking.model.entities.CumulatedPoint;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.SocialMedia;
 import me.bobsoft.fsranking.model.utils.CumulatedPointDTO;
 import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
-import me.bobsoft.fsranking.repository.CumulatedPointRepository;
-import me.bobsoft.fsranking.repository.PlayerRepository;
-import me.bobsoft.fsranking.repository.ScoreRepository;
-import me.bobsoft.fsranking.repository.SocialMediaRepository;
+import me.bobsoft.fsranking.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,17 +23,20 @@ public class PlayerService {
     private ScoreRepository scoreRepository;
     private CumulatedPointRepository cumulatedPointRepository;
     private SocialMediaRepository socialMediaRepository;
+    private CategoryRepository categoryRepository;
 
     @Autowired
     public PlayerService(PlayerRepository playerRepository,
                          ScoreRepository scoreRepository,
                          CumulatedPointRepository cumulatedPointRepository,
-                         SocialMediaRepository socialMediaRepository) {
+                         SocialMediaRepository socialMediaRepository,
+                         CategoryRepository categoryRepository) {
 
         this.playerRepository = playerRepository;
         this.scoreRepository = scoreRepository;
         this.cumulatedPointRepository = cumulatedPointRepository;
         this.socialMediaRepository = socialMediaRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     // ----------------- /players ------------------------------------------------
@@ -56,46 +58,74 @@ public class PlayerService {
         player.setSocialMedia(null);
         Player savedPlayer = playerRepository.saveAndFlush(player);
 
-        if(socialMedia != null) {
+        if (socialMedia != null) {
             socialMedia.setPlayerId(savedPlayer.getId());
             socialMediaRepository.saveAndFlush(socialMedia);
             savedPlayer.setSocialMedia(socialMedia);
         }
 
-        return new PlayerDTO(savedPlayer, null);
+        return new PlayerDTO(savedPlayer, null, null);
     }
 
     // ----------------- /players/{id} -------------------------------------------
     public PlayerDTO findById(Integer id) {
         Optional<Player> optionalPlayer = playerRepository.findById(id);
-        return optionalPlayer.map(player -> new PlayerDTO(player, countPodiumById(id))).orElse(null);
+        return optionalPlayer.map(player -> new PlayerDTO(player, countPodiumById(id), countPositionById(id))).orElse(null);
+    }
+
+    private Map<String, Integer> countPositionById(Integer playerId) {
+
+        Map<String, Integer> map = new LinkedHashMap<>();
+
+        for (Category category : categoryRepository.findAll()) {
+
+            List<Integer> playersIdOfExactCategory = cumulatedPointRepository.getPlayersIdOfCategory(category.getId());
+            List<CumulatedPoint> allPlayersBestCumulatedPointList = new LinkedList<>();
+
+            for (Integer player : playersIdOfExactCategory) {
+                allPlayersBestCumulatedPointList.add(
+                        Collections.max(cumulatedPointRepository.findAllByIdPlayerAndCategoryId(player, category.getId()))
+                );
+            }
+
+            Collections.sort(allPlayersBestCumulatedPointList);
+            Collections.reverse(allPlayersBestCumulatedPointList);
+
+            for (int i = 0; i < allPlayersBestCumulatedPointList.size(); i++) {
+                if (allPlayersBestCumulatedPointList.get(i).getIdPlayer().equals(playerId)) {
+                    map.put(category.getName(), i + 1);
+                }
+            }
+        }
+
+        return map;
     }
 
     private Map<String, Integer> countPodiumById(Integer playerId) {
         Map<String, Integer> map = new LinkedHashMap<>();
 
         map.put("battle",
-            scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "battle")
-                .stream()
-                .map(s -> s.getScore())
-                .reduce((s1, s2) -> s1 + s2)
-                .orElse(0)
+                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "battle")
+                        .stream()
+                        .map(s -> s.getScore())
+                        .reduce((s1, s2) -> s1 + s2)
+                        .orElse(0)
         );
 
         map.put("challenge",
-            scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "challenge")
-                .stream()
-                .map(s -> s.getScore())
-                .reduce((s1, s2) -> s1 + s2)
-                .orElse(0)
+                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "challenge")
+                        .stream()
+                        .map(s -> s.getScore())
+                        .reduce((s1, s2) -> s1 + s2)
+                        .orElse(0)
         );
 
         map.put("routine",
-            scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "routine")
-                .stream()
-                .map(s -> s.getScore())
-                .reduce((s1, s2) -> s1 + s2)
-                .orElse(0)
+                scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "routine")
+                        .stream()
+                        .map(s -> s.getScore())
+                        .reduce((s1, s2) -> s1 + s2)
+                        .orElse(0)
         );
 
         return map;
