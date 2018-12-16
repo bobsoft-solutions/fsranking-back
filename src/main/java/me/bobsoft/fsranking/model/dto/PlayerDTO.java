@@ -19,8 +19,9 @@ public class PlayerDTO {
     private Integer age;
     private SocialMedia socialMedia;
     private Map<String, Integer> summaryScores;
+    private Map<String, Integer> positions;
 
-    public PlayerDTO(Player player, Map<String, Integer> summaryScores) {
+    public PlayerDTO(Player player, Map<String, Integer> summaryScores, Map<String, Integer> positions) {
         this.id = player.getId();
         this.firstName = player.getFirstName();
         this.lastName = player.getLastName();
@@ -36,5 +37,6 @@ public class PlayerDTO {
 
         this.socialMedia = player.getSocialMedia();
         this.summaryScores = summaryScores;
+        this.positions = positions;
     }
 }

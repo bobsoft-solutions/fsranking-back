@@ -1,11 +1,14 @@
 package me.bobsoft.fsranking.controller;
 
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
-import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.dto.PlayerDTOforPlayersEndpoint;
 import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
+import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -15,7 +18,9 @@ public class PlayerController {
     private PlayerService playerService;
 
     @GetMapping("/players")
-    public Iterable<Player> findAllPlayers() { return playerService.findAll(); }
+    public List<PlayerDTOforPlayersEndpoint> findAllPlayers() {
+        return playerService.findAllPlayers();
+    }
 
     @PostMapping("/players")
     public PlayerDTO postPlayer(@RequestBody Player player) {

@@ -5,18 +5,17 @@ import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.model.entities.*;
 import me.bobsoft.fsranking.model.utils.CumulatedPointDTO;
 import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
-import me.bobsoft.fsranking.repository.CumulatedPointRepository;
-import me.bobsoft.fsranking.repository.PlayerRepository;
-import me.bobsoft.fsranking.repository.ScoreRepository;
-import me.bobsoft.fsranking.repository.SocialMediaRepository;
+import me.bobsoft.fsranking.repository.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -29,6 +28,7 @@ public class PlayerServiceTest {
     private ScoreRepository scoreRepository;
     private CumulatedPointRepository cumulatedPointRepository;
     private SocialMediaRepository socialMediaRepository;
+    private CategoryRepository categoryRepository;
 
     @Before
     public void setUp() {
@@ -36,9 +36,10 @@ public class PlayerServiceTest {
         scoreRepository = mock(ScoreRepository.class);
         cumulatedPointRepository = mock(CumulatedPointRepository.class);
         socialMediaRepository = mock(SocialMediaRepository.class);
+        categoryRepository = mock(CategoryRepository.class);
 
         playerService = new PlayerService(playerRepository, scoreRepository,
-                cumulatedPointRepository, socialMediaRepository);
+                cumulatedPointRepository, socialMediaRepository, categoryRepository);
     }
 
     @Test

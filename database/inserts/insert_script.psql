@@ -252,33 +252,33 @@ insert into nationality values
 
 insert into player(first_name,last_name,nick,nationality,birth_year) values
 ('Robert','Bejda','Robik','POL',1994),
-('Dawid','Biegun','Zegan','POL', 0),
+('Dawid','Biegun','Zegan','POL',1992),
 ('Piotr','Biernacki',null,'POL',1992),
 ('Piotr','Bujak',null,'POL',1995),
-('Oliver','Cherek','Oli','POL', 0),
+('Oliver','Cherek','Oli','POL',null),
 ('Filip','Chudziński','Fichu','POL',1993),
 ('Łukasz','Chwieduk','Luki','POL',1993),
-('Gaetan','Czaja',null,'POL', 0),
+('Gaetan','Czaja',null,'POL',null),
 ('Daniel','Długołęcki','Q100m','POL',1987),
-('Adrian','Duszak',null,'POL', 0),
+('Adrian','Duszak',null,'POL',1995),
 ('Konrad','Dybaś','Kondzio','POL',1995),
-('Adrian','Franc','Franek','POL', 0),
+('Adrian','Franc','Franek','POL',1990),
 ('Krzysztof','Golonka','Clyde','POL',1990),
 ('Robert','Guzik',null,'POL',1996),
 ('Marcin','Kaczmarek','Marten','POL',1989),
-('Łukasz','Karaś','Karaś','POL', 0),
+('Łukasz','Karaś','Karaś','POL',null),
 ('Dawid','Koczur','Koczur','POL',1995),
 ('Jakub','Kokot',null,'POL',1996),
-('Stanisław','Kościelny','Staniu','POL', 0),
+('Stanisław','Kościelny','Staniu','POL',1998),
 ('Daniel','Kowal','Danielson','POL',1992),
-('Dawid','Krzyżowski','Kojak','POL', 0),
+('Dawid','Krzyżowski','Kojak','POL',null),
 ('Paweł','Kwit','Ronnie','POL',1994),
 ('Tomasz','Lebiocki','Lebioda','POL',1985),
 ('Jakub','Makowski','Maki','POL',1994),
 ('Ksawery','Mielniczuk',null,'POL',2001),
-('Cyprian','Mikita','Cypro','POL', 0),
+('Cyprian','Mikita','Cypro','POL',1997),
 ('Daniel','Mikołajek','Mikołaj','POL',1991),
-('Błażej','Nowikowski',null,'POL', 0),
+('Błażej','Nowikowski',null,'POL',1994),
 ('Mateusz','Odrzygóźdź','Lotar','POL',1990),
 ('Jaromir','Poprawa','JRK','POL',1995),
 ('Mateusz','Przenzak','Cheetos','POL',1998),
@@ -286,9 +286,9 @@ insert into player(first_name,last_name,nick,nationality,birth_year) values
 ('Michał','Rycaj','Michryc','POL',1990),
 ('Bartosz','Skalski','Skała','POL',1989),
 ('Szymon','Skalski','Szymo','POL',1990),
-('Paweł','Skóra','Skóra','POL', 0),
+('Paweł','Skóra','Skóra','POL', 1990),
 ('Marcin','Teper',null,'POL',1990),
-('Filip','Tyczkowski','Tycza','POL', 0),
+('Filip','Tyczkowski','Tycza','POL',null),
 ('Paweł','Wierzchowski','Wieszak','POL',1990),
 ('Emil','Wysocki',null,'POL',1994),
 ('Stanisław','Wysowski','Staszko','POL',1992),
@@ -296,6 +296,7 @@ insert into player(first_name,last_name,nick,nationality,birth_year) values
 ('Radosław','Zdunek','Radox','POL',1992),
 ('Dawid','Ziomek','Ziomal','POL',1991),
 ('Mateusz','Związek','Zdzichu','POL',1987);
+
 
 
 
@@ -368,8 +369,6 @@ insert into default_point values
 (15, 10),
 (16, 10);
 
-
-
 insert into competition(name,id_location,date,importance,id_group) values
 ('Zawiercie 2007', (select id from location where name='Zawiercie'), to_date(2007::text, 'YYYY'),6,10),
 ('Olkusz 2008', (select id from location where name='Olkusz'), to_date(2008::text, 'YYYY'),3,10),
@@ -438,9 +437,6 @@ insert into competition(name,id_location,date,importance,id_group) values
 ('Freestival 2017', (select id from location where name='Grodzisk Mazowiecki'), to_date(2017::text, 'YYYY'),5,10),
 ('Olkusz 2017', (select id from location where name='Olkusz'), to_date(2017::text, 'YYYY'),6,10),
 ('Skawina 2017', (select id from location where name='Skawina'), to_date(2017::text, 'YYYY'),3,9);
-
-
-update player set birth_year=2018-birth_year;
 
 insert into score(id_player,id_competition,score,id_default_point,id_category) values
 ((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Zawiercie 2007'), 125, 1, (select id from category where name = 'battle')),
@@ -753,8 +749,6 @@ UPDATE score SET score = (score * 4) WHERE id_competition IN (SELECT id from com
 UPDATE score SET score = (score * 3) WHERE id_competition IN (SELECT id from competition where importance = 3);
 UPDATE score SET score = (score * 2) WHERE id_competition IN (SELECT id from competition where importance = 2);
 UPDATE score SET score = (score * 1) WHERE id_competition IN (SELECT id from competition where importance = 1);
-
-truncate table cumulated_point;
 
 insert into cumulated_point(id_player, points, date, place, id_category) values
 (33, 0, '2007-01-01', 5, 1),
