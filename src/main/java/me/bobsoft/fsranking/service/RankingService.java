@@ -12,10 +12,7 @@ import me.bobsoft.fsranking.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,9 +50,15 @@ public class RankingService {
                 }
 
                 Integer categoryId = categoryRepository.findByName(category).getId();
-                RankingDTO rankingDTO = new RankingDTO(player, points, getPlayerTrend(playerId, categoryId));
+                RankingDTO rankingDTO = new RankingDTO(player, points, getPlayerTrend(playerId, categoryId), null);
                 rankingDTOS.add(rankingDTO);
             }
+        }
+
+        Collections.sort(rankingDTOS);
+        Collections.reverse(rankingDTOS);
+        for (int i = 0; i < rankingDTOS.size(); i++) {
+            rankingDTOS.get(i).setPosition(i + 1);
         }
 
         return rankingDTOS;
@@ -69,16 +72,15 @@ public class RankingService {
                         .sorted(Comparator.comparing(CumulatedPoint::getDate).reversed())
                         .collect(Collectors.toList());
 
-        if(cumulatedPoints.size() < 2) {
+        if (cumulatedPoints.size() < 2) {
             trend = Trend.SAME;
-        }
-        else {
+        } else {
             int earlierPoints = cumulatedPoints.get(1).getPlace();
             int latestPoints = cumulatedPoints.get(0).getPlace();
 
-            if(latestPoints < earlierPoints)
+            if (latestPoints < earlierPoints)
                 trend = Trend.UP;
-            else if(latestPoints == earlierPoints)
+            else if (latestPoints == earlierPoints)
                 trend = Trend.SAME;
             else
                 trend = Trend.DOWN;

@@ -14,7 +14,7 @@ public class CompetitionDTO {
     private String name;
     private String location;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date year;
+    private Date date;
     private Integer importance;
 
     // Set in service
@@ -26,7 +26,7 @@ public class CompetitionDTO {
         this.id = competition.getId();
         this.name = competition.getName();
         this.location = competition.getLocation().getName();
-        this.year = competition.getDate();
+        this.date = competition.getDate();
         this.importance = competition.getImportance();
     }
 }
