@@ -18,19 +18,23 @@ import java.util.stream.Collectors;
 @Service
 public class RankingService {
 
-    @Autowired
     private ScoreRepository scoreRepository;
-
-    @Autowired
     private PlayerRepository playerRepository;
-
-    @Autowired
     private CumulatedPointRepository cumulatedPointRepository;
-
-    @Autowired
     private CategoryRepository categoryRepository;
 
-    public Iterable<RankingDTO> findPlayerAndSummaryScore(String category) {
+    @Autowired
+    public RankingService(ScoreRepository scoreRepository,
+                          PlayerRepository playerRepository,
+                          CumulatedPointRepository cumulatedPointRepository,
+                          CategoryRepository categoryRepository) {
+        this.scoreRepository = scoreRepository;
+        this.playerRepository = playerRepository;
+        this.cumulatedPointRepository = cumulatedPointRepository;
+        this.categoryRepository = categoryRepository;
+    }
+
+    public List<RankingDTO> findPlayerAndSummaryScore(String category) {
 
         Iterable<Integer> playersIdOfWantedCategory = findPlayersIdFromScoresOfExactCategory(category);
         ArrayList<RankingDTO> rankingDTOS = new ArrayList<>();
