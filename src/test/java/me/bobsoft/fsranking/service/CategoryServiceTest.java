@@ -21,7 +21,7 @@ public class CategoryServiceTest {
     private List<Category> categories = new ArrayList<>();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         categoryRepository = mock(CategoryRepository.class);
 
         categoryService = new CategoryService(categoryRepository);
@@ -43,7 +43,7 @@ public class CategoryServiceTest {
     public void findAll1() {
         when(categoryRepository.findAll()).thenReturn(new ArrayList<>());
 
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryService.findAll();
 
         assertThat(categories).isNotNull();
         assertThat(categories.size()).isEqualTo(0);
@@ -53,7 +53,7 @@ public class CategoryServiceTest {
     public void findAll2() {
         when(categoryRepository.findAll()).thenReturn(categories);
 
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryService.findAll();
 
         assertThat(categories).isNotNull();
         assertThat(categories.size()).isEqualTo(2);
@@ -64,7 +64,7 @@ public class CategoryServiceTest {
     public void findAll3() {
         when(categoryRepository.findAll()).thenReturn(categories);
 
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryService.findAll();
 
         assertThat(categories).isNotNull();
         assertThat(categories.get(0).getClass()).isEqualTo(Category.class);

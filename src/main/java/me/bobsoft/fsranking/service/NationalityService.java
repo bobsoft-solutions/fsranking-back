@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class NationalityService {
 
-    @Autowired
     private NationalityRepository nationalityRepository;
+
+    @Autowired
+    public NationalityService(NationalityRepository nationalityRepository) {
+        this.nationalityRepository = nationalityRepository;
+    }
 
     public List<Nationality> findAll() {
         return nationalityRepository.findAll();
