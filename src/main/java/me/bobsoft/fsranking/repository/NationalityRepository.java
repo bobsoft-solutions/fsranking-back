@@ -1,9 +1,9 @@
 package me.bobsoft.fsranking.repository;
 
-import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.entities.Nationality;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player, Integer> {
+public interface NationalityRepository extends JpaRepository<Nationality, String> {
 }

@@ -1,9 +1,25 @@
--- Adminer 4.6.3 PostgreSQL dump
-
-
-
+DROP TABLE IF EXISTS "score";
+DROP SEQUENCE IF EXISTS score_id_score_seq;
+DROP TABLE IF EXISTS "default_point";
+DROP SEQUENCE IF EXISTS default_point_id_default_point_seq;
+DROP TABLE IF EXISTS "competition";
+DROP SEQUENCE IF EXISTS competition_id_competition_seq;
 DROP TABLE IF EXISTS "location";
 DROP SEQUENCE IF EXISTS location_id_location_seq;
+DROP TABLE IF EXISTS "group";
+DROP SEQUENCE IF EXISTS group_id_group_seq;
+DROP TABLE IF EXISTS "user";
+DROP SEQUENCE IF EXISTS user_id_user_seq;
+DROP TABLE IF EXISTS "cumulated_point";
+DROP SEQUENCE IF EXISTS cumulated_point_id_cumulated_point_seq;
+DROP TABLE IF EXISTS "category";
+DROP SEQUENCE IF EXISTS category_id_category_seq;
+DROP TABLE IF EXISTS "player" CASCADE;
+DROP SEQUENCE IF EXISTS player_id_player_seq;
+DROP TABLE IF EXISTS "social_media";
+DROP TABLE IF EXISTS "nationality";
+
+
 CREATE SEQUENCE location_id_location_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "location" (
@@ -13,9 +29,14 @@ CREATE TABLE "location" (
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS "group";
-DROP SEQUENCE IF EXISTS group_id_group_seq;
-CREATE SEQUENCE group_id_group_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+CREATE TABLE "nationality" (
+    "id" char(3) NOT NULL PRIMARY KEY,
+    "name" character varying(70)
+) WITH (oids = false);
+
+
+
+CREATE SEQUENCE group_id_group_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 11 CACHE 1;
 
 CREATE TABLE "group" (
     "id" integer DEFAULT nextval('group_id_group_seq') NOT NULL,
@@ -25,9 +46,8 @@ CREATE TABLE "group" (
 
 
 
-DROP TABLE IF EXISTS "category";
-DROP SEQUENCE IF EXISTS category_id_category_seq;
-CREATE SEQUENCE category_id_category_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+
+CREATE SEQUENCE category_id_category_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 4 CACHE 1;
 
 CREATE TABLE "category" (
     "id" integer DEFAULT nextval('category_id_category_seq') NOT NULL,
@@ -36,9 +56,8 @@ CREATE TABLE "category" (
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS "default_point";
-DROP SEQUENCE IF EXISTS default_point_id_default_point_seq;
-CREATE SEQUENCE default_point_id_default_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+
+CREATE SEQUENCE default_point_id_default_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 17 CACHE 1;
 
 CREATE TABLE "default_point" (
     "id" integer DEFAULT nextval('default_point_id_default_point_seq') NOT NULL,
@@ -46,15 +65,14 @@ CREATE TABLE "default_point" (
     CONSTRAINT "default_point_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
-DROP TABLE IF EXISTS "competition";
-DROP SEQUENCE IF EXISTS competition_id_competition_seq;
+
 CREATE SEQUENCE competition_id_competition_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "competition" (
     "id" bigint DEFAULT nextval('competition_id_competition_seq') NOT NULL,
     "name" character varying(30),
     "id_location" integer NOT NULL,
-    "year" date,
+    "date" date,
     "importance" smallint NOT NULL,
     "id_group" integer references "group" NOT NULL,
     CONSTRAINT "competition_pkey" PRIMARY KEY ("id"),
@@ -62,50 +80,49 @@ CREATE TABLE "competition" (
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS "player";
-DROP SEQUENCE IF EXISTS players_id_player_seq;
-CREATE SEQUENCE players_id_player_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
+
+CREATE SEQUENCE player_id_player_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "player" (
-    "id" integer DEFAULT nextval('players_id_player_seq') NOT NULL,
+    "id" integer DEFAULT nextval('player_id_player_seq') NOT NULL,
     "first_name" character varying(12),
     "last_name" character varying(15),
     "nick" character varying(10),
-    "nationality" character(3),
-    "birth_date" smallint,
-    CONSTRAINT "players_pkey" PRIMARY KEY ("id")
+    "nationality" character(3) references nationality(id),
+    "birth_year" smallint,
+    CONSTRAINT "player_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
 COMMENT ON COLUMN "player"."nationality" IS 'iso 3166-1 Alpha 3';
 
 
 
-DROP TABLE IF EXISTS "cumulated_point";
+
+CREATE SEQUENCE cumulated_point_id_cumulated_point_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "cumulated_point" (
+    "id" integer DEFAULT nextval('cumulated_point_id_cumulated_point_seq') NOT NULL,
     "id_player" integer NOT NULL references player,
     "points" integer,
-    "date" date,
+    "date" date NOT NULL,
     "place" smallint,
-    "id_category" integer NOT NULL references category
+    "id_category" integer NOT NULL references category,
+    CONSTRAINT "cumulated_point_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
 
 
-DROP TABLE IF EXISTS "score";
+CREATE SEQUENCE score_id_score_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 CREATE TABLE "score" (
+    "id" integer PRIMARY KEY DEFAULT nextval('score_id_score_seq') NOT NULL,
     "id_player" integer NOT NULL,
     "id_competition" integer NOT NULL,
     "score" integer,
     "id_default_point" smallint references default_point,
-    "id_category"  integer NOT NULL references category,
-    CONSTRAINT "score_id_player_id_competition_id_category" PRIMARY KEY ("id_player", "id_competition", "id_category"),
-    CONSTRAINT "score_id_competition_fkey" FOREIGN KEY (id_competition) REFERENCES competition(id) NOT DEFERRABLE,
-    CONSTRAINT "score_id_player_fkey" FOREIGN KEY (id_player) REFERENCES player(id) NOT DEFERRABLE
+    "id_category"  integer NOT NULL references category
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS "social_media";
 CREATE TABLE "social_media" (
     "id_player" integer NOT NULL,
     "facebook" character varying(2083),
@@ -117,8 +134,7 @@ CREATE TABLE "social_media" (
 
 
 
-DROP TABLE IF EXISTS "user";
-DROP SEQUENCE IF EXISTS user_id_user_seq;
+
 CREATE SEQUENCE user_id_user_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;
 
 CREATE TABLE "user" (
@@ -130,6 +146,3 @@ CREATE TABLE "user" (
     "password" character(128) NOT NULL,
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
-
-
--- 2018-09-19 23:24:58.041676+02

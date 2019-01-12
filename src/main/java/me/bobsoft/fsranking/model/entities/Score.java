@@ -1,24 +1,25 @@
 package me.bobsoft.fsranking.model.entities;
 
 import lombok.Data;
-import me.bobsoft.fsranking.model.utils.ScoreIdClass;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name = "score")
-@IdClass(ScoreIdClass.class)
 public class Score {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "id_player")
-    @Id
     private Player player;
 
     @ManyToOne
     @JoinColumn(name = "id_competition")
-    @Id
     private Competition competition;
 
     @ManyToOne
@@ -27,9 +28,8 @@ public class Score {
 
     @Column(name = "score")
     private Integer score;
-    
+
     @ManyToOne
     @JoinColumn(name = "id_category")
-    @Id
     private Category category;
 }

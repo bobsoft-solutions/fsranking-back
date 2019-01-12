@@ -1,38 +1,337 @@
-\copy player from 'player.csv' delimiter ',' csv header; -- dobrze jest to wywołać bezpośrednio z GUI pgAdmina
-update player set nationality='POL';
+insert into nationality values
+('ABW','Aruba'),
+('AFG','Afghanistan'),
+('AGO','Angola'),
+('AIA','Anguilla'),
+('ALA','Åland Islands'),
+('ALB','Albania'),
+('AND','Andorra'),
+('ARE','United Arab Emirates'),
+('ARG','Argentina'),
+('ARM','Armenia'),
+('ASM','American Samoa'),
+('ATA','Antarctica'),
+('ATF','French Southern Territories'),
+('ATG','Antigua and Barbuda'),
+('AUS','Australia'),
+('AUT','Austria'),
+('AZE','Azerbaijan'),
+('BDI','Burundi'),
+('BEL','Belgium'),
+('BEN','Benin'),
+('BES','Bonaire, Sint Eustatius and Saba'),
+('BFA','Burkina Faso'),
+('BGD','Bangladesh'),
+('BGR','Bulgaria'),
+('BHR','Bahrain'),
+('BHS','Bahamas'),
+('BIH','Bosnia and Herzegovina'),
+('BLM','Saint Barthélemy'),
+('BLR','Belarus'),
+('BLZ','Belize'),
+('BMU','Bermuda'),
+('BOL','Bolivia (Plurinational State of)'),
+('BRA','Brazil'),
+('BRB','Barbados'),
+('BRN','Brunei Darussalam'),
+('BTN','Bhutan'),
+('BVT','Bouvet Island'),
+('BWA','Botswana'),
+('CAF','Central African Republic'),
+('CAN','Canada'),
+('CCK','Cocos (Keeling) Islands'),
+('CHE','Switzerland'),
+('CHL','Chile'),
+('CHN','China'),
+('CIV','Côte d''Ivoire'),
+('CMR','Cameroon'),
+('COD','Democratic Republic of theCongo'),
+('COG','Congo'),
+('COK','Cook Islands'),
+('COL','Colombia'),
+('COM','Comoros'),
+('CPV','Cabo Verde'),
+('CRI','Costa Rica'),
+('CUB','Cuba'),
+('CUW','Curaçao'),
+('CXR','Christmas Island'),
+('CYM','Cayman Islands'),
+('CYP','Cyprus'),
+('CZE','Czechia'),
+('DEU','Germany'),
+('DJI','Djibouti'),
+('DMA','Dominica'),
+('DNK','Denmark'),
+('DOM','Dominican Republic'),
+('DZA','Algeria'),
+('ECU','Ecuador'),
+('EGY','Egypt'),
+('ERI','Eritrea'),
+('ESH','Western Sahara'),
+('ESP','Spain'),
+('EST','Estonia'),
+('ETH','Ethiopia'),
+('FIN','Finland'),
+('FJI','Fiji'),
+('FLK','Falkland Islands (Malvinas)'),
+('FRA','France'),
+('FRO','Faroe Islands'),
+('FSM','Micronesia (Federated States of)'),
+('GAB','Gabon'),
+('GBR','United Kingdom'),
+('GEO','Georgia'),
+('GGY','Guernsey'),
+('GHA','Ghana'),
+('GIB','Gibraltar'),
+('GIN','Guinea'),
+('GLP','Guadeloupe'),
+('GMB','Gambia'),
+('GNB','Guinea-Bissau'),
+('GNQ','Equatorial Guinea'),
+('GRC','Greece'),
+('GRD','Grenada'),
+('GRL','Greenland'),
+('GTM','Guatemala'),
+('GUF','French Guiana'),
+('GUM','Guam'),
+('GUY','Guyana'),
+('HKG','Hong Kong'),
+('HMD','Heard Island and McDonald Islands'),
+('HND','Honduras'),
+('HRV','Croatia'),
+('HTI','Haiti'),
+('HUN','Hungary'),
+('IDN','Indonesia'),
+('IMN','Isle of Man'),
+('IND','India'),
+('IOT','British Indian Ocean Territory'),
+('IRL','Ireland'),
+('IRN','Iran (Islamic Republic of)'),
+('IRQ','Iraq'),
+('ISL','Iceland'),
+('ISR','Israel'),
+('ITA','Italy'),
+('JAM','Jamaica'),
+('JEY','Jersey'),
+('JOR','Jordan'),
+('JPN','Japan'),
+('KAZ','Kazakhstan'),
+('KEN','Kenya'),
+('KGZ','Kyrgyzstan'),
+('KHM','Cambodia'),
+('KIR','Kiribati'),
+('KNA','Saint Kitts and Nevis'),
+('KOR','Korea, Republic of'),
+('KWT','Kuwait'),
+('LAO','Lao People''s Democratic Republic'),
+('LBN','Lebanon'),
+('LBR','Liberia'),
+('LBY','Libya'),
+('LCA','Saint Lucia'),
+('LIE','Liechtenstein'),
+('LKA','Sri Lanka'),
+('LSO','Lesotho'),
+('LTU','Lithuania'),
+('LUX','Luxembourg'),
+('LVA','Latvia'),
+('MAC','Macao'),
+('MAF','Saint Martin (French part)'),
+('MAR','Morocco'),
+('MCO','Monaco'),
+('MDA','Moldova, Republic of'),
+('MDG','Madagascar'),
+('MDV','Maldives'),
+('MEX','Mexico'),
+('MHL','Marshall Islands'),
+('MKD','Macedonia, the former Yugoslav Republic of'),
+('MLI','Mali'),
+('MLT','Malta'),
+('MMR','Myanmar'),
+('MNE','Montenegro'),
+('MNG','Mongolia'),
+('MNP','Northern Mariana Islands'),
+('MOZ','Mozambique'),
+('MRT','Mauritania'),
+('MSR','Montserrat'),
+('MTQ','Martinique'),
+('MUS','Mauritius'),
+('MWI','Malawi'),
+('MYS','Malaysia'),
+('MYT','Mayotte'),
+('NAM','Namibia'),
+('NCL','New Caledonia'),
+('NER','Niger'),
+('NFK','Norfolk Island'),
+('NGA','Nigeria'),
+('NIC','Nicaragua'),
+('NIU','Niue'),
+('NLD','Netherlands'),
+('NOR','Norway'),
+('NPL','Nepal'),
+('NRU','Nauru'),
+('NZL','New Zealand'),
+('OMN','Oman'),
+('PAK','Pakistan'),
+('PAN','Panama'),
+('PCN','Pitcairn'),
+('PER','Peru'),
+('PHL','Philippines'),
+('PLW','Palau'),
+('PNG','Papua New Guinea'),
+('POL','Poland'),
+('PRI','Puerto Rico'),
+('PRK','Korea (Democratic People''s Republic of)'),
+('PRT','Portugal'),
+('PRY','Paraguay'),
+('PSE','Palestine, State of'),
+('PYF','French Polynesia'),
+('QAT','Qatar'),
+('REU','Réunion'),
+('ROU','Romania'),
+('RUS','Russian Federation'),
+('RWA','Rwanda'),
+('SAU','Saudi Arabia'),
+('SDN','Sudan'),
+('SEN','Senegal'),
+('SGP','Singapore'),
+('SGS','South Georgia and the South Sandwich Islands'),
+('SHN','Saint Helena, Ascension and Tristan da Cunha'),
+('SJM','Svalbard and Jan Mayen'),
+('SLB','Solomon Islands'),
+('SLE','Sierra Leone'),
+('SLV','El Salvador'),
+('SMR','San Marino'),
+('SOM','Somalia'),
+('SPM','Saint Pierre and Miquelon'),
+('SRB','Serbia'),
+('SSD','South Sudan'),
+('STP','Sao Tome and Principe'),
+('SUR','Suriname'),
+('SVK','Slovakia'),
+('SVN','Slovenia'),
+('SWE','Sweden'),
+('SWZ','Eswatini'),
+('SXM','Sint Maarten (Dutch part)'),
+('SYC','Seychelles'),
+('SYR','Syrian Arab Republic'),
+('TCA','Turks and Caicos Islands'),
+('TCD','Chad'),
+('TGO','Togo'),
+('THA','Thailand'),
+('TJK','Tajikistan'),
+('TKL','Tokelau'),
+('TKM','Turkmenistan'),
+('TLS','Timor-Leste'),
+('TON','Tonga'),
+('TTO','Trinidad and Tobago'),
+('TUN','Tunisia'),
+('TUR','Turkey'),
+('TUV','Tuvalu'),
+('TWN','Taiwan, Province of China'),
+('TZA','Tanzania, United Republic of'),
+('UGA','Uganda'),
+('UKR','Ukraine'),
+('UMI','United States Minor Outlying Islands'),
+('URY','Uruguay'),
+('USA','United States of America'),
+('UZB','Uzbekistan'),
+('VAT','Holy See'),
+('VCT','Saint Vincent and the Grenadines'),
+('VEN','Venezuela (Bolivarian Republic of)'),
+('VGB','Virgin Islands (British)'),
+('VIR','Virgin Islands (U.S.)'),
+('VNM','Viet Nam'),
+('VUT','Vanuatu'),
+('WLF','Wallis and Futuna'),
+('WSM','Samoa'),
+('YEM','Yemen'),
+('ZAF','South Africa'),
+('ZMB','Zambia'),
+('ZWE','Zimbabwe');
 
-insert into location values
-(1,'Błaszki'),
-(2,'Bydgoszcz'),
-(3,'Bytom'),
-(4,'Bytów'),
-(5,'Chojnice'),
-(6,'Cieszyn'),
-(7,'Czarnków'),
-(8,'Częstochowa'),
-(9,'Grodzisk Mazowiecki'),
-(10,'Gubin'),
-(11,'Jaktorów'),
-(12,'Jarocin'),
-(13,'Kielce'),
-(14,'Łódź'),
-(15,'Lubasz'),
-(16,'Lublin'),
-(17,'Marki'),
-(18,'Międzyzdroje'),
-(19,'Myszków'),
-(20,'Olkusz'),
-(21,'Pabianice'),
-(22,'Płock'),
-(23,'Przygodzice'),
-(24,'Pyrzyce'),
-(25,'Radom'),
-(26,'Skawina'),
-(27,'Warszawa'),
-(28,'Wrocław'),
-(29,'Zabrze'),
-(30,'Zawiercie'),
-(31,'Żerków');
+
+insert into player(first_name,last_name,nick,nationality,birth_year) values
+('Robert','Bejda','Robik','POL',1994),
+('Dawid','Biegun','Zegan','POL',1992),
+('Piotr','Biernacki',null,'POL',1992),
+('Piotr','Bujak',null,'POL',1995),
+('Oliver','Cherek','Oli','POL',null),
+('Filip','Chudziński','Fichu','POL',1993),
+('Łukasz','Chwieduk','Luki','POL',1993),
+('Gaetan','Czaja',null,'POL',null),
+('Daniel','Długołęcki','Q100m','POL',1987),
+('Adrian','Duszak',null,'POL',1995),
+('Konrad','Dybaś','Kondzio','POL',1995),
+('Adrian','Franc','Franek','POL',1990),
+('Krzysztof','Golonka','Clyde','POL',1990),
+('Robert','Guzik',null,'POL',1996),
+('Marcin','Kaczmarek','Marten','POL',1989),
+('Łukasz','Karaś','Karaś','POL',null),
+('Dawid','Koczur','Koczur','POL',1995),
+('Jakub','Kokot',null,'POL',1996),
+('Stanisław','Kościelny','Staniu','POL',1998),
+('Daniel','Kowal','Danielson','POL',1992),
+('Dawid','Krzyżowski','Kojak','POL',null),
+('Paweł','Kwit','Ronnie','POL',1994),
+('Tomasz','Lebiocki','Lebioda','POL',1985),
+('Jakub','Makowski','Maki','POL',1994),
+('Ksawery','Mielniczuk',null,'POL',2001),
+('Cyprian','Mikita','Cypro','POL',1997),
+('Daniel','Mikołajek','Mikołaj','POL',1991),
+('Błażej','Nowikowski',null,'POL',1994),
+('Mateusz','Odrzygóźdź','Lotar','POL',1990),
+('Jaromir','Poprawa','JRK','POL',1995),
+('Mateusz','Przenzak','Cheetos','POL',1998),
+('Bartłomiej','Rak','Kalaputa','POL',1992),
+('Michał','Rycaj','Michryc','POL',1990),
+('Bartosz','Skalski','Skała','POL',1989),
+('Szymon','Skalski','Szymo','POL',1990),
+('Paweł','Skóra','Skóra','POL', 1990),
+('Marcin','Teper',null,'POL',1990),
+('Filip','Tyczkowski','Tycza','POL',null),
+('Paweł','Wierzchowski','Wieszak','POL',1990),
+('Emil','Wysocki',null,'POL',1994),
+('Stanisław','Wysowski','Staszko','POL',1992),
+('Adam','Zaworski',null,'POL',1993),
+('Radosław','Zdunek','Radox','POL',1992),
+('Dawid','Ziomek','Ziomal','POL',1991),
+('Mateusz','Związek','Zdzichu','POL',1987);
+
+
+
+
+insert into location(name) values
+('Błaszki'),
+('Bydgoszcz'),
+('Bytom'),
+('Bytów'),
+('Chojnice'),
+('Cieszyn'),
+('Czarnków'),
+('Częstochowa'),
+('Grodzisk Mazowiecki'),
+('Gubin'),
+('Jaktorów'),
+('Jarocin'),
+('Kielce'),
+('Łódź'),
+('Lubasz'),
+('Lublin'),
+('Marki'),
+('Międzyzdroje'),
+('Myszków'),
+('Olkusz'),
+('Pabianice'),
+('Płock'),
+('Przygodzice'),
+('Pyrzyce'),
+('Radom'),
+('Skawina'),
+('Warszawa'),
+('Wrocław'),
+('Zabrze'),
+('Zawiercie'),
+('Żerków');
 
 
 insert into "group" values
@@ -60,11 +359,17 @@ insert into default_point values
 (5, 25),
 (6, 25),
 (7, 25),
-(8, 25);
+(8, 25),
+(9, 10),
+(10, 10),
+(11, 10),
+(12, 10),
+(13, 10),
+(14, 10),
+(15, 10),
+(16, 10);
 
-
-
-insert into competition(name,id_location,year,importance,id_group) values
+insert into competition(name,id_location,date,importance,id_group) values
 ('Zawiercie 2007', (select id from location where name='Zawiercie'), to_date(2007::text, 'YYYY'),6,10),
 ('Olkusz 2008', (select id from location where name='Olkusz'), to_date(2008::text, 'YYYY'),3,10),
 ('Pyrzyce 2008', (select id from location where name='Pyrzyce'), to_date(2008::text, 'YYYY'),4,3),
@@ -133,916 +438,309 @@ insert into competition(name,id_location,year,importance,id_group) values
 ('Olkusz 2017', (select id from location where name='Olkusz'), to_date(2017::text, 'YYYY'),6,10),
 ('Skawina 2017', (select id from location where name='Skawina'), to_date(2017::text, 'YYYY'),3,9);
 
-
-update player set birth_date=2018-birth_date;
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Zawiercie 2007'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartosz' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2008'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Pyrzyce 2008'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Zawiercie 2008'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Jaktorów 2009'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Kielce 2009'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Olkusz 2009'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'RBSS 2009'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Zawiercie 2009'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Cieszyn 2010'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Jarocin 2010'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Łódź 2010'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Międzyzdroje 2010'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Olkusz 2010'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Pyrzyce 2010'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Focus 2011'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Grassroots 2011'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Międzyzdroje 2011'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Myszków 2011'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Pabianice 2011'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Żerków 2011'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Bytów 2012'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Focus 2012'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Myszków 2012'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'RBSS 2012'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Żerków 2012'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Battlemasters Wrocław 2013'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'H&S 2013'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Płock 2013'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2013'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Bytom 2014'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Czarnków 2014'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Międzyzdroje 2014'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Myszków 2014'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Skawina 2014'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Żerków 2014'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Adrian' AND last_name = 'Duszak'), (select id from competition where name = 'Błaszki 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Bytom 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Czarnków 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Emil' AND last_name = 'Wysocki'), (select id from competition where name = 'Gubin 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Lublin 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Międzyzdroje 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Przygodzice 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Skawina 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Żerków 2015'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Błaszki 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Bytom M1 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Częstochowa M1 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jakub' AND last_name = 'Makowski'), (select id from competition where name = 'Gubin 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'LFN 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Lublin 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Marki M1 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Radom M1 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Skawina 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Zabrze M1 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Żerków 2016'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Błaszki 2017'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Chojnice 2017'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Focus 2017'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Freestival 2017'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Olkusz 2017'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Skawina 2017'), 125, 1, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Zawiercie 2007'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2008'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Pyrzyce 2008'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Zawiercie 2008'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Jaktorów 2009'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Kielce 2009'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Olkusz 2009'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'RBSS 2009'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Zawiercie 2009'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Cieszyn 2010'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Jarocin 2010'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Łódź 2010'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Międzyzdroje 2010'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2010'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2011'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Grassroots 2011'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Międzyzdroje 2011'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Myszków 2011'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Pabianice 2011'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2011'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Bytów 2012'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Focus 2012'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Myszków 2012'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'RBSS 2012'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2012'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Battlemasters Wrocław 2013'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'H&S 2013'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Płock 2013'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Żerków 2013'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Bytom 2014'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Czarnków 2014'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Piotr' AND last_name = 'Biernacki'), (select id from competition where name = 'Międzyzdroje 2014'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Myszków 2014'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Skawina 2014'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Żerków 2014'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Błaszki 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Bytom 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Czarnków 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Marcin' AND last_name = 'Kaczmarek'), (select id from competition where name = 'Gubin 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Lublin 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Ksawery' AND last_name = 'Mielniczuk'), (select id from competition where name = 'Międzyzdroje 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Przygodzice 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Skawina 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2015'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Błaszki 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Bytom M1 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Częstochowa M1 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Gubin 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Lublin 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Marki M1 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Olkusz 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Radom M1 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Skawina 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Zabrze M1 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Żerków 2016'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Błaszki 2017'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jakub' AND last_name = 'Makowski'), (select id from competition where name = 'Chojnice 2017'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Focus 2017'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Freestival 2017'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Olkusz 2017'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Skawina 2017'), 75, 2, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'Zawiercie 2007'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Olkusz 2008'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Pyrzyce 2008'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'Zawiercie 2008'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Jaktorów 2009'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'Kielce 2009'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Marcin' AND last_name = 'Teper'), (select id from competition where name = 'Olkusz 2009'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Pyrzyce 2009'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'RBSS 2009'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Zawiercie 2009'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Cieszyn 2010'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Jarocin 2010'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Łódź 2010'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Karaś'), (select id from competition where name = 'Międzyzdroje 2010'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Olkusz 2010'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Focus 2011'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Grassroots 2011'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Międzyzdroje 2011'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Myszków 2011'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Pabianice 2011'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Żerków 2011'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Bytów 2012'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2012'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Myszków 2012'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'RBSS 2012'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2012'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Battlemasters Wrocław 2013'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'H&S 2013'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'LFN 2013'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Płock 2013'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2013'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Bytom 2014'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Czarnków 2014'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Międzyzdroje 2014'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Myszków 2014'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Skawina 2014'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Żerków 2014'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Błaszki 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Bytom 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Czarnków 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Focus 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jakub' AND last_name = 'Makowski'), (select id from competition where name = 'Gubin 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Lublin 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Bejda'), (select id from competition where name = 'Przygodzice 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Skawina 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Żerków 2015'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Błaszki 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Bytom M1 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Częstochowa M1 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Focus 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Emil' AND last_name = 'Wysocki'), (select id from competition where name = 'Gubin 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Konrad' AND last_name = 'Dybaś'), (select id from competition where name = 'Lublin 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Marki M1 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Olkusz 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Radom M1 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Skawina 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Zabrze M1 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2016'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Błaszki 2017'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Adam' AND last_name = 'Zaworski'), (select id from competition where name = 'Chojnice 2017'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2017'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Freestival 2017'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Olkusz 2017'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Skawina 2017'), 55, 3, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Tomasz' AND last_name = 'Lebiocki'), (select id from competition where name = 'Zawiercie 2007'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'RBSS 2009'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'Cieszyn 2010'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Jarocin 2010'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Focus 2011'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Myszków 2011'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Żerków 2011'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Focus 2012'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Myszków 2012'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'RBSS 2012'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Żerków 2012'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'H&S 2013'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Żerków 2013'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Myszków 2014'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Żerków 2014'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Adrian' AND last_name = 'Duszak'), (select id from competition where name = 'Bytom 2015'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Focus 2015'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Wysowski'), (select id from competition where name = 'Żerków 2015'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Focus 2016'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2016'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Przenzak'), (select id from competition where name = 'Freestival 2017'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2017'), 45, 4, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'RBSS 2009'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Cieszyn 2010'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Jarocin 2010'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Focus 2011'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Związek'), (select id from competition where name = 'Myszków 2011'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2011'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2012'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Myszków 2012'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'RBSS 2012'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Radosław' AND last_name = 'Zdunek'), (select id from competition where name = 'Żerków 2012'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'H&S 2013'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Żerków 2013'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Myszków 2014'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Żerków 2014'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Bytom 2015'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Adrian' AND last_name = 'Franc'), (select id from competition where name = 'Focus 2015'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2015'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Focus 2016'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Kowal'), (select id from competition where name = 'Olkusz 2016'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Żerków 2016'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2017'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Freestival 2017'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Olkusz 2017'), 25, 5, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'RBSS 2009'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Radosław' AND last_name = 'Zdunek'), (select id from competition where name = 'Cieszyn 2010'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Jarocin 2010'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Focus 2011'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Wierzchowski'), (select id from competition where name = 'Myszków 2011'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Kwit'), (select id from competition where name = 'Żerków 2011'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Błażej' AND last_name = 'Nowikowski'), (select id from competition where name = 'Focus 2012'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Chudziński'), (select id from competition where name = 'Myszków 2012'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Radosław' AND last_name = 'Zdunek'), (select id from competition where name = 'RBSS 2012'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Żerków 2012'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Adrian' AND last_name = 'Franc'), (select id from competition where name = 'H&S 2013'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Chudziński'), (select id from competition where name = 'Żerków 2013'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Myszków 2014'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Żerków 2014'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Bytom 2015'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Focus 2015'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Żerków 2015'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Focus 2016'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Olkusz 2016'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Żerków 2016'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Focus 2017'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Adrian' AND last_name = 'Franc'), (select id from competition where name = 'Freestival 2017'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Olkusz 2017'), 25, 6, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'RBSS 2009'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Cieszyn 2010'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Oliver' AND last_name = 'Cherek'), (select id from competition where name = 'Jarocin 2010'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Focus 2011'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Myszków 2011'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Filip' AND last_name = 'Chudziński'), (select id from competition where name = 'Żerków 2011'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Focus 2012'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Kwit'), (select id from competition where name = 'Myszków 2012'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jakub' AND last_name = 'Kokot'), (select id from competition where name = 'RBSS 2012'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Żerków 2012'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'H&S 2013'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Żerków 2013'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Myszków 2014'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2014'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Bytom 2015'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Focus 2015'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Kwit'), (select id from competition where name = 'Żerków 2015'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Olkusz 2016'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Żerków 2016'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Focus 2017'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Cyprian' AND last_name = 'Mikita'), (select id from competition where name = 'Freestival 2017'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Paweł' AND last_name = 'Kwit'), (select id from competition where name = 'Olkusz 2017'), 25, 7, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Tomasz' AND last_name = 'Lebiocki'), (select id from competition where name = 'RBSS 2009'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Kowal'), (select id from competition where name = 'Cieszyn 2010'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Długołęcki'), (select id from competition where name = 'Jarocin 2010'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2011'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Myszków 2011'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Radosław' AND last_name = 'Zdunek'), (select id from competition where name = 'Żerków 2011'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Focus 2012'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Myszków 2012'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'RBSS 2012'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jakub' AND last_name = 'Kokot'), (select id from competition where name = 'Żerków 2012'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'H&S 2013'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Gaetan' AND last_name = 'Czaja'), (select id from competition where name = 'Żerków 2013'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Myszków 2014'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Żerków 2014'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Kowal'), (select id from competition where name = 'Bytom 2015'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Focus 2015'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Adrian' AND last_name = 'Franc'), (select id from competition where name = 'Żerków 2015'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Olkusz 2016'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Żerków 2016'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
-((select id from player where first_name = 'Daniel' AND last_name = 'Kowal'), (select id from competition where name = 'Freestival 2017'), 25, 8, (select id from category where name = 'battle'));
-
-insert into score values
+insert into score(id_player,id_competition,score,id_default_point,id_category) values
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Zawiercie 2007'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartosz' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2008'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Pyrzyce 2008'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Zawiercie 2008'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Jaktorów 2009'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Kielce 2009'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Olkusz 2009'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'RBSS 2009'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Zawiercie 2009'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Cieszyn 2010'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Jarocin 2010'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Łódź 2010'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Międzyzdroje 2010'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Olkusz 2010'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Pyrzyce 2010'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Focus 2011'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Grassroots 2011'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Międzyzdroje 2011'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Myszków 2011'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Pabianice 2011'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Żerków 2011'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Bytów 2012'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Focus 2012'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Myszków 2012'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'RBSS 2012'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Żerków 2012'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Battlemasters Wrocław 2013'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'H&S 2013'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Płock 2013'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2013'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Bytom 2014'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Czarnków 2014'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Międzyzdroje 2014'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Myszków 2014'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Skawina 2014'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Żerków 2014'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Adrian' AND last_name = 'Duszak'), (select id from competition where name = 'Błaszki 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Bytom 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Czarnków 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Emil' AND last_name = 'Wysocki'), (select id from competition where name = 'Gubin 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Lublin 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Międzyzdroje 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Przygodzice 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Skawina 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Żerków 2015'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Błaszki 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Bytom M1 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Częstochowa M1 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jakub' AND last_name = 'Makowski'), (select id from competition where name = 'Gubin 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'LFN 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Lublin 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Marki M1 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Radom M1 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Skawina 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Zabrze M1 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Żerków 2016'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Błaszki 2017'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Chojnice 2017'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Focus 2017'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Freestival 2017'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Olkusz 2017'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Skawina 2017'), 125, 1, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Zawiercie 2007'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2008'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Pyrzyce 2008'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Zawiercie 2008'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Jaktorów 2009'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Kielce 2009'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Olkusz 2009'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'RBSS 2009'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Zawiercie 2009'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Cieszyn 2010'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Jarocin 2010'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Łódź 2010'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Międzyzdroje 2010'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2010'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2011'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Grassroots 2011'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Międzyzdroje 2011'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Myszków 2011'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Pabianice 2011'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2011'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Bytów 2012'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Focus 2012'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Myszków 2012'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'RBSS 2012'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2012'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Battlemasters Wrocław 2013'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'H&S 2013'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Płock 2013'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Żerków 2013'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Bytom 2014'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Czarnków 2014'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Piotr' AND last_name = 'Biernacki'), (select id from competition where name = 'Międzyzdroje 2014'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Myszków 2014'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Skawina 2014'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Żerków 2014'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Błaszki 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Bytom 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Czarnków 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Marcin' AND last_name = 'Kaczmarek'), (select id from competition where name = 'Gubin 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Lublin 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Ksawery' AND last_name = 'Mielniczuk'), (select id from competition where name = 'Międzyzdroje 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Przygodzice 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Skawina 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2015'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Błaszki 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Bytom M1 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Częstochowa M1 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Gubin 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Lublin 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Marki M1 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Olkusz 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Radom M1 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Skawina 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Zabrze M1 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Żerków 2016'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Błaszki 2017'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jakub' AND last_name = 'Makowski'), (select id from competition where name = 'Chojnice 2017'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Focus 2017'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Freestival 2017'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Olkusz 2017'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Skawina 2017'), 75, 2, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'Zawiercie 2007'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Olkusz 2008'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Pyrzyce 2008'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'Zawiercie 2008'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Jaktorów 2009'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'Kielce 2009'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Marcin' AND last_name = 'Teper'), (select id from competition where name = 'Olkusz 2009'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'Pyrzyce 2009'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'RBSS 2009'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Zawiercie 2009'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Cieszyn 2010'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Jarocin 2010'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Łódź 2010'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Karaś'), (select id from competition where name = 'Międzyzdroje 2010'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Olkusz 2010'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Focus 2011'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Grassroots 2011'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Międzyzdroje 2011'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Myszków 2011'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Pabianice 2011'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Żerków 2011'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Bytów 2012'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2012'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Myszków 2012'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'RBSS 2012'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2012'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Battlemasters Wrocław 2013'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'H&S 2013'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'LFN 2013'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Płock 2013'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2013'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Bytom 2014'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Czarnków 2014'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Międzyzdroje 2014'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Myszków 2014'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Skawina 2014'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Żerków 2014'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Błaszki 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Bytom 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Czarnków 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Focus 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jakub' AND last_name = 'Makowski'), (select id from competition where name = 'Gubin 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Lublin 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Bejda'), (select id from competition where name = 'Przygodzice 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Skawina 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Żerków 2015'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Błaszki 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Bytom M1 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Częstochowa M1 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Focus 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Emil' AND last_name = 'Wysocki'), (select id from competition where name = 'Gubin 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Konrad' AND last_name = 'Dybaś'), (select id from competition where name = 'Lublin 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Marki M1 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Olkusz 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Radom M1 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Skawina 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Zabrze M1 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2016'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Błaszki 2017'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Adam' AND last_name = 'Zaworski'), (select id from competition where name = 'Chojnice 2017'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Focus 2017'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Freestival 2017'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Olkusz 2017'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Skawina 2017'), 55, 3, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Tomasz' AND last_name = 'Lebiocki'), (select id from competition where name = 'Zawiercie 2007'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'RBSS 2009'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'Cieszyn 2010'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Jarocin 2010'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Focus 2011'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Myszków 2011'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Żerków 2011'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Focus 2012'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Myszków 2012'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'RBSS 2012'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Żerków 2012'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'H&S 2013'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Żerków 2013'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Myszków 2014'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Żerków 2014'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Adrian' AND last_name = 'Duszak'), (select id from competition where name = 'Bytom 2015'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Focus 2015'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Wysowski'), (select id from competition where name = 'Żerków 2015'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Focus 2016'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2016'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Przenzak'), (select id from competition where name = 'Freestival 2017'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Olkusz 2017'), 45, 4, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Tyczkowski'), (select id from competition where name = 'RBSS 2009'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Cieszyn 2010'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Jarocin 2010'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Focus 2011'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Związek'), (select id from competition where name = 'Myszków 2011'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2011'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2012'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Myszków 2012'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'RBSS 2012'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Radosław' AND last_name = 'Zdunek'), (select id from competition where name = 'Żerków 2012'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'H&S 2013'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Żerków 2013'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Myszków 2014'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Żerków 2014'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Bytom 2015'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Adrian' AND last_name = 'Franc'), (select id from competition where name = 'Focus 2015'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Szymon' AND last_name = 'Skalski'), (select id from competition where name = 'Żerków 2015'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Focus 2016'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Kowal'), (select id from competition where name = 'Olkusz 2016'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Żerków 2016'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2017'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Freestival 2017'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Olkusz 2017'), 25, 5, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Krzysztof' AND last_name = 'Golonka'), (select id from competition where name = 'RBSS 2009'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Radosław' AND last_name = 'Zdunek'), (select id from competition where name = 'Cieszyn 2010'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Jarocin 2010'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Focus 2011'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Wierzchowski'), (select id from competition where name = 'Myszków 2011'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Kwit'), (select id from competition where name = 'Żerków 2011'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Błażej' AND last_name = 'Nowikowski'), (select id from competition where name = 'Focus 2012'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Chudziński'), (select id from competition where name = 'Myszków 2012'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Radosław' AND last_name = 'Zdunek'), (select id from competition where name = 'RBSS 2012'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Żerków 2012'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Adrian' AND last_name = 'Franc'), (select id from competition where name = 'H&S 2013'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Chudziński'), (select id from competition where name = 'Żerków 2013'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Myszków 2014'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Żerków 2014'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Bytom 2015'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Focus 2015'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Żerków 2015'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'Focus 2016'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Olkusz 2016'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Żerków 2016'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Focus 2017'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Adrian' AND last_name = 'Franc'), (select id from competition where name = 'Freestival 2017'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Olkusz 2017'), 25, 6, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'RBSS 2009'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Cieszyn 2010'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Oliver' AND last_name = 'Cherek'), (select id from competition where name = 'Jarocin 2010'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'Focus 2011'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Myszków 2011'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Filip' AND last_name = 'Chudziński'), (select id from competition where name = 'Żerków 2011'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Skóra'), (select id from competition where name = 'Focus 2012'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Kwit'), (select id from competition where name = 'Myszków 2012'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jakub' AND last_name = 'Kokot'), (select id from competition where name = 'RBSS 2012'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Żerków 2012'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'H&S 2013'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Żerków 2013'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Mikołajek'), (select id from competition where name = 'Myszków 2014'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Żerków 2014'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Piotr' AND last_name = 'Bujak'), (select id from competition where name = 'Bytom 2015'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Focus 2015'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Kwit'), (select id from competition where name = 'Żerków 2015'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Olkusz 2016'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Mateusz' AND last_name = 'Odrzygóźdź'), (select id from competition where name = 'Żerków 2016'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Biegun'), (select id from competition where name = 'Focus 2017'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Cyprian' AND last_name = 'Mikita'), (select id from competition where name = 'Freestival 2017'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Paweł' AND last_name = 'Kwit'), (select id from competition where name = 'Olkusz 2017'), 25, 7, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Tomasz' AND last_name = 'Lebiocki'), (select id from competition where name = 'RBSS 2009'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Kowal'), (select id from competition where name = 'Cieszyn 2010'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Długołęcki'), (select id from competition where name = 'Jarocin 2010'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Łukasz' AND last_name = 'Chwieduk'), (select id from competition where name = 'Focus 2011'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Koczur'), (select id from competition where name = 'Myszków 2011'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Radosław' AND last_name = 'Zdunek'), (select id from competition where name = 'Żerków 2011'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Focus 2012'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Myszków 2012'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Michał' AND last_name = 'Rycaj'), (select id from competition where name = 'RBSS 2012'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jakub' AND last_name = 'Kokot'), (select id from competition where name = 'Żerków 2012'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Krzyżowski'), (select id from competition where name = 'H&S 2013'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Gaetan' AND last_name = 'Czaja'), (select id from competition where name = 'Żerków 2013'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Dawid' AND last_name = 'Ziomek'), (select id from competition where name = 'Myszków 2014'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Stanisław' AND last_name = 'Kościelny'), (select id from competition where name = 'Żerków 2014'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Kowal'), (select id from competition where name = 'Bytom 2015'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Bartłomiej' AND last_name = 'Rak'), (select id from competition where name = 'Focus 2015'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Adrian' AND last_name = 'Franc'), (select id from competition where name = 'Żerków 2015'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Robert' AND last_name = 'Guzik'), (select id from competition where name = 'Olkusz 2016'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Żerków 2016'), 25, 8, (select id from category where name = 'battle')),
+((select id from player where first_name = 'Daniel' AND last_name = 'Kowal'), (select id from competition where name = 'Freestival 2017'), 25, 8, (select id from category where name = 'battle')),
 ((select id from player where first_name = 'Jaromir' AND last_name = 'Poprawa'), (select id from competition where name = 'Olkusz 2017'), 25, 8, (select id from category where name = 'battle'));
 
 UPDATE score SET score = (score * 6) WHERE id_competition IN (SELECT id from competition where importance = 6);
@@ -1051,3 +749,500 @@ UPDATE score SET score = (score * 4) WHERE id_competition IN (SELECT id from com
 UPDATE score SET score = (score * 3) WHERE id_competition IN (SELECT id from competition where importance = 3);
 UPDATE score SET score = (score * 2) WHERE id_competition IN (SELECT id from competition where importance = 2);
 UPDATE score SET score = (score * 1) WHERE id_competition IN (SELECT id from competition where importance = 1);
+
+insert into cumulated_point(id_player, points, date, place, id_category) values
+(33, 0, '2007-01-01', 5, 1),
+(33, 450, '2008-01-01', 5, 1),
+(33, 1275, '2009-01-01', 3, 1),
+(33, 2400, '2010-01-01', 2, 1),
+(33, 3525, '2011-01-01', 3, 1),
+(33, 5650, '2012-01-01', 2, 1),
+(33, 5650, '2013-01-01', 2, 1),
+(33, 6355, '2014-01-01', 2, 1),
+(33, 6605, '2015-01-01', 2, 1),
+(33, 6605, '2016-01-01', 4, 1),
+(33, 6605, '2017-01-01', 4, 1),
+(35, 750, '2007-01-01', 1, 1),
+(35, 1195, '2008-01-01', 2, 1),
+(35, 1675, '2009-01-01', 2, 1),
+(35, 2135, '2010-01-01', 3, 1),
+(35, 3555, '2011-01-01', 2, 1),
+(35, 4305, '2012-01-01', 3, 1),
+(35, 5260, '2013-01-01', 3, 1),
+(35, 5510, '2014-01-01', 3, 1),
+(35, 5965, '2015-01-01', 4, 1),
+(35, 7070, '2016-01-01', 3, 1),
+(35, 7965, '2017-01-01', 3, 1),
+(36, 450, '2007-01-01', 2, 1),
+(36, 1500, '2008-01-01', 1, 1),
+(36, 2700, '2009-01-01', 1, 1),
+(36, 4475, '2010-01-01', 1, 1),
+(36, 5885, '2011-01-01', 1, 1),
+(36, 6765, '2012-01-01', 1, 1),
+(36, 7690, '2013-01-01', 1, 1),
+(36, 8140, '2014-01-01', 1, 1),
+(36, 8265, '2015-01-01', 1, 1),
+(36, 8690, '2016-01-01', 2, 1),
+(36, 8690, '2017-01-01', 2, 1),
+(27, 0, '2007-01-01', 6, 1),
+(27, 0, '2008-01-01', 8, 1),
+(27, 0, '2009-01-01', 12, 1),
+(27, 705, '2010-01-01', 8, 1),
+(27, 1480, '2011-01-01', 5, 1),
+(27, 2530, '2012-01-01', 4, 1),
+(27, 3860, '2013-01-01', 4, 1),
+(27, 4485, '2014-01-01', 4, 1),
+(27, 6560, '2015-01-01', 3, 1),
+(27, 8900, '2016-01-01', 1, 1),
+(27, 10200, '2017-01-01', 1, 1),
+(21, 0, '2007-01-01', 7, 1),
+(21, 0, '2008-01-01', 9, 1),
+(21, 0, '2009-01-01', 13, 1),
+(21, 0, '2010-01-01', 19, 1),
+(21, 480, '2011-01-01', 11, 1),
+(21, 965, '2012-01-01', 10, 1),
+(21, 1450, '2013-01-01', 8, 1),
+(21, 2425, '2014-01-01', 7, 1),
+(21, 2625, '2015-01-01', 7, 1),
+(21, 2875, '2016-01-01', 8, 1),
+(21, 3000, '2017-01-01', 8, 1),
+(32, 0, '2007-01-01', 8, 1),
+(32, 0, '2008-01-01', 10, 1),
+(32, 0, '2009-01-01', 14, 1),
+(32, 740, '2010-01-01', 7, 1),
+(32, 865, '2011-01-01', 8, 1),
+(32, 1140, '2012-01-01', 9, 1),
+(32, 1410, '2013-01-01', 9, 1),
+(32, 1835, '2014-01-01', 8, 1),
+(32, 2235, '2015-01-01', 8, 1),
+(32, 2940, '2016-01-01', 7, 1),
+(32, 3965, '2017-01-01', 7, 1),
+(38, 0, '2007-01-01', 9, 1),
+(38, 665, '2008-01-01', 3, 1),
+(38, 1035, '2009-01-01', 4, 1),
+(38, 1485, '2010-01-01', 4, 1),
+(38, 1560, '2011-01-01', 4, 1),
+(38, 1560, '2012-01-01', 6, 1),
+(38, 1560, '2013-01-01', 7, 1),
+(38, 1560, '2014-01-01', 9, 1),
+(38, 1560, '2015-01-01', 9, 1),
+(38, 1560, '2016-01-01', 11, 1),
+(38, 1560, '2017-01-01', 12, 1),
+(7, 0, '2007-01-01', 10, 1),
+(7, 0, '2008-01-01', 11, 1),
+(7, 750, '2009-01-01', 6, 1),
+(7, 750, '2010-01-01', 6, 1),
+(7, 1435, '2011-01-01', 6, 1),
+(7, 2385, '2012-01-01', 5, 1),
+(7, 2835, '2013-01-01', 5, 1),
+(7, 3585, '2014-01-01', 5, 1),
+(7, 4070, '2015-01-01', 5, 1),
+(7, 4445, '2016-01-01', 6, 1),
+(7, 5020, '2017-01-01', 5, 1),
+(44, 0, '2007-01-01', 11, 1),
+(44, 0, '2008-01-01', 12, 1),
+(44, 380, '2009-01-01', 8, 1),
+(44, 530, '2010-01-01', 9, 1),
+(44, 805, '2011-01-01', 9, 1),
+(44, 1305, '2012-01-01', 7, 1),
+(44, 1730, '2013-01-01', 6, 1),
+(44, 2640, '2014-01-01', 6, 1),
+(44, 3665, '2015-01-01', 6, 1),
+(44, 4945, '2016-01-01', 5, 1),
+(44, 4945, '2017-01-01', 6, 1),
+(34, 0, '2007-01-01', 12, 1),
+(34, 375, '2008-01-01', 6, 1),
+(34, 375, '2009-01-01', 9, 1),
+(34, 375, '2010-01-01', 12, 1),
+(34, 375, '2011-01-01', 13, 1),
+(34, 375, '2012-01-01', 16, 1),
+(34, 375, '2013-01-01', 17, 1),
+(34, 375, '2014-01-01', 18, 1),
+(34, 375, '2015-01-01', 24, 1),
+(34, 375, '2016-01-01', 25, 1),
+(34, 375, '2017-01-01', 25, 1),
+(30, 0, '2007-01-01', 13, 1),
+(30, 0, '2008-01-01', 13, 1),
+(30, 0, '2009-01-01', 15, 1),
+(30, 0, '2010-01-01', 20, 1),
+(30, 0, '2011-01-01', 26, 1),
+(30, 0, '2012-01-01', 28, 1),
+(30, 0, '2013-01-01', 31, 1),
+(30, 290, '2014-01-01', 19, 1),
+(30, 1320, '2015-01-01', 10, 1),
+(30, 1750, '2016-01-01', 9, 1),
+(30, 2275, '2017-01-01', 10, 1),
+(2, 0, '2007-01-01', 14, 1),
+(2, 0, '2008-01-01', 14, 1),
+(2, 335, '2009-01-01', 10, 1),
+(2, 485, '2010-01-01', 10, 1),
+(2, 485, '2011-01-01', 10, 1),
+(2, 610, '2012-01-01', 12, 1),
+(2, 610, '2013-01-01', 13, 1),
+(2, 610, '2014-01-01', 13, 1),
+(2, 775, '2015-01-01', 15, 1),
+(2, 1305, '2016-01-01', 13, 1),
+(2, 1745, '2017-01-01', 11, 1),
+(19, 0, '2007-01-01', 15, 1),
+(19, 0, '2008-01-01', 15, 1),
+(19, 0, '2009-01-01', 16, 1),
+(19, 0, '2010-01-01', 21, 1),
+(19, 0, '2011-01-01', 27, 1),
+(19, 0, '2012-01-01', 29, 1),
+(19, 0, '2013-01-01', 32, 1),
+(19, 290, '2014-01-01', 20, 1),
+(19, 475, '2015-01-01', 18, 1),
+(19, 1175, '2016-01-01', 15, 1),
+(19, 1325, '2017-01-01', 14, 1),
+(14, 0, '2007-01-01', 16, 1),
+(14, 0, '2008-01-01', 16, 1),
+(14, 0, '2009-01-01', 17, 1),
+(14, 0, '2010-01-01', 22, 1),
+(14, 0, '2011-01-01', 28, 1),
+(14, 0, '2012-01-01', 30, 1),
+(14, 125, '2013-01-01', 25, 1),
+(14, 520, '2014-01-01', 15, 1),
+(14, 920, '2015-01-01', 13, 1),
+(14, 1600, '2016-01-01', 10, 1),
+(14, 2905, '2017-01-01', 9, 1),
+(37, 0, '2007-01-01', 17, 1),
+(37, 0, '2008-01-01', 17, 1),
+(37, 165, '2009-01-01', 11, 1),
+(37, 165, '2010-01-01', 13, 1),
+(37, 165, '2011-01-01', 16, 1),
+(37, 165, '2012-01-01', 20, 1),
+(37, 165, '2013-01-01', 20, 1),
+(37, 165, '2014-01-01', 23, 1),
+(37, 165, '2015-01-01', 28, 1),
+(37, 165, '2016-01-01', 30, 1),
+(37, 165, '2017-01-01', 31, 1),
+(10, 0, '2007-01-01', 18, 1),
+(10, 0, '2008-01-01', 18, 1),
+(10, 0, '2009-01-01', 18, 1),
+(10, 0, '2010-01-01', 23, 1),
+(10, 0, '2011-01-01', 29, 1),
+(10, 0, '2012-01-01', 31, 1),
+(10, 0, '2013-01-01', 33, 1),
+(10, 0, '2014-01-01', 34, 1),
+(10, 520, '2015-01-01', 17, 1),
+(10, 520, '2016-01-01', 19, 1),
+(10, 520, '2017-01-01', 22, 1),
+(29, 0, '2007-01-01', 19, 1),
+(29, 0, '2008-01-01', 19, 1),
+(29, 0, '2009-01-01', 19, 1),
+(29, 0, '2010-01-01', 24, 1),
+(29, 225, '2011-01-01', 15, 1),
+(29, 675, '2012-01-01', 11, 1),
+(29, 825, '2013-01-01', 11, 1),
+(29, 975, '2014-01-01', 11, 1),
+(29, 1250, '2015-01-01', 11, 1),
+(29, 1375, '2016-01-01', 12, 1),
+(29, 1500, '2017-01-01', 13, 1),
+(4, 0, '2007-01-01', 20, 1),
+(4, 0, '2008-01-01', 20, 1),
+(4, 0, '2009-01-01', 20, 1),
+(4, 0, '2010-01-01', 25, 1),
+(4, 0, '2011-01-01', 30, 1),
+(4, 0, '2012-01-01', 32, 1),
+(4, 0, '2013-01-01', 34, 1),
+(4, 0, '2014-01-01', 35, 1),
+(4, 425, '2015-01-01', 19, 1),
+(4, 535, '2016-01-01', 17, 1),
+(4, 770, '2017-01-01', 17, 1),
+(13, 330, '2007-01-01', 3, 1),
+(13, 660, '2008-01-01', 4, 1),
+(13, 920, '2009-01-01', 5, 1),
+(13, 1190, '2010-01-01', 5, 1),
+(13, 1190, '2011-01-01', 7, 1),
+(13, 1190, '2012-01-01', 8, 1),
+(13, 1190, '2013-01-01', 10, 1),
+(13, 1190, '2014-01-01', 10, 1),
+(13, 1190, '2015-01-01', 12, 1),
+(13, 1190, '2016-01-01', 14, 1),
+(13, 1190, '2017-01-01', 15, 1),
+(40, 0, '2007-01-01', 21, 1),
+(40, 0, '2008-01-01', 21, 1),
+(40, 0, '2009-01-01', 21, 1),
+(40, 0, '2010-01-01', 26, 1),
+(40, 0, '2011-01-01', 31, 1),
+(40, 0, '2012-01-01', 33, 1),
+(40, 0, '2013-01-01', 35, 1),
+(40, 0, '2014-01-01', 36, 1),
+(40, 125, '2015-01-01', 31, 1),
+(40, 180, '2016-01-01', 28, 1),
+(40, 180, '2017-01-01', 30, 1),
+(24, 0, '2007-01-01', 22, 1),
+(24, 0, '2008-01-01', 22, 1),
+(24, 0, '2009-01-01', 22, 1),
+(24, 0, '2010-01-01', 27, 1),
+(24, 0, '2011-01-01', 32, 1),
+(24, 0, '2012-01-01', 34, 1),
+(24, 0, '2013-01-01', 36, 1),
+(24, 0, '2014-01-01', 37, 1),
+(24, 55, '2015-01-01', 39, 1),
+(24, 180, '2016-01-01', 29, 1),
+(24, 255, '2017-01-01', 26, 1),
+(3, 0, '2007-01-01', 23, 1),
+(3, 0, '2008-01-01', 23, 1),
+(3, 0, '2009-01-01', 23, 1),
+(3, 0, '2010-01-01', 28, 1),
+(3, 0, '2011-01-01', 33, 1),
+(3, 0, '2012-01-01', 35, 1),
+(3, 0, '2013-01-01', 37, 1),
+(3, 75, '2014-01-01', 32, 1),
+(3, 75, '2015-01-01', 36, 1),
+(3, 75, '2016-01-01', 37, 1),
+(3, 75, '2017-01-01', 39, 1),
+(15, 0, '2007-01-01', 24, 1),
+(15, 0, '2008-01-01', 24, 1),
+(15, 0, '2009-01-01', 24, 1),
+(15, 0, '2010-01-01', 29, 1),
+(15, 0, '2011-01-01', 34, 1),
+(15, 0, '2012-01-01', 36, 1),
+(15, 0, '2013-01-01', 38, 1),
+(15, 0, '2014-01-01', 38, 1),
+(15, 75, '2015-01-01', 37, 1),
+(15, 75, '2016-01-01', 38, 1),
+(15, 75, '2017-01-01', 40, 1),
+(25, 0, '2007-01-01', 25, 1),
+(25, 0, '2008-01-01', 25, 1),
+(25, 0, '2009-01-01', 25, 1),
+(25, 0, '2010-01-01', 30, 1),
+(25, 0, '2011-01-01', 35, 1),
+(25, 0, '2012-01-01', 37, 1),
+(25, 0, '2013-01-01', 39, 1),
+(25, 0, '2014-01-01', 39, 1),
+(25, 75, '2015-01-01', 38, 1),
+(25, 75, '2016-01-01', 39, 1),
+(25, 75, '2017-01-01', 41, 1),
+(41, 0, '2007-01-01', 26, 1),
+(41, 0, '2008-01-01', 26, 1),
+(41, 0, '2009-01-01', 26, 1),
+(41, 0, '2010-01-01', 31, 1),
+(41, 0, '2011-01-01', 36, 1),
+(41, 0, '2012-01-01', 38, 1),
+(41, 0, '2013-01-01', 40, 1),
+(41, 0, '2014-01-01', 40, 1),
+(41, 225, '2015-01-01', 27, 1),
+(41, 225, '2016-01-01', 27, 1),
+(41, 225, '2017-01-01', 28, 1),
+(31, 0, '2007-01-01', 27, 1),
+(31, 0, '2008-01-01', 27, 1),
+(31, 0, '2009-01-01', 27, 1),
+(31, 0, '2010-01-01', 32, 1),
+(31, 0, '2011-01-01', 37, 1),
+(31, 0, '2012-01-01', 39, 1),
+(31, 0, '2013-01-01', 41, 1),
+(31, 0, '2014-01-01', 41, 1),
+(31, 0, '2015-01-01', 42, 1),
+(31, 0, '2016-01-01', 43, 1),
+(31, 225, '2017-01-01', 29, 1),
+(43, 0, '2007-01-01', 28, 1),
+(43, 0, '2008-01-01', 28, 1),
+(43, 0, '2009-01-01', 28, 1),
+(43, 150, '2010-01-01', 14, 1),
+(43, 275, '2011-01-01', 14, 1),
+(43, 525, '2012-01-01', 14, 1),
+(43, 525, '2013-01-01', 14, 1),
+(43, 525, '2014-01-01', 14, 1),
+(43, 525, '2015-01-01', 16, 1),
+(43, 525, '2016-01-01', 18, 1),
+(43, 525, '2017-01-01', 20, 1),
+(12, 0, '2007-01-01', 29, 1),
+(12, 0, '2008-01-01', 29, 1),
+(12, 0, '2009-01-01', 29, 1),
+(12, 0, '2010-01-01', 33, 1),
+(12, 0, '2011-01-01', 38, 1),
+(12, 0, '2012-01-01', 40, 1),
+(12, 150, '2013-01-01', 21, 1),
+(12, 150, '2014-01-01', 24, 1),
+(12, 400, '2015-01-01', 21, 1),
+(12, 400, '2016-01-01', 22, 1),
+(12, 525, '2017-01-01', 21, 1),
+(22, 0, '2007-01-01', 30, 1),
+(22, 0, '2008-01-01', 30, 1),
+(22, 0, '2009-01-01', 30, 1),
+(22, 0, '2010-01-01', 34, 1),
+(22, 125, '2011-01-01', 21, 1),
+(22, 275, '2012-01-01', 17, 1),
+(22, 275, '2013-01-01', 18, 1),
+(22, 275, '2014-01-01', 21, 1),
+(22, 400, '2015-01-01', 22, 1),
+(22, 400, '2016-01-01', 23, 1),
+(22, 550, '2017-01-01', 19, 1),
+(28, 0, '2007-01-01', 31, 1),
+(28, 0, '2008-01-01', 31, 1),
+(28, 0, '2009-01-01', 31, 1),
+(28, 0, '2010-01-01', 35, 1),
+(28, 0, '2011-01-01', 39, 1),
+(28, 125, '2012-01-01', 24, 1),
+(28, 125, '2013-01-01', 26, 1),
+(28, 125, '2014-01-01', 28, 1),
+(28, 125, '2015-01-01', 32, 1),
+(28, 125, '2016-01-01', 33, 1),
+(28, 125, '2017-01-01', 34, 1),
+(17, 0, '2007-01-01', 32, 1),
+(17, 0, '2008-01-01', 32, 1),
+(17, 0, '2009-01-01', 32, 1),
+(17, 0, '2010-01-01', 36, 1),
+(17, 150, '2011-01-01', 17, 1),
+(17, 545, '2012-01-01', 13, 1),
+(17, 670, '2013-01-01', 12, 1),
+(17, 820, '2014-01-01', 12, 1),
+(17, 820, '2015-01-01', 14, 1),
+(17, 820, '2016-01-01', 16, 1),
+(17, 820, '2017-01-01', 16, 1),
+(6, 0, '2007-01-01', 33, 1),
+(6, 0, '2008-01-01', 33, 1),
+(6, 0, '2009-01-01', 33, 1),
+(6, 0, '2010-01-01', 37, 1),
+(6, 125, '2011-01-01', 22, 1),
+(6, 275, '2012-01-01', 18, 1),
+(6, 400, '2013-01-01', 16, 1),
+(6, 400, '2014-01-01', 17, 1),
+(6, 400, '2015-01-01', 23, 1),
+(6, 400, '2016-01-01', 24, 1),
+(6, 400, '2017-01-01', 24, 1),
+(1, 0, '2007-01-01', 34, 1),
+(1, 0, '2008-01-01', 34, 1),
+(1, 0, '2009-01-01', 34, 1),
+(1, 0, '2010-01-01', 38, 1),
+(1, 0, '2011-01-01', 40, 1),
+(1, 0, '2012-01-01', 41, 1),
+(1, 0, '2013-01-01', 42, 1),
+(1, 0, '2014-01-01', 42, 1),
+(1, 55, '2015-01-01', 40, 1),
+(1, 55, '2016-01-01', 40, 1),
+(1, 55, '2017-01-01', 42, 1),
+(11, 0, '2007-01-01', 35, 1),
+(11, 0, '2008-01-01', 35, 1),
+(11, 0, '2009-01-01', 35, 1),
+(11, 0, '2010-01-01', 39, 1),
+(11, 0, '2011-01-01', 41, 1),
+(11, 0, '2012-01-01', 42, 1),
+(11, 0, '2013-01-01', 43, 1),
+(11, 0, '2014-01-01', 43, 1),
+(11, 0, '2015-01-01', 43, 1),
+(11, 55, '2016-01-01', 41, 1),
+(11, 55, '2017-01-01', 43, 1),
+(42, 0, '2007-01-01', 36, 1),
+(42, 0, '2008-01-01', 36, 1),
+(42, 0, '2009-01-01', 36, 1),
+(42, 0, '2010-01-01', 40, 1),
+(42, 0, '2011-01-01', 42, 1),
+(42, 0, '2012-01-01', 43, 1),
+(42, 0, '2013-01-01', 44, 1),
+(42, 0, '2014-01-01', 44, 1),
+(42, 0, '2015-01-01', 44, 1),
+(42, 0, '2016-01-01', 44, 1),
+(42, 55, '2017-01-01', 44, 1),
+(23, 270, '2007-01-01', 4, 1),
+(23, 270, '2008-01-01', 7, 1),
+(23, 420, '2009-01-01', 7, 1),
+(23, 420, '2010-01-01', 11, 1),
+(23, 420, '2011-01-01', 12, 1),
+(23, 420, '2012-01-01', 15, 1),
+(23, 420, '2013-01-01', 15, 1),
+(23, 420, '2014-01-01', 16, 1),
+(23, 420, '2015-01-01', 20, 1),
+(23, 420, '2016-01-01', 21, 1),
+(23, 420, '2017-01-01', 23, 1),
+(45, 0, '2007-01-01', 37, 1),
+(45, 0, '2008-01-01', 37, 1),
+(45, 0, '2009-01-01', 37, 1),
+(45, 0, '2010-01-01', 41, 1),
+(45, 150, '2011-01-01', 18, 1),
+(45, 150, '2012-01-01', 21, 1),
+(45, 150, '2013-01-01', 22, 1),
+(45, 150, '2014-01-01', 25, 1),
+(45, 150, '2015-01-01', 29, 1),
+(45, 150, '2016-01-01', 31, 1),
+(45, 150, '2017-01-01', 32, 1),
+(20, 0, '2007-01-01', 38, 1),
+(20, 0, '2008-01-01', 38, 1),
+(20, 0, '2009-01-01', 38, 1),
+(20, 150, '2010-01-01', 15, 1),
+(20, 150, '2011-01-01', 19, 1),
+(20, 150, '2012-01-01', 22, 1),
+(20, 150, '2013-01-01', 23, 1),
+(20, 150, '2014-01-01', 26, 1),
+(20, 300, '2015-01-01', 25, 1),
+(20, 450, '2016-01-01', 20, 1),
+(20, 575, '2017-01-01', 18, 1),
+(39, 0, '2007-01-01', 39, 1),
+(39, 0, '2008-01-01', 39, 1),
+(39, 0, '2009-01-01', 39, 1),
+(39, 0, '2010-01-01', 42, 1),
+(39, 150, '2011-01-01', 20, 1),
+(39, 150, '2012-01-01', 23, 1),
+(39, 150, '2013-01-01', 24, 1),
+(39, 150, '2014-01-01', 27, 1),
+(39, 150, '2015-01-01', 30, 1),
+(39, 150, '2016-01-01', 32, 1),
+(39, 150, '2017-01-01', 33, 1),
+(5, 0, '2007-01-01', 40, 1),
+(5, 0, '2008-01-01', 40, 1),
+(5, 0, '2009-01-01', 40, 1),
+(5, 125, '2010-01-01', 16, 1),
+(5, 125, '2011-01-01', 23, 1),
+(5, 125, '2012-01-01', 25, 1),
+(5, 125, '2013-01-01', 27, 1),
+(5, 125, '2014-01-01', 29, 1),
+(5, 125, '2015-01-01', 33, 1),
+(5, 125, '2016-01-01', 34, 1),
+(5, 125, '2017-01-01', 35, 1),
+(18, 0, '2007-01-01', 41, 1),
+(18, 0, '2008-01-01', 41, 1),
+(18, 0, '2009-01-01', 41, 1),
+(18, 0, '2010-01-01', 43, 1),
+(18, 0, '2011-01-01', 43, 1),
+(18, 250, '2012-01-01', 19, 1),
+(18, 250, '2013-01-01', 19, 1),
+(18, 250, '2014-01-01', 22, 1),
+(18, 250, '2015-01-01', 26, 1),
+(18, 250, '2016-01-01', 26, 1),
+(18, 250, '2017-01-01', 27, 1),
+(26, 0, '2007-01-01', 42, 1),
+(26, 0, '2008-01-01', 42, 1),
+(26, 0, '2009-01-01', 42, 1),
+(26, 0, '2010-01-01', 44, 1),
+(26, 0, '2011-01-01', 44, 1),
+(26, 0, '2012-01-01', 44, 1),
+(26, 0, '2013-01-01', 45, 1),
+(26, 0, '2014-01-01', 45, 1),
+(26, 0, '2015-01-01', 45, 1),
+(26, 0, '2016-01-01', 45, 1),
+(26, 125, '2017-01-01', 36, 1),
+(9, 0, '2007-01-01', 43, 1),
+(9, 0, '2008-01-01', 43, 1),
+(9, 0, '2009-01-01', 43, 1),
+(9, 125, '2010-01-01', 17, 1),
+(9, 125, '2011-01-01', 24, 1),
+(9, 125, '2012-01-01', 26, 1),
+(9, 125, '2013-01-01', 28, 1),
+(9, 125, '2014-01-01', 30, 1),
+(9, 125, '2015-01-01', 34, 1),
+(9, 125, '2016-01-01', 35, 1),
+(9, 125, '2017-01-01', 37, 1),
+(8, 0, '2007-01-01', 44, 1),
+(8, 0, '2008-01-01', 44, 1),
+(8, 0, '2009-01-01', 44, 1),
+(8, 0, '2010-01-01', 45, 1),
+(8, 0, '2011-01-01', 45, 1),
+(8, 0, '2012-01-01', 45, 1),
+(8, 125, '2013-01-01', 29, 1),
+(8, 125, '2014-01-01', 31, 1),
+(8, 125, '2015-01-01', 35, 1),
+(8, 125, '2016-01-01', 36, 1),
+(8, 125, '2017-01-01', 38, 1),
+(16, 0, '2007-01-01', 45, 1),
+(16, 0, '2008-01-01', 45, 1),
+(16, 0, '2009-01-01', 45, 1),
+(16, 55, '2010-01-01', 18, 1),
+(16, 55, '2011-01-01', 25, 1),
+(16, 55, '2012-01-01', 27, 1),
+(16, 55, '2013-01-01', 30, 1),
+(16, 55, '2014-01-01', 33, 1),
+(16, 55, '2015-01-01', 41, 1),
+(16, 55, '2016-01-01', 42, 1),
+(16, 55, '2017-01-01', 45, 1);

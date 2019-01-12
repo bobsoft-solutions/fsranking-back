@@ -19,22 +19,24 @@ public class PlayerDTO {
     private Integer age;
     private SocialMedia socialMedia;
     private Map<String, Integer> summaryScores;
+    private Map<String, Integer> positions;
 
-    public PlayerDTO(Player player, Map<String, Integer> summaryScores) {
+    public PlayerDTO(Player player, Map<String, Integer> summaryScores, Map<String, Integer> positions) {
         this.id = player.getId();
         this.firstName = player.getFirstName();
         this.lastName = player.getLastName();
         this.nick = player.getNick();
         this.nationality = player.getNationality();
-        this.age = player.getAge();
+        this.age = player.getBirthYear();
 
         LocalDate now = LocalDate.now();
         String currentYear = now.format(DateTimeFormatter.ofPattern("yyyy"));
 
-        this.age = player.getAge() == null ?
-                null : Integer.parseInt(currentYear) - player.getAge();
+        this.age = player.getBirthYear() == null ?
+                null : Integer.parseInt(currentYear) - player.getBirthYear();
 
         this.socialMedia = player.getSocialMedia();
         this.summaryScores = summaryScores;
+        this.positions = positions;
     }
 }

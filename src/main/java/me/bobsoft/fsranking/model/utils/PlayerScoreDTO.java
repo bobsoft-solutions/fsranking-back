@@ -4,19 +4,19 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import me.bobsoft.fsranking.model.entities.Score;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 @Data
-public class PlayerHistory {
+public class PlayerScoreDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private ZonedDateTime date;
+    private Date date;
     private Integer place;
     private Integer score;
     private String category;
     private Competition competition;
 
-    public PlayerHistory(Score score) {
-        this.date = score.getCompetition().getYear();
+    public PlayerScoreDTO(Score score) {
+        this.date = score.getCompetition().getDate();
         this.place = score.getDefaultPoint().getId();
         this.category = score.getCategory().getName();
         this.score = score.getScore();
