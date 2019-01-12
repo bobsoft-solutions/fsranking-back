@@ -39,7 +39,7 @@ public class PlayerService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Iterable<Player> findAll() {
+    public List<Player> findAll() {
         return playerRepository.findAll();
     }
 
