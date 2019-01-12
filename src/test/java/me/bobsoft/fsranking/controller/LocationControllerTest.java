@@ -1,7 +1,7 @@
-package me.bobsoft.fsranking.service;
+package me.bobsoft.fsranking.controller;
 
 import me.bobsoft.fsranking.model.entities.Location;
-import me.bobsoft.fsranking.repository.LocationRepository;
+import me.bobsoft.fsranking.service.LocationService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -13,24 +13,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class LocationServiceTest {
-    
-    private LocationRepository locationRepository;
+public class LocationControllerTest {
 
     private LocationService locationService;
+
+    private LocationController locationController;
 
     private List<Location> locations = new ArrayList<>();
 
     @Before
     public void setUp() {
-        locationRepository = mock(LocationRepository.class);
+        locationService = mock(LocationService.class);
 
-        locationService = new LocationService(locationRepository);
-        
+        locationController = new LocationController(locationService);
+
         Location location = new Location();
         location.setId(1);
         location.setName("Kraków");
-        
+
         locations.add(location);
 
         location = new Location();
@@ -42,32 +42,37 @@ public class LocationServiceTest {
 
     @Test
     public void findAllTest1() {
-        when(locationRepository.findAll()).thenReturn(new ArrayList<>());
+        when(locationService.findAll()).thenReturn(new ArrayList<>());
 
-        List<Location> locations = locationService.findAll();
+        List<Location> locations = locationController.findAll();
 
         assertThat(locations).isNotNull();
         assertThat(locations.size()).isEqualTo(0);
+
+        Mockito.verify(locationService, Mockito.times(1)).findAll();
     }
 
     @Test
     public void findAllTest2() {
-        when(locationRepository.findAll()).thenReturn(locations);
+        when(locationService.findAll()).thenReturn(locations);
 
-        List<Location> locations = locationService.findAll();
+        List<Location> locations = locationController.findAll();
 
-        assertThat(locations).isNotNull();
         assertThat(locations.size()).isEqualTo(2);
         assertThat(locations).isEqualTo(this.locations);
+
+        Mockito.verify(locationService, Mockito.times(1)).findAll();
     }
 
     @Test
     public void findAllTest3() {
-        when(locationRepository.findAll()).thenReturn(locations);
+        when(locationService.findAll()).thenReturn(locations);
 
-        List<Location> locations = locationService.findAll();
+        List<Location> locations = locationController.findAll();
 
         assertThat(locations).isNotNull();
         assertThat(locations.get(0).getClass()).isEqualTo(Location.class);
+
+        Mockito.verify(locationService, Mockito.times(1)).findAll();
     }
 }
