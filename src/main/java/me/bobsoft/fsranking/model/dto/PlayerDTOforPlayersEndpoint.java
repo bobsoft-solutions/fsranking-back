@@ -2,6 +2,7 @@ package me.bobsoft.fsranking.model.dto;
 
 import lombok.Data;
 import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.entities.SocialMedia;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,6 +16,7 @@ public class PlayerDTOforPlayersEndpoint {
     private String nick;
     private String nationality;
     private Integer age;
+    private SocialMedia socialMedia;
 
     public PlayerDTOforPlayersEndpoint(Player player) {
         this.id = player.getId();
@@ -27,5 +29,7 @@ public class PlayerDTOforPlayersEndpoint {
         String currentYear = now.format(DateTimeFormatter.ofPattern("yyyy"));
         this.age = player.getBirthYear() == null ?
                 null : Integer.parseInt(currentYear) - player.getBirthYear();
+
+        this.socialMedia = player.getSocialMedia();
     }
 }

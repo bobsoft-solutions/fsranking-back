@@ -41,6 +41,11 @@ public class PlayerController {
         playerService.deletePlayer(id);
     }
 
+    @PutMapping("/players/{id}")
+    public Player putPlayer(@PathVariable Integer id, @PathVariable Player player) {
+        return playerService.putPlayer(id, player);
+    }
+
     @GetMapping("/players/{id}/statistics")
     public PlayerStatisticsDTO findPlayerStatisticsById(@PathVariable Integer id) {
         return playerService.findStatisticsById(id);

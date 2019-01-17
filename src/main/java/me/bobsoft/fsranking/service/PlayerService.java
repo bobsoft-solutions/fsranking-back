@@ -132,6 +132,22 @@ public class PlayerService {
         playerRepository.deleteById(id);
     }
 
+    public Player putPlayer(Integer id, Player updatedPlayer) {
+        Player player = playerRepository.findById(id).orElse(null);
+
+        if(player == null) {
+            Player p = new Player();
+            p.setFirstName("No sych player");
+            return p;
+        }
+
+        player.updateWhenNotNull(player);
+
+        playerRepository.saveAndFlush(player);
+
+        return player;
+    }
+
     // ----------------- /players/{id}/statistics -------------------------------
     public PlayerStatisticsDTO findStatisticsById(Integer id) {
         PlayerStatisticsDTO playerStatisticsDTO = new PlayerStatisticsDTO();

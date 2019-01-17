@@ -24,4 +24,17 @@ public class SocialMedia {
 
     @Column(name = "youtube")
     private String youtubeURL;
+
+    public void updateWhenNotNull(SocialMedia other) {
+        if(other == null) return;
+
+        String facebookURL = other.getFacebookURL();
+        this.facebookURL = facebookURL == null ? this.facebookURL : facebookURL;
+
+        String instagramURL = other.getInstagramURL();
+        this.instagramURL = instagramURL == null ? this.instagramURL : instagramURL;
+
+        String youtubeURL = other.getYoutubeURL();
+        this.youtubeURL = youtubeURL == null ? this.youtubeURL : youtubeURL;
+    }
 }
