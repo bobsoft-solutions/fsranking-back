@@ -14,8 +14,12 @@ import java.util.List;
 @RestController
 public class PlayerController {
 
-    @Autowired
     private PlayerService playerService;
+
+    @Autowired
+    public PlayerController(PlayerService playerService) {
+        this.playerService = playerService;
+    }
 
     @GetMapping("/players")
     public List<PlayerDTOforPlayersEndpoint> findAllPlayers() {
