@@ -1,6 +1,5 @@
 package me.bobsoft.fsranking.model.entities;
 
-
 import lombok.Data;
 
 import javax.persistence.Column;

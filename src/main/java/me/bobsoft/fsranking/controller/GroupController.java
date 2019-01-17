@@ -13,8 +13,12 @@ import java.util.List;
 @RestController
 public class GroupController {
 
-    @Autowired
     private GroupService groupService;
+
+    @Autowired
+    public GroupController(GroupService groupService) {
+        this.groupService = groupService;
+    }
 
     @GetMapping("/groups")
     public List<Group> findAll() {

@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class GroupService {
 
-    @Autowired
     private GroupRepository groupRepository;
+
+    @Autowired
+    public GroupService(GroupRepository groupRepository) {
+        this.groupRepository = groupRepository;
+    }
 
     public List<Group> findAll() {
         return groupRepository.findAll();

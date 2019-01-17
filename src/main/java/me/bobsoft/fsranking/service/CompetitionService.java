@@ -8,7 +8,6 @@ import me.bobsoft.fsranking.model.entities.Score;
 import me.bobsoft.fsranking.model.utils.CompetitionWithScoringPlayers;
 import me.bobsoft.fsranking.model.utils.ScoreDTO;
 import me.bobsoft.fsranking.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -17,23 +16,26 @@ import java.util.stream.Collectors;
 @Service
 public class CompetitionService {
 
-    @Autowired
     private CompetitionRepository competitionRepository;
-
-    @Autowired
     private ScoreRepository scoreRepository;
-
-    @Autowired
     private PlayerRepository playerRepository;
-
-    @Autowired
     private DefaultPointRepository defaultPointRepository;
-
-    @Autowired
     private CategoryRepository categoryRepository;
-
-    @Autowired
     private CumulatedPointRepository cumulatedPointRepository;
+
+    public CompetitionService(CompetitionRepository competitionRepository,
+                              ScoreRepository scoreRepository,
+                              PlayerRepository playerRepository,
+                              DefaultPointRepository defaultPointRepository,
+                              CategoryRepository categoryRepository,
+                              CumulatedPointRepository cumulatedPointRepository) {
+        this.competitionRepository = competitionRepository;
+        this.scoreRepository = scoreRepository;
+        this.playerRepository = playerRepository;
+        this.defaultPointRepository = defaultPointRepository;
+        this.categoryRepository = categoryRepository;
+        this.cumulatedPointRepository = cumulatedPointRepository;
+    }
 
     /* ---------------------------- POST /competitions ------------------------------------------------------------- */
     public void addCompetition(CompetitionWithScoringPlayers competitionWithScoringPlayers) {
@@ -103,6 +105,7 @@ public class CompetitionService {
                         .get().getPoints();
             }
         }
+
         Integer pointsToAdd = defaultPointRepository.findById(placeOnPodium).get().getValue() * competition.getImportance();
         cumulatedPoint.setPoints(pointsBefore + pointsToAdd);
 

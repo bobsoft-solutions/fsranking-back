@@ -13,8 +13,12 @@ import java.util.List;
 @CrossOrigin
 public class NationalityController {
 
-    @Autowired
     private NationalityService nationalityService;
+
+    @Autowired
+    public NationalityController(NationalityService nationalityService) {
+        this.nationalityService = nationalityService;
+    }
 
     @GetMapping("/nationalities")
     public List<Nationality> findAll() {

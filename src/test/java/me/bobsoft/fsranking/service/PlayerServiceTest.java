@@ -1,6 +1,7 @@
 package me.bobsoft.fsranking.service;
 
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
+import me.bobsoft.fsranking.model.dto.PlayerDTOforPlayersEndpoint;
 import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.model.entities.*;
 import me.bobsoft.fsranking.model.utils.CumulatedPointDTO;
@@ -12,10 +13,7 @@ import org.mockito.Mockito;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -46,7 +44,7 @@ public class PlayerServiceTest {
     public void findAllTest() {
         when(playerRepository.findAll()).thenReturn(Arrays.asList());
 
-        Iterable<Player> players = playerService.findAll();
+        List<Player> players = playerService.findAll();
 
         assertThat(players).isEmpty();
         Mockito.verify(playerRepository, Mockito.times(1)).findAll();
@@ -59,9 +57,21 @@ public class PlayerServiceTest {
 
         when(playerRepository.findAll()).thenReturn(Arrays.asList(playerA, playerB));
 
-        Iterable<Player> players = playerService.findAll();
+        List<Player> players = playerService.findAll();
 
         assertThat(players).containsExactly(playerA, playerB);
+        Mockito.verify(playerRepository, Mockito.times(1)).findAll();
+    }
+
+    @Test
+    public void findAllPlayers() {
+        Player player = new Player();
+
+        when(playerRepository.findAll()).thenReturn(Arrays.asList(player));
+
+        List<PlayerDTOforPlayersEndpoint> players = playerService.findAllPlayers();
+
+        assertThat(players.get(0).getClass()).isEqualTo(PlayerDTOforPlayersEndpoint.class);
         Mockito.verify(playerRepository, Mockito.times(1)).findAll();
     }
 
@@ -122,6 +132,10 @@ public class PlayerServiceTest {
 
     @Test
     public void findByIdTest2() {
+        Category category = new Category();
+        category.setId(1);
+        category.setName("xyz");
+
         Integer playerId = 12;
         Player player = new Player();
         player.setId(playerId);
@@ -132,6 +146,11 @@ public class PlayerServiceTest {
         Score scoreB = new Score();
         scoreB.setScore(30);
 
+        CumulatedPoint cumulatedPoint = new CumulatedPoint();
+        cumulatedPoint.setCategory(category);
+        cumulatedPoint.setIdPlayer(playerId);
+
+        when(categoryRepository.findAll()).thenReturn(Arrays.asList(category));
         when(playerRepository.findById(playerId)).thenReturn(Optional.of(player));
         when(scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "battle"))
                 .thenReturn(Arrays.asList(scoreA, scoreB));
@@ -139,6 +158,10 @@ public class PlayerServiceTest {
                 .thenReturn(new ArrayList<>());
         when(scoreRepository.findScoresByPlayerIdAndCategoryName(playerId, "routine"))
                 .thenReturn(new ArrayList<>());
+        when(cumulatedPointRepository.findAllByIdPlayerAndCategoryId(playerId, category.getId()))
+                .thenReturn(Arrays.asList(cumulatedPoint));
+        when(cumulatedPointRepository.getPlayersIdOfCategory(category.getId()))
+                .thenReturn(Arrays.asList(playerId));
 
         PlayerDTO playerDTO = playerService.findById(playerId);
 
