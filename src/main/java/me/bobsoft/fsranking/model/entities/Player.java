@@ -33,4 +33,33 @@ public class Player {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     private SocialMedia socialMedia;
+
+    public void updateWhenNotNull(Player other) {
+        if(other == null) return;
+
+        String firstName = other.getFirstName();
+        this.firstName = firstName == null ? this.firstName : firstName;
+
+        String lastName = other.getLastName();
+        this.lastName = lastName == null ? this.lastName : lastName;
+
+        String nationality = other.getNationality();
+        this.nationality = nationality == null ? this.nationality : nationality;
+
+        String nick = other.getNick();
+        this.nick = nick == null ? this.nick : nick;
+
+        Integer birthYear = other.getBirthYear();
+        this.birthYear = birthYear == null ? this.birthYear : birthYear;
+
+        if (other.getSocialMedia() != null) {
+
+            if (this.socialMedia == null) {
+                this.socialMedia = new SocialMedia();
+                this.socialMedia.setPlayerId(id);
+            }
+
+            socialMedia.updateWhenNotNull(other.getSocialMedia());
+        }
+    }
 }

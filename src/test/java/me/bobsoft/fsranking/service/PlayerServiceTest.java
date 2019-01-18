@@ -10,6 +10,8 @@ import me.bobsoft.fsranking.repository.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -181,6 +183,69 @@ public class PlayerServiceTest {
         playerService.deletePlayer(playerId);
 
         Mockito.verify(playerRepository, Mockito.times(1)).deleteById(playerId);
+    }
+
+    // Atom props are updated
+    @Test
+    public void putPlayerTest() {
+        Integer playerId = 5;
+        Player player = new Player();
+        player.setId(playerId);
+        player.setNick("Stefan");
+
+        String newNick = "Simon";
+        Player updatedPlayer = new Player();
+        updatedPlayer.setNick(newNick);
+
+        when(playerRepository.findById(playerId)).thenReturn(Optional.of(player));
+
+        ResponseEntity<Player> entity = playerService.putPlayer(playerId, updatedPlayer);
+
+        assertThat(entity).isNotNull();
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(entity.getBody()).isEqualTo(player);
+        assertThat(entity.getBody().getNick()).isEqualTo(newNick);
+    }
+
+    // returns HTTP 404 on wrong url
+    @Test
+    public void putPlayerTest2() {
+        Integer playerId = 2000;
+
+        Player updatedPlayer = new Player();
+
+        when(playerRepository.findById(playerId)).thenReturn(Optional.ofNullable(null));
+
+        ResponseEntity<Player> entity = playerService.putPlayer(playerId, updatedPlayer);
+        assertThat(entity).isNotNull();
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+    // Adds social media if not added already
+    @Test
+    public void putPlayerTest3() {
+        Integer playerId = 8;
+        Player player = new Player();
+        player.setId(playerId);
+
+        String facebookURL = "fcb.com";
+        SocialMedia socialMedia = new SocialMedia();
+        socialMedia.setFacebookURL(facebookURL);
+
+        Player updatedPlayer = new Player();
+        updatedPlayer.setSocialMedia(socialMedia);
+
+        when(playerRepository.findById(playerId)).thenReturn(Optional.of(player));
+
+        ResponseEntity<Player> entity = playerService.putPlayer(playerId, updatedPlayer);
+
+        assertThat(entity).isNotNull();
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(entity.getBody()).isEqualTo(player);
+        assertThat(entity.getBody().getSocialMedia().getPlayerId()).isEqualTo(playerId);
+        assertThat(entity.getBody().getSocialMedia().getFacebookURL()).isEqualTo(facebookURL);
+        assertThat(entity.getBody().getSocialMedia().getInstagramURL()).isNull();
+        assertThat(entity.getBody().getSocialMedia().getYoutubeURL()).isNull();
     }
 
     @Test

@@ -11,6 +11,8 @@ import me.bobsoft.fsranking.model.utils.CumulatedPointDTO;
 import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
 import me.bobsoft.fsranking.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -130,6 +132,22 @@ public class PlayerService {
 
     public void deletePlayer(Integer id) {
         playerRepository.deleteById(id);
+    }
+
+    public ResponseEntity<Player> putPlayer(Integer id, Player updatedPlayer) {
+        Player player = playerRepository.findById(id).orElse(null);
+
+        if (player == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        player.updateWhenNotNull(updatedPlayer);
+
+        playerRepository.saveAndFlush(player);
+
+        if(player.getSocialMedia() != null)
+            socialMediaRepository.saveAndFlush(player.getSocialMedia());
+
+        return new ResponseEntity<>(player, HttpStatus.OK);
     }
 
     // ----------------- /players/{id}/statistics -------------------------------
