@@ -52,7 +52,14 @@ public class Player {
         Integer birthYear = other.getBirthYear();
         this.birthYear = birthYear == null ? this.birthYear : birthYear;
 
-        if(this.socialMedia != null)
-            this.socialMedia.updateWhenNotNull(other.getSocialMedia());
+        if (other.getSocialMedia() != null) {
+
+            if (this.socialMedia == null) {
+                this.socialMedia = new SocialMedia();
+                this.socialMedia.setPlayerId(id);
+            }
+
+            socialMedia.updateWhenNotNull(other.getSocialMedia());
+        }
     }
 }

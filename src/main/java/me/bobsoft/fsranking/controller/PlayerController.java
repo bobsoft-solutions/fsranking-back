@@ -6,6 +6,7 @@ import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class PlayerController {
     }
 
     @PutMapping("/players/{id}")
-    public Player putPlayer(@PathVariable Integer id, @PathVariable Player player) {
+    public ResponseEntity<Player> putPlayer(@PathVariable Integer id, @RequestBody Player player) {
         return playerService.putPlayer(id, player);
     }
 
