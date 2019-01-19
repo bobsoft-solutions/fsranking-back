@@ -4,6 +4,7 @@ import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.dto.PlayerDTOforPlayersEndpoint;
 import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
 import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.utils.PlayerPredictions;
 import me.bobsoft.fsranking.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,5 +51,10 @@ public class PlayerController {
     @GetMapping("/players/{id}/statistics")
     public PlayerStatisticsDTO findPlayerStatisticsById(@PathVariable Integer id) {
         return playerService.findStatisticsById(id);
+    }
+
+    @GetMapping("/players/{id}/predictions")
+    public PlayerPredictions findPlayerPredictionsById(@PathVariable Integer id) {
+        return playerService.findPlayerPredictionsById(id);
     }
 }

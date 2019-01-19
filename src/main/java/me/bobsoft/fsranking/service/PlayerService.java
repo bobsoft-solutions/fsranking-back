@@ -8,6 +8,7 @@ import me.bobsoft.fsranking.model.entities.CumulatedPoint;
 import me.bobsoft.fsranking.model.entities.Player;
 import me.bobsoft.fsranking.model.entities.SocialMedia;
 import me.bobsoft.fsranking.model.utils.CumulatedPointDTO;
+import me.bobsoft.fsranking.model.utils.PlayerPredictions;
 import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
 import me.bobsoft.fsranking.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +27,22 @@ public class PlayerService {
     private CumulatedPointRepository cumulatedPointRepository;
     private SocialMediaRepository socialMediaRepository;
     private CategoryRepository categoryRepository;
+    private GroupRepository groupRepository;
 
     @Autowired
     public PlayerService(PlayerRepository playerRepository,
                          ScoreRepository scoreRepository,
                          CumulatedPointRepository cumulatedPointRepository,
                          SocialMediaRepository socialMediaRepository,
-                         CategoryRepository categoryRepository) {
+                         CategoryRepository categoryRepository,
+                         GroupRepository groupRepository) {
 
         this.playerRepository = playerRepository;
         this.scoreRepository = scoreRepository;
         this.cumulatedPointRepository = cumulatedPointRepository;
         this.socialMediaRepository = socialMediaRepository;
         this.categoryRepository = categoryRepository;
+        this.groupRepository = groupRepository;
     }
 
     public List<Player> findAll() {
@@ -144,7 +148,7 @@ public class PlayerService {
 
         playerRepository.saveAndFlush(player);
 
-        if(player.getSocialMedia() != null)
+        if (player.getSocialMedia() != null)
             socialMediaRepository.saveAndFlush(player.getSocialMedia());
 
         return new ResponseEntity<>(player, HttpStatus.OK);
@@ -183,5 +187,35 @@ public class PlayerService {
                 .map(PlayerScoreDTO::new)
                 .sorted(Comparator.comparing(PlayerScoreDTO::getDate))
                 .collect(Collectors.toList());
+    }
+
+
+    // ----------------- /players/{id}/predictions -------------------------------
+    public PlayerPredictions findPlayerPredictionsById(Integer playerId) {
+
+        Map<String, Integer> predictions = new LinkedHashMap<>();
+
+        Integer playerPoints = cumulatedPointRepository.findPointsOfPlayer(playerId);
+
+        for (Integer groupId : cumulatedPointRepository.findDistinctGroupId()) {
+
+            if (!groupRepository.findById(groupId).get().getName().equals("undefined")) {
+                List<Integer> playersPoints = new LinkedList<>();
+
+                for (Integer id : playerRepository.findPlayersIdByLastCompetitionOfGivenGroup(groupId)) {
+                    playersPoints.add(cumulatedPointRepository.findPointsOfPlayer(id));
+                }
+
+                if (groupRepository.findById(groupId).isPresent()) {
+                    predictions.put(groupRepository.findById(groupId).get().getName(),
+                            playersPoints.stream()
+                                    .filter(points -> playerPoints < points)
+                                    .collect(Collectors.toList())
+                                    .size() + 1);
+                }
+            }
+        }
+
+        return new PlayerPredictions(playerId, predictions);
     }
 }
