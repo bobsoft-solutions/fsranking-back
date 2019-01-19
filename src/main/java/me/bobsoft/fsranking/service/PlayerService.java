@@ -3,7 +3,10 @@ package me.bobsoft.fsranking.service;
 import me.bobsoft.fsranking.model.dto.PlayerDTO;
 import me.bobsoft.fsranking.model.dto.PlayerDTOforPlayersEndpoint;
 import me.bobsoft.fsranking.model.dto.PlayerStatisticsDTO;
-import me.bobsoft.fsranking.model.entities.*;
+import me.bobsoft.fsranking.model.entities.Category;
+import me.bobsoft.fsranking.model.entities.CumulatedPoint;
+import me.bobsoft.fsranking.model.entities.Player;
+import me.bobsoft.fsranking.model.entities.SocialMedia;
 import me.bobsoft.fsranking.model.utils.CumulatedPointDTO;
 import me.bobsoft.fsranking.model.utils.PlayerPredictions;
 import me.bobsoft.fsranking.model.utils.PlayerScoreDTO;
@@ -194,20 +197,23 @@ public class PlayerService {
 
         Integer playerPoints = cumulatedPointRepository.findPointsOfPlayer(playerId);
 
-        for (Group group : groupRepository.findAll()) {
+        for (Integer groupId : cumulatedPointRepository.findDistinctGroupId()) {
 
-            List<Integer> playersPoints = new LinkedList<>();
+            if (!groupRepository.findById(groupId).get().getName().equals("undefined")) {
+                List<Integer> playersPoints = new LinkedList<>();
 
-            for (Integer id : playerRepository.findPlayersIdByLastCompetitionOfGivenGroup(group.getId())) {
-                playersPoints.add(cumulatedPointRepository.findPointsOfPlayer(id));
+                for (Integer id : playerRepository.findPlayersIdByLastCompetitionOfGivenGroup(groupId)) {
+                    playersPoints.add(cumulatedPointRepository.findPointsOfPlayer(id));
+                }
+
+                if (groupRepository.findById(groupId).isPresent()) {
+                    predictions.put(groupRepository.findById(groupId).get().getName(),
+                            playersPoints.stream()
+                                    .filter(points -> playerPoints < points)
+                                    .collect(Collectors.toList())
+                                    .size() + 1);
+                }
             }
-
-            predictions.put(group.getName(),
-                    playersPoints.stream()
-                            .filter(points -> playerPoints < points)
-                            .collect(Collectors.toList())
-                            .size() + 1);
-
         }
 
         return new PlayerPredictions(playerId, predictions);
