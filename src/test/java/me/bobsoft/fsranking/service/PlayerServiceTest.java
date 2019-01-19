@@ -29,6 +29,7 @@ public class PlayerServiceTest {
     private CumulatedPointRepository cumulatedPointRepository;
     private SocialMediaRepository socialMediaRepository;
     private CategoryRepository categoryRepository;
+    private GroupRepository groupRepository;
 
     @Before
     public void setUp() {
@@ -37,9 +38,10 @@ public class PlayerServiceTest {
         cumulatedPointRepository = mock(CumulatedPointRepository.class);
         socialMediaRepository = mock(SocialMediaRepository.class);
         categoryRepository = mock(CategoryRepository.class);
+        groupRepository = mock(GroupRepository.class);
 
         playerService = new PlayerService(playerRepository, scoreRepository,
-                cumulatedPointRepository, socialMediaRepository, categoryRepository);
+                cumulatedPointRepository, socialMediaRepository, categoryRepository, groupRepository);
     }
 
     @Test

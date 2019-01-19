@@ -21,4 +21,7 @@ public interface CumulatedPointRepository extends JpaRepository<CumulatedPoint, 
     CumulatedPoint findFirstByCategoryIdAndIdPlayerOrderByDateDesc(Integer categoryId, Integer playerId);
 
     List<CumulatedPoint> findAllByIdPlayerAndCategoryId(Integer playerId, Integer categoryId);
+
+    @Query(value="select max(points) from cumulated_point where id_player=?1", nativeQuery = true)
+    Integer findPointsOfPlayer(Integer playerId);
 }
