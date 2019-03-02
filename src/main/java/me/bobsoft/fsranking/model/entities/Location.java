@@ -2,10 +2,7 @@ package me.bobsoft.fsranking.model.entities;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -13,6 +10,7 @@ import javax.persistence.Table;
 public class Location {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
