@@ -1,0 +1,55 @@
+INSERT INTO public.player (first_name,last_name,nick,nationality,birth_year) VALUES 
+('Robert','Bejda','Robik','POL',1994)
+,('Dawid','Biegun','Zegan','POL',1992)
+,('Piotr','Biernacki',NULL,'POL',1992)
+,('Piotr','Bujak',NULL,'POL',1995)
+,('Oliver','Cherek','Oli','POL',NULL)
+,('Filip','Chudziński','Fichu','POL',1993)
+,('Łukasz','Chwieduk','Luki','POL',1993)
+,('Gaetan','Czaja',NULL,'POL',NULL)
+,('Daniel','Długołęcki','Q100m','POL',1987)
+,('Adrian','Duszak',NULL,'POL',1995)
+;
+INSERT INTO public.player (first_name,last_name,nick,nationality,birth_year) VALUES 
+('Konrad','Dybaś','Kondzio','POL',1995)
+,('Adrian','Franc','Franek','POL',1990)
+,('Krzysztof','Golonka','Clyde','POL',1990)
+,('Robert','Guzik',NULL,'POL',1996)
+,('Marcin','Kaczmarek','Marten','POL',1989)
+,('Łukasz','Karaś','Karaś','POL',NULL)
+,('Dawid','Koczur','Koczur','POL',1995)
+,('Jakub','Kokot',NULL,'POL',1996)
+,('Stanisław','Kościelny','Staniu','POL',1998)
+,('Daniel','Kowal','Danielson','POL',1992)
+;
+INSERT INTO public.player (first_name,last_name,nick,nationality,birth_year) VALUES 
+('Dawid','Krzyżowski','Kojak','POL',NULL)
+,('Paweł','Kwit','Ronnie','POL',1994)
+,('Tomasz','Lebiocki','Lebioda','POL',1985)
+,('Jakub','Makowski','Maki','POL',1994)
+,('Ksawery','Mielniczuk',NULL,'POL',2001)
+,('Cyprian','Mikita','Cypro','POL',1997)
+,('Daniel','Mikołajek','Mikołaj','POL',1991)
+,('Błażej','Nowikowski',NULL,'POL',1994)
+,('Mateusz','Odrzygóźdź','Lotar','POL',1990)
+,('Jaromir','Poprawa','JRK','POL',1995)
+;
+INSERT INTO public.player (first_name,last_name,nick,nationality,birth_year) VALUES 
+('Mateusz','Przenzak','Cheetos','POL',1998)
+,('Bartłomiej','Rak','Kalaputa','POL',1992)
+,('Michał','Rycaj','Michryc','POL',1990)
+,('Bartosz','Skalski','Skała','POL',1989)
+,('Szymon','Skalski','Szymo','POL',1990)
+,('Paweł','Skóra','Skóra','POL',1990)
+,('Marcin','Teper',NULL,'POL',1990)
+,('Filip','Tyczkowski','Tycza','POL',NULL)
+,('Paweł','Wierzchowski','Wieszak','POL',1990)
+,('Emil','Wysocki',NULL,'POL',1994)
+;
+INSERT INTO public.player (first_name,last_name,nick,nationality,birth_year) VALUES 
+('Stanisław','Wysowski','Staszko','POL',1992)
+,('Adam','Zaworski',NULL,'POL',1993)
+,('Radosław','Zdunek','Radox','POL',1992)
+,('Dawid','Ziomek','Ziomal','POL',1991)
+,('Mateusz','Związek','Zdzichu','POL',1987)
+;
